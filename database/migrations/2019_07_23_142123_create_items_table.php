@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class HangHoas extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class HangHoas extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('hang_hoas', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->float('weight');
             $table->float('height');
             $table->float('width');
             $table->float('depth');
-            $table->unsignedBigInteger('id_DH');
-
+            $table->unsignedBigInteger('bills_id');
         });
     }
 
@@ -32,6 +30,6 @@ class HangHoas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('items');
     }
 }

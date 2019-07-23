@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDonHangsTable extends Migration
+class CreateBillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDonHangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('don_hangs', function (Blueprint $table) {
+        Schema::create('bills', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('address_client');
             $table->string('address_reciever');
@@ -24,10 +24,10 @@ class CreateDonHangsTable extends Migration
             $table->enum('state',['Chờ xác nhận','Chờ giao hàng','Đang giao hàng','Hoàn thành giao hàng','Đã hủy']);
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
-            $table->string('id_PX_client');
-            $table->string('id_PX_reciever');
-            $table->unsignedBigInteger('id_KH');
-            $table->unsignedBigInteger('id_NVVC');
+            $table->string('communes_id_sender');
+            $table->string('communes_id_reciever');
+            $table->unsignedBigInteger('users_id_kh');
+            $table->unsignedBigInteger('users_id_nvvc');
         });
     }
 
@@ -38,6 +38,6 @@ class CreateDonHangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('don_hangs');
+        Schema::dropIfExists('bills');
     }
 }

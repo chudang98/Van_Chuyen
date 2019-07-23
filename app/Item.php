@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuanHuyen extends Model
+class Item extends Model
 {
     //
-    protected $table = "quan_huyens";
 }

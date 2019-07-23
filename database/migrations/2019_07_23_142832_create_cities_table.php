@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThanhPhosTable extends Migration
+class CreateCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateThanhPhosTable extends Migration
      */
     public function up()
     {
-        Schema::create('thanh_phos', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreateThanhPhosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thanh_phos');
+        Schema::dropIfExists('cities');
     }
 }

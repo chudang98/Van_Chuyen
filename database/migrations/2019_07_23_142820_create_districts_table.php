@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuanHuyensTable extends Migration
+class CreateDistrictsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateQuanHuyensTable extends Migration
      */
     public function up()
     {
-        Schema::create('quan_huyens', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('name');
             $table->enum('type',['Quận', 'Huyện']);
-            $table->string('id_TP');
+            $table->string('cities_id');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateQuanHuyensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quan_huyens');
+        Schema::dropIfExists('districts');
     }
 }

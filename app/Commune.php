@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ThanhPho extends Model
+class Commune extends Model
 {
     //
-    protected $table = "thanh_phos";
 }
