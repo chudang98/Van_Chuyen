@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+{{--    <title>Bootstrap Example</title>--}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
                                     <th>Người nhận</th>
                                     <th>Địa chỉ nhận</th>
                                     <th>SDT người nhận</th>
-                                    <th>Giá thành</th>
+                                    <th>Tổng tiền vận chuyển</th>
                                     <th>Chi tiết</th>
                                     </thead>
                                     <tbody>
@@ -100,7 +100,7 @@
                                     <th>Người nhận</th>
                                     <th>Địa chỉ nhận</th>
                                     <th>SDT người nhận</th>
-                                    <th>Giá thành</th>
+                                    <th>Tổng tiền vận chuyển</th>
                                     <th>Chi tiết</th>
                                     <th>Hủy bỏ</th>
                                     </thead>
@@ -156,13 +156,14 @@
                                                                     <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Bạn có chắc muốn hủy đơn hàng này không?</div>
 
                                                                 </div>
-                                                                <div class="modal-footer container">
-                                                                    <div class="col-md-2">
+                                                                <div class="modal-footer">
+                                                                    <div class="col-md-2"></div>
+                                                                    <div class="col-md-4">
                                                                         <form action="/huyDonHang/{{ $bill->id }}" method="GET">
                                                                             <button class="btn btn-sm btn-danger btn-success" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
                                                                         </form>
                                                                     </div>
-                                                                    <div class="col-md-3">
+                                                                    <div class="col-md-1">
                                                                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
                                                                     </div>
 
@@ -170,7 +171,6 @@
                                                             </div>
                                                             <!-- /.modal-content -->
                                                         </div>
-                                                        <!-- /.modal-dialog -->
                                                     </div>
                                                 </tr>
                                             @endif
@@ -196,7 +196,7 @@
                                         <th>Người nhận</th>
                                         <th>Địa chỉ nhận</th>
                                         <th>SDT người nhận</th>
-                                        <th>Giá thành</th>
+                                        <th>Tổng tiền vận chuyển</th>
                                         <th>Chi tiết</th>
                                         </thead>
                                         <tbody>
@@ -261,7 +261,7 @@
                                     <th>Người nhận</th>
                                     <th>Địa chỉ nhận</th>
                                     <th>SDT người nhận</th>
-                                    <th>Giá thành</th>
+                                    <th>Tổng tiền vận chuyển</th>
                                     <th>Chi tiết</th>
                                     </thead>
                                     <tbody>
@@ -326,7 +326,7 @@
                                     <th>Người nhận</th>
                                     <th>Địa chỉ nhận</th>
                                     <th>SDT người nhận</th>
-                                    <th>Giá thành</th>
+                                    <th>Tổng tiền vận chuyển</th>
                                     <th>Chi tiết</th>
                                     </thead>
                                     <tbody>
@@ -391,7 +391,7 @@
                                     <th>Người nhận</th>
                                     <th>Địa chỉ nhận</th>
                                     <th>SDT người nhận</th>
-                                    <th>Giá thành</th>
+                                    <th>Tổng tiền vận chuyển</th>
                                     <th>Chi tiết</th>
                                     </thead>
                                     <tbody>
@@ -447,24 +447,3 @@
     </div>
 </body>
 </html>
-
-
-<!--end  html -->
-
-{{--<!doctype html>--}}
-{{--<html lang="en">--}}
-{{--<head>--}}
-{{--    <meta charset="UTF-8">--}}
-{{--    <meta name="viewport"--}}
-{{--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--}}
-{{--    <meta http-equiv="X-UA-Compatible" content="ie=edge">--}}
-{{--    <title>Document</title>--}}
-{{--</head>--}}
-{{--<body>--}}
-{{--    @foreach($bills as $bill)--}}
-{{--        @if($bill->state !='Đã hủy') {{ $bill->id }}--}}
-{{--        @endif--}}
-{{--    @endforeach--}}
-
-{{--</body>--}}
-{{--</html>--}}

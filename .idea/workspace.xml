@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="434a57c4-51d5-4e94-ba85-b456cd3f5851" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/dsDonHang.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/dsDonHang.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/client/donHang.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_23_141856_create_bills_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_23_141856_create_bills_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/client/donHang.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client/donHang.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/client/dsDonHang.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client/dsDonHang.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,20 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClientController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+            <state relative-caret-position="410">
+              <caret line="44" column="40" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
@@ -42,27 +32,42 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_23_142123_create_items_table.php">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_23_141856_create_bills_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="21" column="48" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="48" />
+            <state relative-caret-position="221">
+              <caret line="24" column="29" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/client/dsDonHang.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="380" column="49" selection-start-line="380" selection-start-column="49" selection-end-line="380" selection-end-column="49" />
+            <state relative-caret-position="2569">
+              <caret line="161" column="106" lean-forward="true" selection-start-line="161" selection-start-column="106" selection-end-line="161" selection-end-column="106" />
               <folding>
-                <element signature="e#1184#5270#0#HTML" />
-                <element signature="e#5283#12736#0#HTML" />
-                <element signature="e#12749#17243#0#HTML" />
-                <element signature="e#17256#21511#0#HTML" />
-                <element signature="e#21524#25785#0#HTML" />
-                <element signature="e#25798#30045#0#HTML" />
+                <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/client/donHang.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-148">
+              <caret line="121" column="53" selection-start-line="121" selection-start-column="53" selection-end-line="121" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -72,6 +77,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>myTable</find>
+      <find>phone2</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,10 +94,10 @@
         <option value="$PROJECT_DIR$/resources/views/KhachHang/dsDonHang.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/KHController.php" />
         <option value="$PROJECT_DIR$/resources/views/client/donHang.blate.php" />
-        <option value="$PROJECT_DIR$/resources/views/client/donHang.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" />
         <option value="$PROJECT_DIR$/resources/views/client/dsDonHang.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/client/donHang.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" />
       </list>
     </option>
   </component>
@@ -201,7 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -213,19 +218,6 @@
               <item name="Van_Chuyen" type="b2602c69:ProjectViewProjectNode" />
               <item name="Van_Chuyen" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Van_Chuyen" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Van_Chuyen" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Van_Chuyen" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Van_Chuyen" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Van_Chuyen" type="b2602c69:ProjectViewProjectNode" />
@@ -313,12 +305,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel-demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DL_1_Ship" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -359,17 +353,19 @@
       <workItem from="1563891026978" duration="12698000" />
       <workItem from="1563889993399" duration="6176000" />
       <workItem from="1563963715083" duration="5484000" />
+      <workItem from="1563977731708" duration="3336000" />
+      <workItem from="1563979763087" duration="961000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24585000" />
+    <option name="totallyTimeSpent" value="28882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2473525" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2549168" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -419,11 +415,7 @@
     <entry file="file://$PROJECT_DIR$/storage/framework/views/0d77a649e788238550dc6073e3190106a532362c.php" />
     <entry file="file://$PROJECT_DIR$/storage/framework/views/7738750b73879747c332229230227de3eba45382.php" />
     <entry file="file://$PROJECT_DIR$/storage/framework/views/2577a21dec591efe03add998ba7efba32c2aa204.php" />
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/82c94f452739b31087fd39846f38ce46f34315ed.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1313" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/framework/views/82c94f452739b31087fd39846f38ce46f34315ed.php" />
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_23_142723_create_communes_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -462,13 +454,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KHController.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/client/donHang.blate.php" />
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_23_141856_create_bills_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -483,41 +468,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/client/donHang.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClientController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+        <state relative-caret-position="170">
+          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/client/dsDonHang.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="380" column="49" selection-start-line="380" selection-start-column="49" selection-end-line="380" selection-end-column="49" />
+        <state relative-caret-position="2569">
+          <caret line="161" column="106" lean-forward="true" selection-start-line="161" selection-start-column="106" selection-end-line="161" selection-end-column="106" />
           <folding>
-            <element signature="e#1184#5270#0#HTML" />
-            <element signature="e#5283#12736#0#HTML" />
-            <element signature="e#12749#17243#0#HTML" />
-            <element signature="e#17256#21511#0#HTML" />
-            <element signature="e#21524#25785#0#HTML" />
-            <element signature="e#25798#30045#0#HTML" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/client/donHang.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-148">
+          <caret line="121" column="53" selection-start-line="121" selection-start-column="53" selection-end-line="121" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_23_141856_create_bills_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClientController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="44" column="40" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

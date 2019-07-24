@@ -14,9 +14,9 @@ use DB;
 
 class ClientController extends Controller
 {
-    public function dsDonHang($id){
-        session(['id' => $id]);
-        $data['bills'] = Bill::where('users_id_kh',$id)->get();
+    public function dsDonHang(){
+        session(['id' => 1]);
+        $data['bills'] = Bill::where('users_id_kh',session('id'))->get();
 //        $posts= Post::where('id','>=', 1)
 //            ->where('title','PHP')
 //            ->where('body','like','%avel%')
@@ -27,23 +27,22 @@ class ClientController extends Controller
         $data['items'] = Item::all();
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
-        $data['cities'] = City::all();
         return View::make('client.dsDonHang',$data);
     }
     public function donHang($id){
-        $data['bills'] = Bill::where('users_id_kh',$id)->get();
+        $data['bills'] = Bill::where('id',$id)->first();
         $data['items'] = Item::all();
-        $data['districts'] = District::all();
+//        $data['items'] = Item::where('bills_id',$id);
         $data['communes'] = Commune::all();
-        $data['cities'] = City::all();
+        $data['districts'] = District::all();
         return View::make('client.donHang',$data);
     }
     public function huyDonHang($id){
-        $value = session('id');
         $item = Item::where('bills_id',$id);
         $item->delete();
-        $bill = Bill::where('id',$id)->first();
-        $bill->delete();
-        return redirect(url('/dsDonHang/'.$value));
+        DB::table('bills')
+            ->where('id', $id)
+            ->update(['state' => 'Đã hủy']);
+        return redirect(url('/dsDonHang'));
     }
 }
