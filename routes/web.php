@@ -17,3 +17,7 @@ Route::get('/', function () {
 Route::get('login', function(){
     return view('login');
 });
+Route::get('dsDonHang/{id}','ClientController@dsDonHang');
+Route::get('donHang/{id}','ClientController@donHang');
+Route::get('huyDonHang/{id}','ClientController@huyDonHang');
+//Route::get('about/{theSubject}','AboutController@showSubject');
