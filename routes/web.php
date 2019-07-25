@@ -21,9 +21,9 @@ Route::get('login', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('dsDonHang','ClientController@dsDonHang');
-Route::get('donHang/{id}','ClientController@donHang');
-Route::get('huyDonHang/{id}','ClientController@huyDonHang');
+Route::get('dsDonHang','CustomerController@dsDonHang');
+Route::get('donHang/{id}','CustomerController@donHang');
+Route::get('huyDonHang/{id}','CustomerController@huyDonHang');
 Route::get('ttTaiKhoan','UserController@ttTaiKhoan');
 Route::get('thayDoittTaiKhoan','UserController@thayDoittTaiKhoan');
 Route::get('thayDoiMatKhau','UserController@thayDoiMatKhau');

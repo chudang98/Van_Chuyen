@@ -10,7 +10,7 @@ class Commune extends Model
 
     public function district()
     {
-        $this->belongsTo('App\Commune',);
+        $this->belongsTo('App\Commune');
     }
     public function user()
     {
