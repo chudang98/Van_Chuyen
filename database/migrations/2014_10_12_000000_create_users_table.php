@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->enum('user_type',['Khách hàng','Quản trị viên', 'Nhân viên vận chuyển']);
+            $table->string('phone');
             $table->date('birth');
             $table->string('address');
             $table->string('communes_id');

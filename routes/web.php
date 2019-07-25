@@ -20,4 +20,7 @@ Route::get('login', function(){
 Route::get('dsDonHang','ClientController@dsDonHang');
 Route::get('donHang/{id}','ClientController@donHang');
 Route::get('huyDonHang/{id}','ClientController@huyDonHang');
+Route::get('ttTaiKhoan','UserController@ttTaiKhoan');
+Route::get('thayDoittTaiKhoan','UserController@thayDoittTaiKhoan');
+Route::get('thayDoiMatKhau','UserController@thayDoiMatKhau');
 //Route::get('about/{theSubject}','AboutController@showSubject');
