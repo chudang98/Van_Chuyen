@@ -17,6 +17,10 @@ Route::get('/', function () {
 Route::get('login', function(){
     return view('login');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('dsDonHang','ClientController@dsDonHang');
 Route::get('donHang/{id}','ClientController@donHang');
 Route::get('huyDonHang/{id}','ClientController@huyDonHang');

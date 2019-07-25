@@ -4,12 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Customer extends User
 {
     //
+    // protected $table = "";
+    
 
     //ORM
     public function bill(){
-        $this->belongsTo('App\Bill');
+        $this->hasMany('App\Bill');
     }
+
 }

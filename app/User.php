@@ -36,4 +36,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Config ORM
+    public function commune(){
+        $this->hasOne('App\Communes');
+    }
+    
+
+    public function getPosition(){
+        return $this->user_type;
+    }
+
 }

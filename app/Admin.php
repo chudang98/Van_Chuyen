@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NguoiDung extends Model
+class Admin extends User
 {
     //
-    protected $table = "nguoi_dungs";
+    // protected $table = 'users';
+
+
 }
