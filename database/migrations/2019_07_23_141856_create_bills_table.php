@@ -15,6 +15,7 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name_reciever');
             $table->string('address_client');
             $table->string('address_reciever');
             $table->string('phone_client');
@@ -27,7 +28,7 @@ class CreateBillsTable extends Migration
             $table->string('communes_id_sender');
             $table->string('communes_id_reciever');
             $table->unsignedBigInteger('users_id_kh');
-            $table->unsignedBigInteger('users_id_nvvc');
+            $table->unsignedBigInteger('users_id_nvvc')->nullable();
         });
     }
 
