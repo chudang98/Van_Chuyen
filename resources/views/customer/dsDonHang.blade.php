@@ -102,7 +102,6 @@
                                     <th>SDT người nhận</th>
                                     <th>Tổng tiền vận chuyển</th>
                                     <th>Chi tiết</th>
-                                    <th>Hủy bỏ</th>
                                     </thead>
                                     <tbody>
                                         <?php $dem=1; ?>
@@ -142,35 +141,7 @@
                                                         @endforeach
                                                         {{$tien}}
                                                     </td>
-                                                    <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
-                                                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                                                    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                                                    <h4 class="modal-title custom_align" id="Heading">Hủy đơn hàng</h4>
-                                                                </div>
-                                                                <div class="modal-body">
-
-                                                                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Bạn có chắc muốn hủy đơn hàng này không?</div>
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <div class="col-md-2"></div>
-                                                                    <div class="col-md-4">
-                                                                        <form action="/huyDonHang/{{ $bill->id }}" method="GET">
-                                                                            <button class="btn btn-sm btn-danger btn-success" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="col-md-1">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <!-- /.modal-content -->
-                                                        </div>
+                                                        <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
                                                     </div>
                                                 </tr>
                                             @endif

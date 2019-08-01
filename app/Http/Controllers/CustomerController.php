@@ -31,8 +31,6 @@ class CustomerController extends Controller
         return View::make('customer.donHang',$data);
     }
     public function huyDonHang($id){
-        $item = Item::where('bills_id',$id);
-        $item->delete();
         DB::table('bills')
             ->where('id', $id)
             ->update(['state' => 'Đã hủy']);

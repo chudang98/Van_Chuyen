@@ -58,7 +58,9 @@
                                    placeholder="Create a password" style="margin-bottom: 10px" type="password" />
                             @if($alert == 'passwordNew')
                                 <div class="alert alert-danger" role="alert">
-                                    Không khớp với mật khẩu định thay đổi, vui lòng nhập lại!
+                                    Note :<br>
+                                    - Mật khẩu phải có ít nhất 8 kí tự,ít nhất 1 kí tự số <br>
+                                    - Mật khẩu nhập lại cần giống với mật khẩu thay thế
                                 </div>
                             @endif
                         </div>

@@ -12,6 +12,12 @@ use View;
 
 class UserController extends Controller
 {
+    public function checkPW($str){
+        if(strlen($str)>=8)
+            for($i=0; $i<strlen($str); $i++)
+                if($str[$i] >= '0' && $str[$i] <='9') return 0;
+        return 1;
+    }
     public function ttTaiKhoan(){
         $data['user'] = User::where('id',session('id'))->first();
         $data['districts'] = District::all();
@@ -60,9 +66,14 @@ class UserController extends Controller
                 return redirect(url('/thayDoiMatKhau/passwordNew'));
             }
             else{
-                $user->password = bcrypt($_POST['password2']);
-                $user->save();
-                return redirect(url('/ttTaiKhoan'));
+                if($this->checkPW($_POST['password2'])== 0){
+                    $user->password = bcrypt($_POST['password2']);
+                    $user->save();
+                    return redirect(url('/ttTaiKhoan'));
+                }
+                else{
+                    return redirect(url('/thayDoiMatKhau/passwordNew'));
+                }
             }
         }
         else{

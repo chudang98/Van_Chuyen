@@ -65,6 +65,7 @@
                         @endforeach
                     </div>
                 </div>
+<!--                --><?php //echo bcrypt('111'); ?>
                 <div class="form-group">
                     <div class="aab controls col-md-2 "></div>
                     <div class="controls col-md-4 ">
