@@ -20,10 +20,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->enum('user_type',['Khách hàng','Quản trị viên', 'Nhân viên vận chuyển']);
+            $table->enum('user_type',['Khách hàng','Quản trị viên', 'Nhân viên vận chuyển'])->default('Khách hàng');
             $table->date('birth');
             $table->string('address');
             $table->string('communes_id');
+            $table->enum('is_lock', ['Yes', 'No'])->default('No');
+            $table->stinrg('telephone_num')->unique();
         });
     }
 

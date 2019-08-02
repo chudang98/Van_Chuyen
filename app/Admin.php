@@ -8,6 +8,6 @@ class Admin extends User
 {
     //
     // protected $table = 'users';
-
+    protected $guard = 'admin';
 
 }

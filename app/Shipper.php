@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shipper extends User
 {
     //
+    protected $guard = 'shipper';
     
 
     //ORM

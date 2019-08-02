@@ -1,0 +1,7 @@
+*{
+    display: inline;
+}
+#email-login-input, #password-login-input{
+    height: 37ppx;
+    width: 200px;
+}

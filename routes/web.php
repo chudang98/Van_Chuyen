@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('login', function(){
-    return view('login');
-});
 
 Auth::routes();
 
@@ -25,3 +22,19 @@ Route::get('dsDonHang','ClientController@dsDonHang');
 Route::get('donHang/{id}','ClientController@donHang');
 Route::get('huyDonHang/{id}','ClientController@huyDonHang');
 //Route::get('about/{theSubject}','AboutController@showSubject');
+
+
+Route::group(['prefix' => 'home'], function () {
+    // Route::get('admin', function ()
+    // {
+    //     echo 'admin';
+    // });
+    // Route::get('customer', function ()
+    // {
+    //     echo 'customer';        
+    // });
+    // Route::get('shipper', function ()
+    // {
+    //     echo 'shipper';
+    // });
+});

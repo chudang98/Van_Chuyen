@@ -35,7 +35,21 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        
     }
+    // public function username()
+    // {
+    //     return 'name';
+    // }
 
+
+    public function authenticate(Request $request)
+    {
+        // $credentials = $request->only('email-login', 'password-login');
+
+        // if (Auth::attempt($credentials)) {
+        //     return redirect()->intended('dashboard');
+        // }
+    }
     
 }

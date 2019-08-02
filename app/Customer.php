@@ -9,6 +9,7 @@ class Customer extends User
     //
     // protected $table = "";
     
+    protected $guard = 'customer';
 
     //ORM
     public function bill(){
