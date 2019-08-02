@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Commune extends Model
 {
     //
-
+    protected $primaryKey = 'string';
     public function district()
     {
-        $this->belongsTo('App\Commune',);
+        $this->belongsTo('App\Commune');
     }
     public function user()
     {
