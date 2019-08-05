@@ -4,11 +4,6 @@
 @endsection
 
 @section('content')
-<div>
     @include('auth.dangnhap')
-</div>
-<div>
-    @include('auth.dangky')
-</div>
 @endsection
 

@@ -45,11 +45,12 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        // $credentials = $request->only('email-login', 'password-login');
+        $credentials = $request->only('phone', 'password');
 
-        // if (Auth::attempt($credentials)) {
-        //     return redirect()->intended('dashboard');
-        // }
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->to('/home');
+        }
     }
     
 }

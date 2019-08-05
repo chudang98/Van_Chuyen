@@ -10,14 +10,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('intro');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/register/chooseDistrict', 'AjaxController@chooseDistrict')->name('register.selectDistrict');
+
+Route::get('/test/{id}', function($id){
+    $data = App\District::where('id', $id)->first()->communes;
+    $res = $data->toJson();
+    echo $res;
+});
+
+
 Route::get('dsDonHang','CustomerController@dsDonHang');
 Route::get('donHang/{id}','CustomerController@donHang');
 Route::get('huyDonHang/{id}','CustomerController@huyDonHang');
@@ -36,17 +44,3 @@ Route::any('saveAccount','AddminController@saveAccount');
 //Route::get('about/{theSubject}','AboutController@showSubject');
 
 
-Route::group(['prefix' => 'home'], function () {
-    // Route::get('admin', function ()
-    // {
-    //     echo 'admin';
-    // });
-    // Route::get('customer', function ()
-    // {
-    //     echo 'customer';        
-    // });
-    // Route::get('shipper', function ()
-    // {
-    //     echo 'shipper';
-    // });
-});
