@@ -18,12 +18,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register/chooseDistrict', 'AjaxController@chooseDistrict')->name('register.selectDistrict');
-
-Route::get('/test/{id}', function($id){
-    $data = App\District::where('id', $id)->first()->communes;
-    $res = $data->toJson();
-    echo $res;
-});
+Route::post('/user/confirm', 'UserController@confirm_order')->name('order.confirm');
 
 
 Route::get('dsDonHang','CustomerController@dsDonHang');
@@ -41,6 +36,12 @@ Route::get('taiKhoan/{id}','AddminController@taiKhoan');
 Route::get('xoaTaiKhoan/{id}','AddminController@xoaTaiKhoan');
 Route::get('themTaiKhoan','AddminController@themTaiKhoan');
 Route::any('saveAccount','AddminController@saveAccount');
-//Route::get('about/{theSubject}','AboutController@showSubject');
 
+
+//Route::get('about/{theSubject}','AboutController@showSubject');
+// Route::get('/test/{id}', function($id){
+//     $data = App\District::where('id', $id)->first()->communes;
+//     $res = $data->toJson();
+//     echo $res;
+// });
 
