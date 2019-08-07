@@ -16,8 +16,9 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/register/chooseDistrict', 'AjaxController@chooseDistrict')->name('register.selectDistrict');
 Route::post('/user/confirm', 'UserController@confirm_order')->name('order.confirm');
 
