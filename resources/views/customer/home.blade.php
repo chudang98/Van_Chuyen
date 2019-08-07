@@ -1,67 +1,68 @@
-@extends('layouts.app')
-
+@extends('customer.menu')
 
 @section('content')
-    <form action=" {{ route('order.confirm') }}" method="post">
-        @csrf
-        <div class="sender">
-            <h2>Sender</h2>
-            <input type="text" name="detail-addr" placeholder="Detail Address">
-            <input type="text" name="sender-name" placeholder="Sender name">
-            <input type="phone" name="sender-phone" placeholder="Phone number of sender">
-        </div>        
-        
-        <div class="receiver">
-            <h2>Reciever</h2>
-            <input type="text" name="receive-addr" placeholder="Detail Address">
-            <input type="text" name="reciever-name" placeholder="Reciever name">
-            <input type="phone" name="reciever-phone" placeholder="Phone number of reciever">
-        </div>
-        
-        <div class="order">
-            <h2>Order information</h2>
-            <button class="plus-item" type="button">
-                <i class="fa fa-plus"></i>
-            </button>
-
-            <div class="item-order" value="item1">
-                <p>Name item : 
-                    <input type="text" name="item1-name" placeholder="Name item"></input>
-                </p>
-                <div class="size">
-                    <input type="number" name="item1-width" placeholder="Width (cm)" oninput="priceItem('item1')">
-                    <input type="number" name="item1-height" placeholder="Height (cm)" oninput="priceItem('item1')">
-                    <input type="number" name="item1-depth" placeholder="Depth (cm)" oninput="priceItem('item1')">             
-                </div>
-                <div class="weight">
-                    <input type="number" name="item1-weight" placeholder="Weight (kg)" oninput="priceItem('item1')">
-                </div>
-                <button class="minus-item" type="button" value="item1" onclick="deleteItem('item1')">
-                    <i class="fa fa-minus"></i>
-                </button>
+    <div>
+        <form action=" {{ route('order.confirm') }}" method="post">
+            @csrf
+            <div class="sender">
+                <h2>Sender</h2>
+                <input type="text" name="detail-addr" placeholder="Detail Address">
+                <input type="text" name="sender-name" placeholder="Sender name">
+                <input type="phone" name="sender-phone" placeholder="Phone number of sender">
+            </div>        
+            
+            <div class="receiver">
+                <h2>Reciever</h2>
+                <input type="text" name="receive-addr" placeholder="Detail Address">
+                <input type="text" name="reciever-name" placeholder="Reciever name">
+                <input type="phone" name="reciever-phone" placeholder="Phone number of reciever">
             </div>
-        </div>
-        <div class="option speech">
-            <h2>Chọn tốc độ vận chuyển</h2>
-            <select class="speech" name="speech" id="">
-                <option value="Bình thường">Bình thường</option>
-                <option value="Nhanh">Nhanh</option>
-                <option value="Siêu tốc">Siêu tốc</option>
-            </select>
-        </div>
-        <div class="option payment">
-            <h2>Chọn phương thức thanh toán</h2>
-            <select class="payment" name="payment" id="">
-                <option value="COD">COD</option>
-                <option value="Gateway">Gateway</option>
-            </select>
-        </div>
-        <div class="price-order">
-            <span>Order price : </span>
-            <span class="price">0 VND</span>
-        </div>
-        <button type="submit" name="submit">Thanh toán</button>
-    </form>
+            
+            <div class="order">
+                <h2>Order information</h2>
+                <button class="plus-item" type="button">
+                    <i class="fa fa-plus"></i>
+                </button>
+
+                <div class="item-order" value="item1">
+                    <p>Name item : 
+                        <input type="text" name="item1-name" placeholder="Name item"></input>
+                    </p>
+                    <div class="size">
+                        <input type="number" name="item1-width" placeholder="Width (cm)" oninput="priceItem('item1')">
+                        <input type="number" name="item1-height" placeholder="Height (cm)" oninput="priceItem('item1')">
+                        <input type="number" name="item1-depth" placeholder="Depth (cm)" oninput="priceItem('item1')">             
+                    </div>
+                    <div class="weight">
+                        <input type="number" name="item1-weight" placeholder="Weight (kg)" oninput="priceItem('item1')">
+                    </div>
+                    <button class="minus-item" type="button" value="item1" onclick="deleteItem('item1')">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="option speech">
+                <h2>Chọn tốc độ vận chuyển</h2>
+                <select class="speech" name="speech" id="">
+                    <option value="Bình thường">Bình thường</option>
+                    <option value="Nhanh">Nhanh</option>
+                    <option value="Siêu tốc">Siêu tốc</option>
+                </select>
+            </div>
+            <div class="option payment">
+                <h2>Chọn phương thức thanh toán</h2>
+                <select class="payment" name="payment" id="">
+                    <option value="COD">COD</option>
+                    <option value="Gateway">Gateway</option>
+                </select>
+            </div>
+            <div class="price-order">
+                <span>Order price : </span>
+                <span class="price">0 VND</span>
+            </div>
+            <button type="submit" name="submit">Thanh toán</button>
+        </form>
+    </div>
 @endsection
 
 {{--  window.location.href = "{{ route('order.confirm') }}";  --}}

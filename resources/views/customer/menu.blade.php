@@ -26,7 +26,7 @@
         <div class="user">
             <a href="/ttTaiKhoan" class="user_avarta">
                 <span><i class="fa fa-user"></i></span>
-                <span>auth()->user()->name</span>
+                <span>{{ auth()->user()->name }}</span>
             </a>
             <a href="#" class="help">
                 <span><i class="fa fa-question-circle-o"></i></span>
