@@ -20,7 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/register/chooseDistrict', 'AjaxController@chooseDistrict')->name('register.selectDistrict');
-Route::post('/user/confirm', 'UserController@confirm_order')->name('order.confirm');
+Route::get('/user/confirm', 'UserController@confirm_order')->name('order.confirm');
 
 
 Route::get('dsDonHang','CustomerController@dsDonHang');

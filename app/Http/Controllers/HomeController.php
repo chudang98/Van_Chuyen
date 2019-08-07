@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -35,7 +36,9 @@ class HomeController extends Controller
                 break;
             case 'Khách hàng' :                
                 // return redirect()->to('home\customer');
-                return view('customer.home');
+                $districts = DB::table('districts')->get();
+                return view('customer.home')
+                    ->with('districts', $districts);
                 break;
             case 'Nhân viên vận chuyển' :
                 // return redirect()->to('home\shipper');
