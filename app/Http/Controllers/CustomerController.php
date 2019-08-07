@@ -15,7 +15,8 @@ use DB;
 class CustomerController extends Controller
 {
     public function dsDonHang(){
-        session(['id' => 1]);
+        session(['id' => 5]);
+        $data['user']= User::where('id', session('id'))->first();
         $data['bills'] = Bill::where('users_id_kh',session('id'))->get();
         $data['items'] = Item::all();
         $data['districts'] = District::all();
@@ -23,6 +24,7 @@ class CustomerController extends Controller
         return View::make('customer.dsDonHang',$data);
     }
     public function donHang($id){
+        $data['user']= User::where('id', session('id'))->first();
         $data['bills'] = Bill::where('id',$id)->first();
         $data['items'] = Item::all();
 //        $data['items'] = Item::where('bills_id',$id);

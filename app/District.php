@@ -22,9 +22,5 @@ class District extends Model
         return $this->belongsTo('App\City');
     }
 
-    public static function getCommunes($id){
-        $data = App\District::where('id', $id)->first()->communes;
-        return $data;
-    }
 
 }
