@@ -8,7 +8,7 @@
                 <div class="panel-title col-md-12">
                     <h3 class="col-md-11">Thay đổi mật khẩu</h3>
                     <div class="col-md-1 ">
-                        <a href="/thayDoittTaiKhoan/{{$user->name}}"><p data-placement="top" data-toggle="tooltip" title="suatt"><button class="btn btn-primary" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a>
+                        <a href="/thayDoittTaiKhoan/{{auth()->user()->name}}"><p data-placement="top" data-toggle="tooltip" title="suatt"><button class="btn btn-primary" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a>
                     </div>
 
                 </div>

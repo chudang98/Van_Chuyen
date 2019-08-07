@@ -7,7 +7,7 @@
             <div class="panel-heading">
                 <div class="panel-title">Thay đổi thông tin tài khoản</div>
                 <div style="float:right; font-size: 85%; position: relative; top:-10px">
-                    <a id="signinlink"href="/thayDoiMatKhau/{{$user->name}}">Đổi mật khẩu</a>
+                    <a id="signinlink"href="/thayDoiMatKhau/{{auth()->user()->name}}">Đổi mật khẩu</a>
                 </div>
             </div>
             <div class="panel-body" >
@@ -21,7 +21,7 @@
                         <div class="controls col-md-8 ">
                             <input required class="input-md  textinput textInput form-control" id="id_username" maxlength="30"
                                    name="name" placeholder="Choose your name" style="margin-bottom: 10px" type="text"
-                                   value={{$user->name}} />
+                                   value={{auth()->user()->name}} />
                         </div>
                     </div>
                     <div id="div_id_email" class="form-group required">
@@ -32,7 +32,7 @@
                         <div class="controls col-md-8 ">
                             <input required class="input-md emailinput form-control" id="id_email" name="email"
                                    placeholder="Your current email address" style="margin-bottom: 10px" type="email"
-                                   value={{$user->email}} />
+                                   value={{auth()->user()->email}} />
                         </div>
                     </div>
                     <div id="div_id_name" class="form-group required">
@@ -42,7 +42,7 @@
                         </label>
                         <div class="controls col-md-8 ">
                             <input required class="input-md textinput textInput form-control" id="id_name" name="phone"
-                                   placeholder="Your phone" style="margin-bottom: 10px" type="text" value={{$user->phone}} />
+                                   placeholder="Your phone" style="margin-bottom: 10px" type="text" value={{auth()->user()->phone}} />
                         </div>
                     </div>
                     <div id="div_id_name" class="form-group required">
@@ -53,7 +53,7 @@
                         <div class="controls col-md-8 ">
                             <input required class="input-md emailinput form-control" id="id_email" name="birth"
                                    placeholder="Your current email address" style="margin-bottom: 10px" type="date"
-                                   value={{$user->birth}} />
+                                   value={{auth()->user()->birth}} />
                         </div>
                     </div>
 
@@ -65,7 +65,7 @@
                         <div class="controls col-md-5 " style="margin-bottom: 10px">
                             <select class="selectpicker form-control" name="district" onchange="Changed(this)">
                                 @foreach($communes as $commune)
-                                    @if($user->communes_id == $commune->id)
+                                    @if(auth()->user()->communes_id == $commune->id)
                                         @foreach($districts as $district)
                                             @if($district->id == $commune->districts_id)
                                                 <option value={{$district->id}} selected > {{$district->name}} </option>
@@ -88,7 +88,7 @@
                             <select class="selectpicker form-control" name="commune" id="communes" onchange="change(this)" >
                                 onchange="Changed(this)"
                                 @foreach($communes as $commune){
-                                    @if($user->communes_id == $commune->id){
+                                    @if(auth()->user()->communes_id == $commune->id){
                                         <option value={{$commune->id}} selected > {{$commune->name}} </option>
                                         @foreach($communes as $commune2){
                                             @if($commune->districts_id == $commune2->districts_id && $commune->id != $commune2->id)
@@ -110,7 +110,7 @@
                         </label>
                         <div class="controls col-md-8 ">
                             <input required class="input-md textinput textInput form-control" id="id_location" name="address"
-                                   placeholder="Your location" style="margin-bottom: 10px" type="text" value={{$user->address}} />
+                                   placeholder="Your location" style="margin-bottom: 10px" type="text" value={{auth()->user()->address}} />
                         </div>
                     </div>
                     <div id="div_id_password1" class="form-group required">

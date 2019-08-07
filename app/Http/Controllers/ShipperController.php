@@ -17,10 +17,9 @@ class ShipperController extends Controller
 {
     //
     public function waitingOrders(){
-        $data['u']= User::where('id', session('id'))->first();
         $data['users'] = User::all();
 
-        $u = User::where('id', session('id'))->first();
+        $u = User::where('id', auth()->user()->id)->first();
         $data['bills'] = Bill::where('state','Chờ giao hàng')
                         ->where('communes_id_sender', $u->communes_id)
                         ->get();
@@ -30,7 +29,6 @@ class ShipperController extends Controller
         return View::make('shipper.waitingOrders',$data);
     }
     public function detailOrder($id){
-        $data['u']= User::where('id', session('id'))->first();
         $data['users'] = User::all();
 
         $data['bill'] = Bill::where('id',$id)->first();
@@ -43,7 +41,7 @@ class ShipperController extends Controller
     public function takeOrder($id){
         DB::table('bills')
             ->where('id', $id)
-            ->update(['state' => 'Đang giao hàng', 'users_id_nvvc'=>session('id')]);
+            ->update(['state' => 'Đang giao hàng', 'users_id_nvvc'=>auth()->user()->id]);
         return redirect(url('/waitingOrders'));
     }
 }
