@@ -10,16 +10,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('customer/menu');
-});
+    return view('welcome');
+})->name('intro');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/register/chooseDistrict', 'AjaxController@chooseDistrict')->name('register.selectDistrict');
+Route::post('/user/confirm', 'UserController@confirm_order')->name('order.confirm');
 
-//Customer
+
 Route::get('dsDonHang','CustomerController@dsDonHang');
 Route::get('donHang/{id}','CustomerController@donHang');
 Route::get('huyDonHang/{id}','CustomerController@huyDonHang');
