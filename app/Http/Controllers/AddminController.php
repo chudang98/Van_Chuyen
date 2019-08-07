@@ -20,6 +20,7 @@ class AddminController extends Controller
                 if($str[$i] >= '0' && $str[$i] <='9') return 0;
         return 1;
     }
+
     public function dsTaiKhoan(){
         $data['user'] = User::where('id',session('id'))->first();
         $data['users']= User::all();
@@ -27,6 +28,7 @@ class AddminController extends Controller
         $data['communes'] = Commune::all();
         return View::make('admin.listAccount',$data);
     }
+
     public function changeState($id){
         $u = User::where('id',$id)->first();
         if($_POST['state']=='Đóng băng') $u->is_lock= 'Yes';
@@ -38,24 +40,28 @@ class AddminController extends Controller
         $data['communes'] = Commune::all();
         return redirect(url('/taiKhoan/'.$id));
     }
+
     public function taiKhoan($id){
         $data['u'] = User::where('id',$id)->first();
         $data['communes'] = Commune::all();
         $data['districts'] = District::all();
         return View::make('admin.detailAccount',$data);
     }
+
     public function xoaTaiKhoan($id){
         DB::table('users')
             ->where('id', $id)
             ->delete();
         return redirect(url('/dsTaiKhoan'));
     }
+
     public function themTaiKhoan(){
         $data['communes'] = Commune::all();
         $data['districts'] = District::all();
         $data['dis'] = District::first();
         return View::make('admin.createAccount',$data);
     }
+    
     public function saveAccount(){
         if($_POST['password1']!=$_POST['password2'] || $this->checkPW($_POST['password1']) ==1 ){
             $data['communes'] = Commune::all();

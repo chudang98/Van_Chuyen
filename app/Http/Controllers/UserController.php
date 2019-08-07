@@ -81,9 +81,9 @@ class UserController extends Controller
         }
     }
 
-    public function confirm_order(Request $request){
-        $data = $request->all();
-        return view('confirmOrder.blade.php');
-        dd($data);
-    }
+    // public function confirm_order(Request $request){
+    //     $data = $request->all();
+    //     return view('confirmOrder.blade.php')
+    //                 ->with();
+    // }
 }

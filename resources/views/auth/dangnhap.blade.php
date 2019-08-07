@@ -7,7 +7,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Telephone number') }}</label>
                             <div class="col-md-6">
                                 <input id="phone" type="name" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
