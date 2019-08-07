@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Symfony\Component\HttpFoundation\Request;
+use DB;
 
 class RegisterController extends Controller
 {
