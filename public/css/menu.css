@@ -80,7 +80,7 @@ header .user i{
 }
 .menu{
     border-right: 2px solid gray;
-    height: 550px;
+    height: 100%;
     position: fixed;
     top: 110px;
     left: 0px;
@@ -105,7 +105,7 @@ header .user i{
 .main{
     position: relative;
     top: 110px;
-    left: 210px;
+    left: 8%;
     /*background-color: #FBE8A6;*/
 }
 /*End Header*/

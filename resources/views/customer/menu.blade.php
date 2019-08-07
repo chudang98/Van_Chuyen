@@ -43,7 +43,7 @@
                     <li class="item3"><a href="#"><i class="fa fa-credit-card card"></i></a></li>
                     <li class="item4"><a href="#"><i class="fa fa-bell bell"></i></a></li>
                     <li class="item5"><a href="#"><i class="fas fa-user-plus user_plus"></i></a></li>
-                    <li class="item6"><a href="{{ route('logout') }}"><i class="fa fa-sign-out sign_out"></i></a></li>
+                    <li class="item6"><a href="/logout"><i class="fa fa-sign-out sign_out"></i></a></li>
                 </ul>
             </div>
             <div class="col-md-11 main">
@@ -51,5 +51,7 @@
             </div>
         </div>
     </div>
+
+    @yield('script')
 </body>
 </html>
