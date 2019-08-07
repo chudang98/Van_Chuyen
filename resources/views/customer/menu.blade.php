@@ -26,7 +26,7 @@
         <div class="user">
             <a href="/ttTaiKhoan" class="user_avarta">
                 <span><i class="fa fa-user"></i></span>
-                <span>{{$user->name}}</span>
+                <span>{{ auth()->user()->name }}</span>
             </a>
             <a href="#" class="help">
                 <span><i class="fa fa-question-circle-o"></i></span>
@@ -38,12 +38,12 @@
         <div class="row">
             <div class="col-md-1 menu">
                 <ul>
-                    <li class="item1"><a href="#"><i class="fa fa-car car "></i></a></li>
+                    <li class="item1"><a href=" {{ route('home') }}"><i class="fa fa-car car "></i></a></li>
                     <li class="item2"><a href="/dsDonHang"><i class="fa fa-clock-o clock"></i></a></li>
                     <li class="item3"><a href="#"><i class="fa fa-credit-card card"></i></a></li>
                     <li class="item4"><a href="#"><i class="fa fa-bell bell"></i></a></li>
                     <li class="item5"><a href="#"><i class="fas fa-user-plus user_plus"></i></a></li>
-                    <li class="item6"><a href="#"><i class="fa fa-sign-out sign_out"></i></a></li>
+                    <li class="item6"><a href="{{ route('logout') }}"><i class="fa fa-sign-out sign_out"></i></a></li>
                 </ul>
             </div>
             <div class="col-md-11 main">
