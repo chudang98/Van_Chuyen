@@ -77,5 +77,12 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function showRegistrationForm()
+    {
+        $districts = DB::table('districts')->get();
+        return view('auth.register')
+            ->with('districts', $districts);
+    }
+
     
 }

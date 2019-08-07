@@ -18,17 +18,20 @@ class UserController extends Controller
                 if($str[$i] >= '0' && $str[$i] <='9') return 0;
         return 1;
     }
+
     public function ttTaiKhoan(){
         $data['user'] = User::where('id',session('id'))->first();
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
         return View::make('accountInfor',$data);
     }
+
     public function thayDoiMatKhau($alert){
         $data['alert']=$alert;
         $data['user'] = User::where('id',session('id'))->first();
         return View::make('changePW',$data);
     }
+
     public function thayDoittTaiKhoan($alert){
         $data['alert']=$alert;
         $data['user'] = User::where('id',session('id'))->first();
@@ -36,10 +39,12 @@ class UserController extends Controller
         $data['communes'] = Commune::all();
         return View::make('changeInfor',$data);
     }
+
     public function DBCommunes($id){
         $communes = Commune::where('districts_id', $id)->get();
         return response()->json($communes, Response::HTTP_OK);
     }
+
     public function saveInformation(){
         $user = User::where('id',session('id'))->first();
         if(Hash::check($_POST['password1'],$user->password)) {
@@ -59,6 +64,7 @@ class UserController extends Controller
             return redirect(url('/thayDoittTaiKhoan/saimk'));
         }
     }
+    
     public function savePassword(){
         $user = User::where('id',session('id'))->first();
         if(Hash::check($_POST['password1'],$user->password)) {

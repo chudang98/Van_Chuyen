@@ -42,6 +42,9 @@ class LoginController extends Controller
     //     return 'name';
     // }
 
+    public function username(){
+        return 'phone';
+    }
 
     public function authenticate(Request $request)
     {
