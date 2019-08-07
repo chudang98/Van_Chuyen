@@ -15,16 +15,13 @@ use DB;
 class CustomerController extends Controller
 {
     public function dsDonHang(){
-        session(['id' => 1]);
-        $data['user']= User::where('id', session('id'))->first();
-        $data['bills'] = Bill::where('users_id_kh',session('id'))->get();
+        $data['bills'] = Bill::where('users_id_kh',auth()->user()->id)->get();
         $data['items'] = Item::all();
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
         return View::make('customer.dsDonHang',$data);
     }
     public function donHang($id){
-        $data['user']= User::where('id', session('id'))->first();
         $data['bills'] = Bill::where('id',$id)->first();
         $data['items'] = Item::all();
 //        $data['items'] = Item::where('bills_id',$id);

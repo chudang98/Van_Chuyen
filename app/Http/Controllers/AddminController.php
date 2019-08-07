@@ -15,7 +15,6 @@ use DB;
 class AddminController extends Controller
 {
     public function checkPW($str){
-        $data['user']= User::where('id', session('id'))->first();
         if(strlen($str)>=8)
             for($i=0; $i<strlen($str); $i++)
                 if($str[$i] >= '0' && $str[$i] <='9') return 0;
@@ -23,7 +22,6 @@ class AddminController extends Controller
     }
 
     public function dsTaiKhoan(){
-        $data['user'] = User::where('id',session('id'))->first();
         $data['users']= User::all();
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
@@ -31,12 +29,11 @@ class AddminController extends Controller
     }
 
     public function changeState($id){
-        $data['user']= User::where('id', session('id'))->first();
         $u = User::where('id',$id)->first();
         if($_POST['state']=='Đóng băng') $u->is_lock= 'Yes';
         else $u->is_lock ='No';
         $u->save();
-        $data['user'] = User::where('id',session('id'))->first();
+        $data['user'] = User::where('id',auth()->user()->id)->first();
         $data['users']= User::all();
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
@@ -44,7 +41,6 @@ class AddminController extends Controller
     }
 
     public function taiKhoan($id){
-        $data['user'] = User::where('id',$id)->first();
         $data['communes'] = Commune::all();
         $data['districts'] = District::all();
         return View::make('admin.detailAccount',$data);
@@ -58,7 +54,6 @@ class AddminController extends Controller
     }
 
     public function themTaiKhoan(){
-        $data['user']= User::where('id', session('id'))->first();
         $data['communes'] = Commune::all();
         $data['districts'] = District::all();
         $data['dis'] = District::first();
@@ -66,7 +61,6 @@ class AddminController extends Controller
     }
     
     public function saveAccount(){
-        $data['user']= User::where('id', session('id'))->first();
         if($_POST['password1']!=$_POST['password2'] || $this->checkPW($_POST['password1']) ==1 ){
             $data['communes'] = Commune::all();
             $data['districts'] = District::all();

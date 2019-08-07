@@ -105,7 +105,11 @@ header .user i{
 .main{
     position: relative;
     top: 110px;
+<<<<<<< HEAD
     left: 8%;
+=======
+    left: 5%;
+>>>>>>> 40ce78d73d28962abb03fed08bbb07e6b00ff648
     /*background-color: #FBE8A6;*/
 }
 /*End Header*/
