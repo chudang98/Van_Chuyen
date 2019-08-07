@@ -19,7 +19,7 @@
                 <div id="div_id_username" class="form-group required col-md-12">
                     <label for="id_username" class="control-label col-md-4  requiredField"> Trạng thái: </label>
                     <div class="controls col-md-8 ">
-                        @if($u->is_lock == 'No') <p>Hoạt động</p>
+                        @if($user->is_lock == 'No') <p>Hoạt động</p>
                         @else <p>Đóng băng</p>
                         @endif
                     </div>
@@ -27,33 +27,33 @@
                 <div id="div_id_username" class="form-group required col-md-12">
                     <label for="id_username" class="control-label col-md-4  requiredField"> Họ và tên: </label>
                     <div class="controls col-md-8 ">
-                        {{$u->name}}
+                        {{$user->name}}
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
                     <label for="id_username" class="control-label col-md-4  requiredField"> E-mail: </label>
                     <div class="controls col-md-8 ">
-                        {{$u->email}}
+                        {{$user->email}}
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
                     <label for="id_username" class="control-label col-md-4  requiredField"> SDT: </label>
                     <div class="controls col-md-8 ">
-                        {{$u->phone}}
+                        {{$user->phone}}
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
                     <label for="id_username" class="control-label col-md-4  requiredField"> Ngày sinh: </label>
                     <div class="controls col-md-8 ">
-                        {{$u->birth}}
+                        {{$user->birth}}
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
                     <label for="id_username" class="control-label col-md-4  requiredField"> Địa chỉ: </label>
                     <div class="controls col-md-8 ">
-                        {{$u->address}}
+                        {{$user->address}}
                         -@foreach($communes as $commune)
-                            @if($commune->id == $u->communes_id)
+                            @if($commune->id == $user->communes_id)
                                 {{$commune->name}}
                                 -@foreach($districts as $district)
                                     @if($district->id == $commune->districts_id)
@@ -67,19 +67,20 @@
                 <div id="div_id_username" class="form-group required col-md-12">
                     <label for="id_username" class="control-label col-md-4  requiredField"> Chức vụ: </label>
                     <div class="controls col-md-8 ">
-                        {{$u->user_type}}
+                        {{$user->user_type}}
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="controls col-md-4 " >
+                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-default" data-title="Delete" data-toggle="modal" data-target="#delete" >Xóa tài khoản</button></p>
+                    </div>
                     <div class="controls col-md-5 ">
-                        <a href="#"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#changeState" >Chuyển trạng thái</button></p></a>
+                        <a href="#"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-info " data-title="Edit" data-toggle="modal" data-target="#changeState" >Chuyển trạng thái</button></p></a>
                     </div>
                     <div class="controls col-md-3 " style="padding-left: 5px;">
                         <a href="/dsTaiKhoan"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >Quay lại</button></p></a>
                     </div>
-                    <div class="controls col-md-4 " >
-                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn btn-primary btn-danger" data-title="Delete" data-toggle="modal" data-target="#delete" >Xóa tài khoản</button></p>
-                    </div>
+
 
 
                 </div>
@@ -89,11 +90,11 @@
     <div class="modal fade" id="changeState" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/changeState/{{$u->id}}" method="POST">
+                <form action="/changeState/{{$user->id}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div id="div_id_gender" class="form-group required">
-                            <label for="id_gender"  class="control-label  requiredField">Chọn trạng thái {{$u->id}}<span class="asteriskField">*</span> </label> <br>
+                            <label for="id_gender"  class="control-label  requiredField">Chọn trạng thái {{$user->id}}<span class="asteriskField">*</span> </label> <br>
                             <input type="radio" name="state" value="Đóng băng" checked>Đóng băng<br>
                             <input type="radio" name="state" value="Hoạt động">Hoạt động<br>
                         </div>
@@ -102,11 +103,11 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-4">
 
-                            <button class="btn btn-sm btn-danger btn-success" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Chuyển</button>
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Chuyển</button>
 
                         </div>
                         <div class="col-md-1">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Hủy</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Hủy</button>
                         </div>
                     </div>
                 </form>
@@ -119,7 +120,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Hủy đơn hàng</h4>
+                    <h4 class="modal-title custom_align" id="Heading">Xóa bỏ tài khoản</h4>
                 </div>
                 <div class="modal-body">
 
@@ -129,12 +130,12 @@
                 <div class="modal-footer">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                        <form action="/xoaTaiKhoan/{{ $u->id }}" method="GET">
-                            <button class="btn btn-sm btn-danger btn-success" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
+                        <form action="/xoaTaiKhoan/{{ $user->id }}" method="GET">
+                            <button class="btn btn-sm btn-default" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
                         </form>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
                     </div>
 
                 </div>

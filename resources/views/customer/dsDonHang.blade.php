@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-{{--    <title>Bootstrap Example</title>--}}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-{{--    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/dsDonHang.css')}}">--}}
-</head>
-<body>
-
-    <div class="container">
-        <h2>Danh Sách Đơn Hàng</h2>
+@extends('customer/menu')
+@section('content')
+    <div class="container" onload="css()">
         <br>
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">Tất cả</a></li>
@@ -33,6 +21,7 @@
                                     <thead>
                                     <th>STT</th>
                                     <th>Ngày gửi</th>
+                                    <th>Trạng thái</th>
                                     <th>Người nhận</th>
                                     <th>Địa chỉ nhận</th>
                                     <th>SDT người nhận</th>
@@ -45,6 +34,7 @@
                                         <tr>
                                             <td>{{ $dem++}}</td>
                                             <td>{{$bill->start_date}}</td>
+                                            <td>{{$bill->state}}</td>
                                             <td>{{$bill->name_reciever}}</td>
                                             <td>
                                                 {{$bill->address_reciever}}
@@ -66,14 +56,18 @@
                                                     <?php
                                                         if($item->bills_id == $bill->id){
                                                             if($item->weight!=0){
-                                                                $tien+=$item->weight*5000;
+                                                                $tien+=$item->weight*10000;
                                                             }
                                                             else{
-                                                                $tien+=$item->height*$item->width*$item->depth*3*5000;
+                                                                $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
                                                             }
                                                         }
                                                         ?>
                                                 @endforeach
+                                                    <?php
+                                                        if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                        else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                    ?>
                                                 {{$tien}}
                                             </td>
                                             <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
@@ -131,14 +125,18 @@
                                                             <?php
                                                             if($item->bills_id == $bill->id){
                                                                 if($item->weight!=0){
-                                                                    $tien+=$item->weight*5000;
+                                                                    $tien+=$item->weight*10000;
                                                                 }
                                                                 else{
-                                                                    $tien+=$item->height*$item->width*$item->depth*3*5000;
+                                                                    $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
                                                                 }
                                                             }
                                                             ?>
                                                         @endforeach
+                                                            <?php
+                                                                if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                                else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                            ?>
                                                         {{$tien}}
                                                     </td>
                                                         <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
@@ -198,14 +196,18 @@
                                                             <?php
                                                             if($item->bills_id == $bill->id){
                                                                 if($item->weight!=0){
-                                                                    $tien+=$item->weight*5000;
+                                                                    $tien+=$item->weight*10000;
                                                                 }
                                                                 else{
-                                                                    $tien+=$item->height*$item->width*$item->depth*3*5000;
+                                                                    $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
                                                                 }
                                                             }
                                                             ?>
                                                         @endforeach
+                                                            <?php
+                                                                if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                                else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                            ?>
                                                         {{$tien}}
                                                     </td>
                                                     <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
@@ -263,14 +265,18 @@
                                                         <?php
                                                         if($item->bills_id == $bill->id){
                                                             if($item->weight!=0){
-                                                                $tien+=$item->weight*5000;
+                                                                $tien+=$item->weight*10000;
                                                             }
                                                             else{
-                                                                $tien+=$item->height*$item->width*$item->depth*3*5000;
+                                                                $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
                                                             }
                                                         }
                                                         ?>
                                                     @endforeach
+                                                        <?php
+                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        ?>
                                                     {{$tien}}
                                                 </td>
                                                 <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
@@ -328,14 +334,18 @@
                                                         <?php
                                                         if($item->bills_id == $bill->id){
                                                             if($item->weight!=0){
-                                                                $tien+=$item->weight*5000;
+                                                                $tien+=$item->weight*10000;
                                                             }
                                                             else{
-                                                                $tien+=$item->height*$item->width*$item->depth*3*5000;
+                                                                $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
                                                             }
                                                         }
                                                         ?>
                                                     @endforeach
+                                                        <?php
+                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        ?>
                                                     {{$tien}}
                                                 </td>
                                                 <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
@@ -393,14 +403,18 @@
                                                         <?php
                                                         if($item->bills_id == $bill->id){
                                                             if($item->weight!=0){
-                                                                $tien+=$item->weight*5000;
+                                                                $tien+=$item->weight*10000;
                                                             }
                                                             else{
-                                                                $tien+=$item->height*$item->width*$item->depth*3*5000;
+                                                                $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
                                                             }
                                                         }
                                                         ?>
                                                     @endforeach
+                                                        <?php
+                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        ?>
                                                     {{$tien}}
                                                 </td>
                                                 <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
@@ -416,5 +430,16 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+    <script>
+        $(document).ready(
+            function css() {
+                document.getElementsByClassName("item2")[0].style.border = "2px solid #FE642E";
+                document.getElementsByClassName("clock")[0].style.padding = "13px";
+                document.getElementsByClassName("clock")[0].style.color = "#FE642E";
+                // console.log(1)
+            }
+        );
+
+
+    </script>
+@endsection

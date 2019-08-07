@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('communes_id');
             $table->enum('is_lock', ['Yes', 'No'])->default('No');
-            $table->stinrg('telephone_num')->unique();
+            $table->stinrg('phone')->unique();
         });
     }
 

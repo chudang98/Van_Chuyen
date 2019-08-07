@@ -1,14 +1,6 @@
-{{--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
-{{--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>--}}
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<div class="container">
+@extends('customer/menu')
+@section('content')
+<div class="container" onload="css()">
 
     <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
@@ -92,14 +84,18 @@
                             <?php
                             if($item->bills_id == $bills->id){
                                 if($item->weight!=0){
-                                    $tien+=$item->weight*5000;
+                                    $tien+=$item->weight*10000;
                                 }
                                 else{
-                                    $tien+=$item->height*$item->width*$item->depth*3*5000;
+                                    $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
                                 }
                             }
                             ?>
                         @endforeach
+                            <?php
+                                if($bills->speed == "Nhanh") $tien= $tien*1.2;
+                                else if( $bills->speed ==" Siêu tốc") $tien= $tien *1.5;
+                            ?>
                         {{$tien}}
                     </div>
                 </div>
@@ -107,12 +103,13 @@
                     <div class="form-group">
                         <div class="aab controls col-md-3 "></div>
                         <div class="controls col-md-4 ">
+                            <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn " data-title="Delete" data-toggle="modal" data-target="#delete" >Hủy đơn</button></p>
+                        </div>
+                        <div class="controls col-md-5 ">
     {{--                        <input type="button" onclick="/dsDonHang" value="Quay lại" class="btn btn btn-primary">--}}
                             <a href="/dsDonHang"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >Quay lại</button></p></a>
                         </div>
-                        <div class="controls col-md-5 ">
-                            <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn btn-primary btn-danger" data-title="Delete" data-toggle="modal" data-target="#delete" >Hủy đơn</button></p>
-                        </div>
+
 
 
                     </div>
@@ -146,11 +143,11 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                         <form action="/huyDonHang/{{ $bills->id }}" method="GET">
-                            <button class="btn btn-sm btn-danger btn-success" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
+                            <button class="btn btn-default   " type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
                         </form>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                        <button type="button" class="btn  btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
                     </div>
 
                 </div>
@@ -160,3 +157,16 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(
+        function css() {
+            document.getElementsByClassName("item2")[0].style.border = "2px solid #FE642E";
+            document.getElementsByClassName("clock")[0].style.padding = "13px";
+            document.getElementsByClassName("clock")[0].style.color = "#FE642E";
+            // console.log(1)
+        }
+    );
+
+
+</script>
+@endsection

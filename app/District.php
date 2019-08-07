@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class District extends Model
 {
 
-    protected $primaryKey = 'string';
+    protected $keyType = 'string';
 
     // ORM
     public function commune(){

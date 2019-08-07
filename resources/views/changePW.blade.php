@@ -1,8 +1,5 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
+@extends('customer/menu')
+@section('content')
 <div class="container">
 
     <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -11,7 +8,7 @@
                 <div class="panel-title col-md-12">
                     <h3 class="col-md-11">Thay đổi mật khẩu</h3>
                     <div class="col-md-1 ">
-                        <a href="/thayDoittTaiKhoan/{{$user->name}}"><p data-placement="top" data-toggle="tooltip" title="suatt"><button class="btn btn-danger" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a>
+                        <a href="/thayDoittTaiKhoan/{{$user->name}}"><p data-placement="top" data-toggle="tooltip" title="suatt"><button class="btn btn-primary" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a>
                     </div>
 
                 </div>
@@ -81,4 +78,4 @@
         </div>
     </div>
 </div>
-
+@endsection
