@@ -15,7 +15,7 @@ use DB;
 class CustomerController extends Controller
 {
     public function dsDonHang(){
-        session(['id' => 5]);
+        session(['id' => 1]);
         $data['user']= User::where('id', session('id'))->first();
         $data['bills'] = Bill::where('users_id_kh',session('id'))->get();
         $data['items'] = Item::all();
