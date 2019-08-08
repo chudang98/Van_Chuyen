@@ -39,7 +39,7 @@ class HomeController extends Controller
                 break;
             case 'Nhân viên vận chuyển' :
                 // return redirect()->to('home\shipper');
-                return view('shipper.home');
+                return redirect()->to('/waitingOrders');
                 break;
             default :
                 return redirect()->to('logout');

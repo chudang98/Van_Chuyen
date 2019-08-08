@@ -1,7 +1,7 @@
 @extends('customer.menu')
 
 @section('content')
-    <div>
+    <div  class="content">
         <form action=" {{ route('order.confirm') }}" method="post">
             @csrf
             <div class="sender">
@@ -9,7 +9,7 @@
                 <input type="text" name="detail-addr" placeholder="Detail Address">
                 <input type="text" name="sender-name" placeholder="Sender name">
                 <input type="phone" name="sender-phone" placeholder="Phone number of sender">
-            </div>        
+            </div>
             
             <div class="receiver">
                 <h2>Reciever</h2>
@@ -63,53 +63,54 @@
             <button type="submit" name="submit">Thanh toán</button>
         </form>
     </div>
-@endsection
-
-{{--  window.location.href = "{{ route('order.confirm') }}";  --}}
-
-
-
-@section('script')
     <script>
+
         var item = 1, count = 1, price = 0, tocdo = 1;
-        $(document).ready(function(){
-            $('.plus-item').click(function(){
-                appItem();
-            });
+        $(document).ready(
+            function(){
+                css();
+                $('.plus-item').click(function(){
+                    appItem();
+                });
 
-            $('.speech').change(function(){
-                var speech = $('.speech option:selected').val();
-                var $tocdo;
-                if(speech == 'Bình thường')
-                    $tocdo = 1;
-                if(speech == 'Nhanh')
-                    $tocdo = 1.2;
-                if(speech == 'Siêu tốc')
-                    $tocdo = 1.5;
-                price = price*$tocdo/tocdo;
-                tocdo = $tocdo;
-                $('.price').text(price + " VND");            
-            });
+                $('.speech').change(function(){
+                    var speech = $('.speech option:selected').val();
+                    var $tocdo;
+                    if(speech == 'Bình thường')
+                        $tocdo = 1;
+                    if(speech == 'Nhanh')
+                        $tocdo = 1.2;
+                    if(speech == 'Siêu tốc')
+                        $tocdo = 1.5;
+                    price = price*$tocdo/tocdo;
+                    tocdo = $tocdo;
+                    $('.price').text(price + " VND");
+                });
 
-            $('button[name = "submit"]').click(function(){
-                if(checkInputEmpty() == true){
-                    window.location.href = "{{ route('order.confirm') }}";
-                };
-            });
-            
-        });
+                $('button[name = "submit"]').click(function(){
+                    if(checkInputEmpty() == true){
+                        window.location.href = "{{ route('order.confirm') }}";
+                    };
+                });
 
+            }
+        );
 
+        function css() {
+            document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
+            document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
+            // console.log(1)
+        }
         function appItem(){
             count++;
             item++;
             var i = $('<i>', { class : 'fa fa-minus' });
-            var div = $('<div>', { 
-                class : 'item-order', 
+            var div = $('<div>', {
+                class : 'item-order',
                 value : 'item' + count,
             });
             var div_size = $('<div>', {
-                class : 'size'       
+                class : 'size'
             })
             var input1 = $('<input>', {
                 type : 'number',
@@ -192,9 +193,9 @@
 
         function calItem(item){
             var weight = queryItemValue(item, 'weight'),
-            depth = queryItemValue(item, 'depth'), 
-            width = queryItemValue(item, 'width'),
-            height = queryItemValue(item, 'height');
+                depth = queryItemValue(item, 'depth'),
+                width = queryItemValue(item, 'width'),
+                height = queryItemValue(item, 'height');
             var isDone =  validateNumber(weight) && validateNumber(depth) && validateNumber(width) && validateNumber(height);
             var isVolume = (depth > 50) || (width > 50) || (height > 50);
             var Price = 0;
@@ -231,7 +232,9 @@
                 });
             return true;
         }
+
     </script>
-
-
 @endsection
+
+
+

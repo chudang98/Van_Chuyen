@@ -4,9 +4,9 @@
         <br>
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">Tất cả</a></li>
-            <li><a data-toggle="tab" href="#menu1">Đang tìm</a></li>
-            <li><a data-toggle="tab" href="#menu2">Đã nhận</a></li>
-            <li><a data-toggle="tab" href="#menu3">Đang thực hiện</a></li>
+            <li><a data-toggle="tab" href="#menu1">Chờ xác nhận</a></li>
+            <li><a data-toggle="tab" href="#menu2">Chờ giao hàng</a></li>
+            <li><a data-toggle="tab" href="#menu3">Đang giao hàng</a></li>
             <li><a data-toggle="tab" href="#menu4">Hoàn thành</a></li>
             <li><a data-toggle="tab" href="#menu5">Đã hủy</a></li>
         </ul>
@@ -373,7 +373,7 @@
                                     <th>Địa chỉ nhận</th>
                                     <th>SDT người nhận</th>
                                     <th>Tổng tiền vận chuyển</th>
-                                    <th>Chi tiết</th>
+
                                     </thead>
                                     <tbody>
                                     <?php $dem=1; ?>
@@ -397,7 +397,7 @@
                                                     @endforeach
                                                 </td>
                                                 <td>{{$bill->phone_reciever}}</td>
-                                                <td>
+                                                <td class="price">
                                                     <?php $tien=0; ?>
                                                     @foreach($items as $item)
                                                         <?php
@@ -411,11 +411,12 @@
                                                         }
                                                         ?>
                                                     @endforeach
-                                                        <?php
-                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
-                                                        ?>
+                                                    <?php
+                                                    if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                    else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                    ?>
                                                     {{$tien}}
+
                                                 </td>
                                                 <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
                                             </tr>
@@ -431,15 +432,13 @@
         </div>
     </div>
     <script>
-        $(document).ready(
-            function css() {
-                document.getElementsByClassName("item2")[0].style.border = "2px solid #FE642E";
-                document.getElementsByClassName("clock")[0].style.padding = "13px";
-                document.getElementsByClassName("clock")[0].style.color = "#FE642E";
-                // console.log(1)
-            }
-        );
-
-
+        $(document).ready(function(){
+            document.getElementsByClassName("item2")[0].style.border = "2px solid #FE642E";
+            document.getElementsByClassName("item2")[0].style.padding = "3px 8px";
+            formatNumber();
+        });
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
     </script>
 @endsection
