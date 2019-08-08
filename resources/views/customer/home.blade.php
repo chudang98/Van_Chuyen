@@ -1,18 +1,43 @@
 @extends('customer.menu')
 
 @section('content')
-    <div  class="content">
-        <form action=" {{ route('order.confirm') }}" method="post">
+    <div>
+        <form method="post" action="{{ route('order.confirm') }}">
             @csrf
+
             <div class="sender">
                 <h2>Sender</h2>
+                <div class="address_sender">
+                    <h3> Choose address </h3>
+                    <select name="district_sender" id="district_sender" class='dynamic'>
+                        <option value="">--District--</option>
+                        @foreach ($districts as $element)
+                            <option value="{{ $element->id }}"> {{ $element->name }}</option>
+                        @endforeach
+                    </select>
+                    <select name="commune_sender" id="commune_sender" style='width: 173px'>
+                        <option value="">--Commune--</option>
+                    </select>
+                </div>
                 <input type="text" name="detail-addr" placeholder="Detail Address">
                 <input type="text" name="sender-name" placeholder="Sender name">
                 <input type="phone" name="sender-phone" placeholder="Phone number of sender">
-            </div>
+            </div>        
             
             <div class="receiver">
                 <h2>Reciever</h2>
+                <div class="address_receiver">
+                    <h3> Choose address </h3>
+                    <select name="district_receiver" id="district_receiver" class='dynamic'>
+                        <option value="">--District--</option>
+                        @foreach ($districts as $element)
+                            <option value="{{ $element->id }}"> {{ $element->name }}</option>
+                        @endforeach
+                    </select>
+                    <select name="commune_receiver" id="commune_receiver" style='width: 173px'>
+                        <option value="">--Commune--</option>
+                    </select>
+                </div>
                 <input type="text" name="receive-addr" placeholder="Detail Address">
                 <input type="text" name="reciever-name" placeholder="Reciever name">
                 <input type="phone" name="reciever-phone" placeholder="Phone number of reciever">
@@ -20,27 +45,26 @@
             
             <div class="order">
                 <h2>Order information</h2>
-                <button class="plus-item" type="button">
-                    <i class="fa fa-plus"></i>
-                </button>
-
                 <div class="item-order" value="item1">
                     <p>Name item : 
                         <input type="text" name="item1-name" placeholder="Name item"></input>
                     </p>
                     <div class="size">
-                        <input type="number" name="item1-width" placeholder="Width (cm)" oninput="priceItem('item1')">
-                        <input type="number" name="item1-height" placeholder="Height (cm)" oninput="priceItem('item1')">
-                        <input type="number" name="item1-depth" placeholder="Depth (cm)" oninput="priceItem('item1')">             
+                        <input type="number" name="item-width[]" placeholder="Width (cm)" oninput="priceItem('item1')">
+                        <input type="number" name="item-height[]" placeholder="Height (cm)" oninput="priceItem('item1')">
+                        <input type="number" name="item-depth[]" placeholder="Depth (cm)" oninput="priceItem('item1')">
                     </div>
                     <div class="weight">
-                        <input type="number" name="item1-weight" placeholder="Weight (kg)" oninput="priceItem('item1')">
+                        <input type="number" name="item-weight[]" placeholder="Weight (kg)" oninput="priceItem('item1')">
                     </div>
                     <button class="minus-item" type="button" value="item1" onclick="deleteItem('item1')">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
             </div>
+            <button class="plus-item" type="button">
+                <i class="fa fa-plus"></i>
+            </button>
             <div class="option speech">
                 <h2>Chọn tốc độ vận chuyển</h2>
                 <select class="speech" name="speech" id="">
@@ -56,84 +80,112 @@
                     <option value="Gateway">Gateway</option>
                 </select>
             </div>
-            <div class="price-order">
-                <span>Order price : </span>
-                <span class="price">0 VND</span>
+            <div class="thongke">
+                <div class="soluong">
+                    <span>Số lượng item</span>
+                    <input type="number" value="1" readonly name="countItem">
+                </div>
+                <div class="price-order">
+                    <span>Order price : </span>
+                    <span class="price">0 VND</span>
+                </div>
             </div>
-            <button type="submit" name="submit">Thanh toán</button>
+
+            <button type="button" name="submit">Thanh toán</button>
         </form>
     </div>
+@endsection
+
+
+@section('script')
     <script>
-
         var item = 1, count = 1, price = 0, tocdo = 1;
-        $(document).ready(
-            function(){
-                css();
-                $('.plus-item').click(function(){
-                    appItem();
-                });
+        $(document).ready(function(){
+            $('.plus-item').click(function(){
+                appItem();
+            });
 
-                $('.speech').change(function(){
-                    var speech = $('.speech option:selected').val();
-                    var $tocdo;
-                    if(speech == 'Bình thường')
-                        $tocdo = 1;
-                    if(speech == 'Nhanh')
-                        $tocdo = 1.2;
-                    if(speech == 'Siêu tốc')
-                        $tocdo = 1.5;
-                    price = price*$tocdo/tocdo;
-                    tocdo = $tocdo;
-                    $('.price').text(price + " VND");
-                });
+            $('.speech').change(function(){
+                var speech = $('.speech option:selected').val();
+                var $tocdo;
+                if(speech == 'Bình thường')
+                    $tocdo = 1;
+                if(speech == 'Nhanh')
+                    $tocdo = 1.2;
+                if(speech == 'Siêu tốc')
+                    $tocdo = 1.5;
+                price = price*$tocdo/tocdo;
+                tocdo = $tocdo;
+                $('.price').text(price + " VND");            
+            });
 
-                $('button[name = "submit"]').click(function(){
-                    if(checkInputEmpty() == true){
-                        window.location.href = "{{ route('order.confirm') }}";
-                    };
-                });
 
-            }
-        );
 
-        function css() {
-            document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
-            document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
-            // console.log(1)
-        }
+            $('.dynamic').change(function(){
+                var element =  $(this).siblings("select[name^='commune_']");
+                if($(this).val != ''){
+                    var value = $(this).val();
+                    var _token = $("input[name='_token']").val();
+                    $.ajax({
+                        method : 'GET',
+                        dataType : 'json',
+                        url : "{{ route('register.selectDistrict') }}",
+                        data : {
+                            district : value,
+                            _token : _token,
+                        },
+                        success : function(result){
+                            element.empty();
+                            $.each(result, function(index){
+                                element.append($('<option>', {
+                                    value: result[index].id,
+                                    text: result[index].name,
+                                }));
+                            });
+                        },
+                        error : function(){
+                            elements.empty();
+                        }
+                    });
+                }
+            });
+            
+        });
+
+
         function appItem(){
             count++;
             item++;
             var i = $('<i>', { class : 'fa fa-minus' });
-            var div = $('<div>', {
-                class : 'item-order',
+            var div = $('<div>', { 
+                class : 'item-order', 
                 value : 'item' + count,
             });
             var div_size = $('<div>', {
-                class : 'size'
+                class : 'size'       
             })
             var input1 = $('<input>', {
                 type : 'number',
-                name : 'item' + count + '-weight',
+                name : 'item-weight[]',
                 placeholder : 'Weight (kg)',
                 oninput : "priceItem('item" + count + "')",
             });
             var input2 = $('<input>', {
                 type : 'number',
-                name : 'item' + count + '-width',
+                name : 'item-width[]',
                 placeholder : 'Width (cm)',
                 oninput : "priceItem('item" + count + "')",
             });
             var input3 = $('<input>', {
                 type : 'number',
-                name : 'item' + count + '-height',
+                name : 'item-height[]',
                 placeholder : 'Height (cm)',
                 oninput : "priceItem('item" + count + "')",
 
             });
             var input4 = $('<input>', {
                 type : 'number',
-                name : 'item' + count + '-depth',
+                name : 'item-depth[]',
                 placeholder : 'Depth (cm)',
                 oninput : "priceItem('item" + count + "')",
             });
@@ -164,6 +216,8 @@
             div.append(div_weight);
             div.append(button_minus);
             $('.order').append(div);
+            $('input[name="countItem"').val(item);
+
         }
 
         function deleteItem(itemIndex){
@@ -172,6 +226,7 @@
                 $(query).remove();
                 item--;
             }
+            $('input[name="countItem"').val(item);
         }
 
         function validateNumber(val){
@@ -181,7 +236,7 @@
             return true;
 
         }
-        // Tham số là 1 itemn
+        // Tham số là 1 item
         function priceItem(item){
             price = 0;
             for(var i = 1; i <= count; i++){
@@ -193,9 +248,9 @@
 
         function calItem(item){
             var weight = queryItemValue(item, 'weight'),
-                depth = queryItemValue(item, 'depth'),
-                width = queryItemValue(item, 'width'),
-                height = queryItemValue(item, 'height');
+            depth = queryItemValue(item, 'depth'), 
+            width = queryItemValue(item, 'width'),
+            height = queryItemValue(item, 'height');
             var isDone =  validateNumber(weight) && validateNumber(depth) && validateNumber(width) && validateNumber(height);
             var isVolume = (depth > 50) || (width > 50) || (height > 50);
             var Price = 0;
@@ -208,8 +263,10 @@
         }
         // Tham số là stt của item + loại kích thước lấy ra
         function queryItemValue(item, typeValue){
-            var query = 'input[name="' + item + '-' + typeValue + '"]';
-            return $(query).val();
+            var paren = "div[value='" + item + "']";
+            var child = "input[name='item-" + typeValue + "[]']";
+            var element = $(paren).children($(child));
+            return element.val();
         }
 
         // xử lý không đồng bộ
@@ -222,7 +279,7 @@
                     return false;
                 }
             });
-            if(kt == 1)
+            if(kt == 1){
                 $('input[type="number"').each(function(){
                     if(validateNumber($(this).val()) == false){
                         kt = 0;
@@ -230,11 +287,13 @@
                         return false;
                     }
                 });
-            return true;
+            }
+            if(kt == 1)
+                return true;
+            else
+                return false;
         }
-
     </script>
+
+
 @endsection
-
-
-

@@ -81,4 +81,10 @@ class UserController extends Controller
             return redirect(url('/thayDoiMatKhau/passwordOld'));
         }
     }
+
+    public function confirm_order(Request $request){
+        $data = $request->all();
+        dd($data);
+
+    }
 }

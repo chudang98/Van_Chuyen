@@ -96,6 +96,7 @@
                                     <option value="{{ $element->id }}"> {{ $element->name }}</option>
                                 @endforeach --}}
                             </select>
+                            
                             {{-- Nhập ngày tháng năm sinh --}}
                             <div class="form-group row">
                                 <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date of birth') }}</label>    

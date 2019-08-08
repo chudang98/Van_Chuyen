@@ -24,4 +24,6 @@ class Bill extends Model
     public function user_id_nvvc(){
         $this->belongsTo('App\Shipper');
     }
+
+    
 }
