@@ -110,7 +110,8 @@ header .user i{
 .main{
     position: relative;
     top: 110px;
-    left: 5%;
+    left: 15%;
+    width: 85%;
     /*background-color: #FBE8A6;*/
 }
 .container{

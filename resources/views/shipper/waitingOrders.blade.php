@@ -57,10 +57,11 @@
                                                     ?>
                                                 @endforeach
                                                     <?php
-                                                        if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                        else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                    if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                    else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                    $tien1 = number_format($tien);
                                                     ?>
-                                                {{$tien}}
+                                                    {{$tien1}}
                                             </td>
                                             <td>
                                                 <a href="/S_detailOrder/{{$bill->id}}">
@@ -123,8 +124,6 @@
             function css() {
                 document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
                 document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
-                // document.getElementsByClassName("main")[0].style.left = "13%";
-                // console.log(1)
             }
         );
 

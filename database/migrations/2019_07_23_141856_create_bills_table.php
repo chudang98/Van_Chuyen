@@ -25,6 +25,7 @@ class CreateBillsTable extends Migration
             $table->enum('state',['Chờ xác nhận','Chờ giao hàng','Đang giao hàng','Hoàn thành giao hàng','Đã hủy']);
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
+            $table->text('reason')->nullable();
             $table->string('communes_id_sender');
             $table->string('communes_id_reciever');
             $table->unsignedBigInteger('users_id_kh');

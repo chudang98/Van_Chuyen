@@ -30,8 +30,7 @@ class UserController extends Controller
         return View::make('changePW',$data);
     }
 
-    public function thayDoittTaiKhoan($alert){
-        $data['alert']=$alert;
+    public function thayDoittTaiKhoan(){
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
         return View::make('changeInfor',$data);
@@ -43,22 +42,14 @@ class UserController extends Controller
     }
 
     public function saveInformation(){
-        if(Hash::check($_POST['password1'],$user->password)) {
-            $user->name = $_POST['name'];
-            $user->email = $_POST['email'];
-            $user->phone = $_POST['phone'];
-            $user->birth = $_POST['birth'];
-            $user->address = $_POST['address'];
-            $user->communes_id = $_POST['commune'];
-            $user->save();
-            $data['user'] = User::where('id', auth()->user()->id)->first();
-            $data['districts'] = District::all();
-            $data['communes'] = Commune::all();
-            return View::make('accountInfor', $data);
-        }
-        else{
-            return redirect(url('/thayDoittTaiKhoan/saimk'));
-        }
+        $user= User::where('id', auth()->user()->id)->first();
+        $user->name = $_POST['name'];
+        $user->email = $_POST['email'];
+        $user->birth = $_POST['birth'];
+        $user->address = $_POST['address'];
+        $user->communes_id = $_POST['commune'];
+        $user->save();
+        return redirect(url('/ttTaiKhoan'));
     }
     
     public function savePassword(){

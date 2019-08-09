@@ -41,6 +41,7 @@ class AddminController extends Controller
     }
 
     public function taiKhoan($id){
+        $data['user'] = User::where('id', $id)->first();
         $data['communes'] = Commune::all();
         $data['districts'] = District::all();
         return View::make('admin.detailAccount',$data);

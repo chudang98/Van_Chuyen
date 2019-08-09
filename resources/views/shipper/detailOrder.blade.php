@@ -95,11 +95,12 @@
                                     }
                                 ?>
                             @endforeach
-                            <?php
-                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
-                            ?>
-                            {{$tien}}
+                                <?php
+                                if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                $tien1 = number_format($tien);
+                                ?>
+                                {{$tien1}}
                         </div>
                     </div>
                     <div class="form-group">

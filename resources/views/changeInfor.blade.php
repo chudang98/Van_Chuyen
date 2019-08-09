@@ -5,9 +5,10 @@
     <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">Thay đổi thông tin tài khoản</div>
+                <div class="panel-title">
+                    Change the account information</div>
                 <div style="float:right; font-size: 85%; position: relative; top:-10px">
-                    <a id="signinlink"href="/thayDoiMatKhau/{{auth()->user()->name}}">Đổi mật khẩu</a>
+                    <a id="signinlink"href="/thayDoiMatKhau/{{auth()->user()->name}}">Change Password</a>
                 </div>
             </div>
             <div class="panel-body" >
@@ -15,7 +16,7 @@
                     @csrf
                     <div id="div_id_username" class="form-group required">
                         <label for="id_username" class="control-label col-md-4  requiredField">
-                            Họ và tên
+                            Name
                             <span class="asteriskField">*</span>
                         </label>
                         <div class="controls col-md-8 ">
@@ -36,18 +37,8 @@
                         </div>
                     </div>
                     <div id="div_id_name" class="form-group required">
-                        <label for="id_name" class="control-label col-md-4  requiredField">
-                            SDT
-                            <span class="asteriskField">*</span>
-                        </label>
-                        <div class="controls col-md-8 ">
-                            <input required class="input-md textinput textInput form-control" id="id_name" name="phone"
-                                   placeholder="Your phone" style="margin-bottom: 10px" type="text" value={{auth()->user()->phone}} />
-                        </div>
-                    </div>
-                    <div id="div_id_name" class="form-group required">
                         <label for="id_email" class="control-label col-md-4  requiredField">
-                            Ngày sinh
+                            Birth
                             <span class="asteriskField">*</span>
                         </label>
                         <div class="controls col-md-8 ">
@@ -59,7 +50,7 @@
 
                     <div id="div_id_name" class="form-group required" >
                         <label for="id_name" class="control-label col-md-4  requiredField">
-                            Quận/Huyện
+                            District
                             <span class="asteriskField">*</span>
                         </label>
                         <div class="controls col-md-5 " style="margin-bottom: 10px">
@@ -81,7 +72,7 @@
                     </div>
                     <div id="div_id_name" class="form-group required" >
                         <label for="id_name" class="control-label col-md-4  requiredField">
-                            Phường/Xã
+                            Commune
                             <span class="asteriskField">*</span>
                         </label>
                         <div class="controls col-md-5 " style="margin-bottom: 10px">
@@ -105,7 +96,7 @@
                     </div>
                     <div id="div_id_location" class="form-group required">
                         <label for="id_location" class="control-label col-md-4  requiredField">
-                            Số nhà
+                            apartment number
                             <span class="asteriskField">*</span>
                         </label>
                         <div class="controls col-md-8 ">
@@ -113,29 +104,14 @@
                                    placeholder="Your location" style="margin-bottom: 10px" type="text" value={{auth()->user()->address}} />
                         </div>
                     </div>
-                    <div id="div_id_password1" class="form-group required">
-                        <label for="id_password1" class="control-label col-md-4  requiredField">
-                            nhập lại mật khẩu
-                            <span class="asteriskField">*</span>
-                        </label>
-                        <div class="controls col-md-8 ">
-                            <input required class="input-md textinput textInput form-control" id="id_password1" name="password1"
-                                   placeholder="Create a password" style="margin-bottom: 10px" type="password" />
-                            @if($alert == 'saimk')
-                                <div class="alert alert-danger" role="alert">
-                                    Mật khẩu không khớp, vui lòng nhập lại!
-                                </div>
-                            @endif
-                        </div>
-                    </div>
                     <div class="form-group">
                         <div class="aab controls col-md-4 "></div>
                         <div class="controls col-md-2 ">
-                            <input onclick="window.location.href='/ttTaiKhoan'" type="button" name="Signup" value="Hủy bỏ"
+                            <input onclick="window.location.href='/ttTaiKhoan'" type="button" name="Signup" value="Cancel"
                                    class="btn btn btn-primary" id="button-id-signup" />
                         </div>
                         <div class="controls col-md-6 ">
-                            <input type="submit" name="Signup" value="Xác nhận" class="btn btn-primary btn btn-info"
+                            <input type="submit" name="Signup" value="Confirm" class="btn btn-primary btn btn-info"
                                    id="submit-id-signup" />
                         </div>
                     </div>

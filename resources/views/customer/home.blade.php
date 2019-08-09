@@ -101,6 +101,7 @@
     <script>
         var item = 1, count = 1, price = 0, tocdo = 1;
         $(document).ready(function(){
+            css();
             $('.plus-item').click(function(){
                 appItem();
             });
@@ -219,7 +220,10 @@
             $('input[name="countItem"').val(item);
 
         }
-
+        function css() {
+            document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
+            document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
+        }
         function deleteItem(itemIndex){
             var query = "div[value='" + itemIndex + "']";
             if(item > 1){
