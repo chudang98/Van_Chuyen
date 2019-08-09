@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +20,17 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/user/confirm', 'OrderController@confirm_order')->name('order.confirm');
+Route::post('back', 'UserController@back')->name('order.back');
+Route::get('saveOrder', 'OrderController@saveOrder');
+Route::get('editOrder', 'OrderController@editOrder');
+Route::get('cancelOrder', 'OrderController@cancelOrder');
 
+
+
+// AJAX controller
 Route::get('/register/chooseDistrict', 'AjaxController@chooseDistrict')->name('register.selectDistrict');
-Route::get('/user/confirm', 'UserController@confirm_order')->name('order.confirm');
-
+Route::get('/deleteSession', 'AjaxController@deleteSession')->name('ajax.deleteSession');
 
 Route::get('dsDonHang','CustomerController@dsDonHang');
 Route::get('donHang/{id}','CustomerController@donHang');

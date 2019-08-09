@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Commune;
+use App\Bill;
 use App\District;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -82,9 +83,9 @@ class UserController extends Controller
         }
     }
 
-    public function confirm_order(Request $request){
-        $data = $request->all();
-        dd($data);
 
+    
+    public function back(){
+        return back()->withInput();
     }
 }
