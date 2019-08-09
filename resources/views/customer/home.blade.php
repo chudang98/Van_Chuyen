@@ -160,7 +160,10 @@
                 }
             });
 
-
+            function  css() {
+                document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
+                document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
+            }
             // FUNCTION :
             function appItem(){
                 count++;
