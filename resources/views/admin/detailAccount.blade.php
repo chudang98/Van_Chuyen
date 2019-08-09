@@ -13,11 +13,11 @@
     <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title"><h3>Tài khoản chi tiết</h3></div>
+                <div class="panel-title"><h3>Detail Account</h3></div>
             </div>
             <div class="panel-body" >
                 <div id="div_id_username" class="form-group required col-md-12">
-                    <label for="id_username" class="control-label col-md-4  requiredField"> Trạng thái: </label>
+                    <label for="id_username" class="control-label col-md-4  requiredField"> State: </label>
                     <div class="controls col-md-8 ">
                         @if($user->is_lock == 'No') <p>Hoạt động</p>
                         @else <p>Đóng băng</p>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
-                    <label for="id_username" class="control-label col-md-4  requiredField"> Họ và tên: </label>
+                    <label for="id_username" class="control-label col-md-4  requiredField"> Name: </label>
                     <div class="controls col-md-8 ">
                         {{$user->name}}
                     </div>
@@ -37,19 +37,19 @@
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
-                    <label for="id_username" class="control-label col-md-4  requiredField"> SDT: </label>
+                    <label for="id_username" class="control-label col-md-4  requiredField"> Phone: </label>
                     <div class="controls col-md-8 ">
                         {{$user->phone}}
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
-                    <label for="id_username" class="control-label col-md-4  requiredField"> Ngày sinh: </label>
+                    <label for="id_username" class="control-label col-md-4  requiredField"> Birth: </label>
                     <div class="controls col-md-8 ">
                         {{$user->birth}}
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
-                    <label for="id_username" class="control-label col-md-4  requiredField"> Địa chỉ: </label>
+                    <label for="id_username" class="control-label col-md-4  requiredField"> Address: </label>
                     <div class="controls col-md-8 ">
                         {{$user->address}}
                         -@foreach($communes as $commune)
@@ -65,54 +65,36 @@
                     </div>
                 </div>
                 <div id="div_id_username" class="form-group required col-md-12">
-                    <label for="id_username" class="control-label col-md-4  requiredField"> Chức vụ: </label>
+                    <label for="id_username" class="control-label col-md-4  requiredField"> Role: </label>
                     <div class="controls col-md-8 ">
                         {{$user->user_type}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="controls col-md-4 " >
-                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-default" data-title="Delete" data-toggle="modal" data-target="#delete" >Xóa tài khoản</button></p>
+                    <div class="controls col-md-5 " >
+                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-default" data-title="Delete" data-toggle="modal" data-target="#delete" >Delete Account</button></p>
                     </div>
                     <div class="controls col-md-5 ">
-                        <a href="#"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-info " data-title="Edit" data-toggle="modal" data-target="#changeState" >Chuyển trạng thái</button></p></a>
+                        <form action="/changeState/{{$user->id}}" method="POST">
+                            @csrf
+                            @if($user->is_lock == 'No')
+                                <input type="hidden" name="state" value="Đóng băng">
+                                <button class="btn btn-info" type="submit">Đóng băng</button>
+                            @else
+                                <input type="hidden" name="state" value="Hoạt động">
+                                <button class="btn btn-info" type="submit">Hoạt động</button>
+                            @endif
+
+                        </form>
                     </div>
-                    <div class="controls col-md-3 " style="padding-left: 5px;">
-                        <a href="/dsTaiKhoan"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >Quay lại</button></p></a>
+                    <div class="controls col-md-1 " style="padding-left: 5px;">
+                        <a href="/dsTaiKhoan"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >Back</button></p></a>
                     </div>
 
 
 
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="modal fade" id="changeState" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="/changeState/{{$user->id}}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div id="div_id_gender" class="form-group required">
-                            <label for="id_gender"  class="control-label  requiredField">Chọn trạng thái {{$user->id}}<span class="asteriskField">*</span> </label> <br>
-                            <input type="radio" name="state" value="Đóng băng" checked>Đóng băng<br>
-                            <input type="radio" name="state" value="Hoạt động">Hoạt động<br>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-
-                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Chuyển</button>
-
-                        </div>
-                        <div class="col-md-1">
-                            <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Hủy</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- /.modal-content -->
         </div>
     </div>
     <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
@@ -120,25 +102,32 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Xóa bỏ tài khoản</h4>
+                    <h4 class="modal-title custom_align" id="Heading">Delete Account</h4>
                 </div>
                 <div class="modal-body">
-
-                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Bạn có chắc muốn xóa tài khoản này không?</div>
+                    <form action="/xoaTaiKhoan/{{ $user->id }}" method="GET" >
+                        @csrf
+                        <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>
+                            Đây là 1 hành động không thể khôi phục lại được,
+                            nếu vẫn muốn tiếp tục vui lòng nhập "accept" vào ô bên dưới:
+                        </div>
+                        <div class="form-group required">
+                            <input required type="text" style="width: 100%" name="confirm"
+                                   pattern="[aA]{1}[cC]{2}[eE]{1}[pP]{1}[tT]{1}">
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <button class="btn btn-sm btn-default" type="submit">confirm</button>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-success" data-dismiss="modal"> Cancel</button>
+                            </div>
+                        </div>
+                    </form>
 
                 </div>
-                <div class="modal-footer">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                        <form action="/xoaTaiKhoan/{{ $user->id }}" method="GET">
-                            <button class="btn btn-sm btn-default" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
-                        </form>
-                    </div>
-                    <div class="col-md-1">
-                        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-                    </div>
 
-                </div>
             </div>
             <!-- /.modal-content -->
         </div>

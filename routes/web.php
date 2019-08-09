@@ -34,11 +34,11 @@ Route::get('/deleteSession', 'AjaxController@deleteSession')->name('ajax.deleteS
 
 Route::get('dsDonHang','CustomerController@dsDonHang');
 Route::get('donHang/{id}','CustomerController@donHang');
-Route::get('huyDonHang/{id}','CustomerController@huyDonHang');
+Route::post('huyDonHang/{id}','CustomerController@huyDonHang');
 
 //General
 Route::get('ttTaiKhoan','UserController@ttTaiKhoan');
-Route::get('thayDoittTaiKhoan/{alert}','UserController@thayDoittTaiKhoan');
+Route::get('thayDoittTaiKhoan','UserController@thayDoittTaiKhoan');
 Route::get('thayDoiMatKhau/{alert}','UserController@thayDoiMatKhau');
 Route::get('DBCommunes/{id}','UserController@DBCommunes');
 Route::any('saveInformation','UserController@saveInformation');

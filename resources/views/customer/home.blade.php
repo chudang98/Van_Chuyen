@@ -52,7 +52,7 @@
                     <div class="size">
                         <input type="number" name="item-width[]" placeholder="Width (cm)">
                         <input type="number" name="item-height[]" placeholder="Height (cm)">
-                        <input type="number" name="item-depth[]" placeholder="Depth (cm)">             
+                        <input type="number" name="item-depth[]" placeholder="Depth (cm)">
                     </div>
                     <div class="weight">
                         <input type="number" name="item-weight[]" placeholder="Weight (kg)">
@@ -66,7 +66,7 @@
             <button class="plus-item" type="button">
                 <i class="fa fa-plus"></i>
             </button>
-            
+
             <div class="option speech">
                 <h2>Chọn tốc độ vận chuyển</h2>
                 <select class="speech" name="speech" id="">
@@ -90,7 +90,7 @@
                     <input type="number" value="1" readonly name="countItem">
                 </div>
             </div>
-            
+
             <button type="button" name="done">Thanh toán</button>
         </form>
     </div>
@@ -101,6 +101,7 @@
     <script>
         var item = 1, count = 1;
         $(document).ready(function(){
+            css();
             $('.plus-item').click(function(){
                 appItem();
             });
@@ -109,7 +110,7 @@
                 $.ajaxSetup({
                     headers:
                     { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-                });        
+                });
                 $.ajax({
                     method : 'GET',
                     dataType : 'json',
@@ -122,7 +123,7 @@
                         elements.empty();
                     }
                 });
-                
+
             @endif
             $('button[name = "done"]').click(function(){
                 if(checkInputEmpty() == true){
@@ -159,18 +160,21 @@
                 }
             });
 
-
-            // FUNCTION : 
+            function  css() {
+                document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
+                document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
+            }
+            // FUNCTION :
             function appItem(){
                 count++;
                 item++;
                 var i = $('<i>', { class : 'fa fa-minus' });
-                var div = $('<div>', { 
-                    class : 'item-order', 
+                var div = $('<div>', {
+                    class : 'item-order',
                     value : 'item' + count,
                 });
                 var div_size = $('<div>', {
-                    class : 'size'       
+                    class : 'size'
                 })
                 var input1 = $('<input>', {
                     type : 'number',
@@ -186,7 +190,7 @@
                     type : 'number',
                     name : 'item-height[]',
                     placeholder : 'Height (cm)',
-    
+
                 });
                 var input4 = $('<input>', {
                     type : 'number',
@@ -196,7 +200,7 @@
                 div_size.append(input2);
                 div_size.append(input3);
                 div_size.append(input4);
-    
+
                 var button_minus = $('<button>', {
                     class : 'minus-item',
                     type : 'button',
@@ -221,9 +225,9 @@
                 div.append(button_minus);
                 $('.order').append(div);
                 $('input[name="countItem"').val(item);
-    
+
             }
-    
+
             function deleteItem(itemIndex){
                 var query = "div[value='" + itemIndex + "']";
                 if(item > 1){
@@ -232,15 +236,15 @@
                 }
                 $('input[name="countItem"').val(item);
             }
-    
+
             function validateNumber(val){
                 var isNum = $.isNumeric(val);
                 if(isNum == false || val == '')
                     return false;
                 return true;
-    
+
             }
-    
+
             // xử lý không đồng bộ
             function checkInputEmpty(){
                 var kt = 1;

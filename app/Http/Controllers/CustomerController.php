@@ -32,7 +32,7 @@ class CustomerController extends Controller
     public function huyDonHang($id){
         DB::table('bills')
             ->where('id', $id)
-            ->update(['state' => 'Đã hủy']);
+            ->update(['state' => 'Đã hủy', 'reason'=> $_POST['reason']]);
         return redirect(url('/dsDonHang'));
     }
 }

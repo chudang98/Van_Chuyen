@@ -3,12 +3,12 @@
     <div class="container" onload="css()">
         <br>
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Tất cả</a></li>
-            <li><a data-toggle="tab" href="#menu1">Chờ xác nhận</a></li>
-            <li><a data-toggle="tab" href="#menu2">Chờ giao hàng</a></li>
-            <li><a data-toggle="tab" href="#menu3">Đang giao hàng</a></li>
-            <li><a data-toggle="tab" href="#menu4">Hoàn thành</a></li>
-            <li><a data-toggle="tab" href="#menu5">Đã hủy</a></li>
+            <li class="active"><a data-toggle="tab" href="#home">All orders</a></li>
+            <li><a data-toggle="tab" href="#menu1">Waiting for confirm</a></li>
+            <li><a data-toggle="tab" href="#menu2">Waiting</a></li>
+            <li><a data-toggle="tab" href="#menu3">Delivering</a></li>
+            <li><a data-toggle="tab" href="#menu4">Completed</a></li>
+            <li><a data-toggle="tab" href="#menu5">Canceled</a></li>
         </ul>
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
@@ -19,22 +19,19 @@
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
-                                    <th>STT</th>
-                                    <th>Ngày gửi</th>
-                                    <th>Trạng thái</th>
-                                    <th>Người nhận</th>
-                                    <th>Địa chỉ nhận</th>
-                                    <th>SDT người nhận</th>
-                                    <th>Tổng tiền vận chuyển</th>
-                                    <th>Chi tiết</th>
+                                    <th></th>
+                                    <th>Receiver</th>
+                                    <th>Address of receiver</th>
+                                    <th>phone number of receiver</th>
+                                    <th>Price</th>
+                                    <th>State</th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
                                     <?php $dem=1; ?>
                                     @foreach($bills as $bill)
                                         <tr>
                                             <td>{{ $dem++}}</td>
-                                            <td>{{$bill->start_date}}</td>
-                                            <td>{{$bill->state}}</td>
                                             <td>{{$bill->name_reciever}}</td>
                                             <td>
                                                 {{$bill->address_reciever}}
@@ -67,10 +64,31 @@
                                                     <?php
                                                         if($bill->speed == "Nhanh") $tien= $tien*1.2;
                                                         else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        $tien1 = number_format($tien);
                                                     ?>
-                                                {{$tien}}
+                                                    {{$tien1}}
                                             </td>
-                                            <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+                                            <td>
+                                                @if($bill->state =='Chờ xác nhận')
+                                                    <p style="color: #FE642E">{{$bill->state}}</p>
+                                                @elseif($bill->state =='Chờ giao hàng')
+                                                    <p style="color: #FACC2E">{{$bill->state}}</p>
+                                                @elseif($bill->state =='Đang giao hàng')
+                                                    <p style="color: #C8FE2E">{{$bill->state}}</p>
+                                                @elseif($bill->state =='Hoàn thành giao hàng')
+                                                    <p style="color: #64FE2E">{{$bill->state}}</p>
+                                                @elseif($bill->state =='Đã hủy')
+                                                    <p style="color: #424242">{{$bill->state}}</p>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="/donHang/{{$bill->id}}">
+                                                    <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                        <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                            Details
+                                                        </button>
+                                                    </p></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -89,13 +107,13 @@
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
-                                    <th>STT</th>
-                                    <th>Ngày gửi</th>
-                                    <th>Người nhận</th>
-                                    <th>Địa chỉ nhận</th>
-                                    <th>SDT người nhận</th>
-                                    <th>Tổng tiền vận chuyển</th>
-                                    <th>Chi tiết</th>
+                                    <th></th>
+                                    <th>Receiver</th>
+                                    <th>Address of receiver</th>
+                                    <th>phone number of receiver</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
                                         <?php $dem=1; ?>
@@ -103,7 +121,6 @@
                                             @if($bill->state=='Chờ xác nhận')
                                                 <tr>
                                                     <td>{{ $dem++}}</td>
-                                                    <td>{{$bill->start_date}}</td>
                                                     <td>{{$bill->name_reciever}}</td>
                                                     <td>
                                                         {{$bill->address_reciever}}
@@ -134,13 +151,57 @@
                                                             ?>
                                                         @endforeach
                                                             <?php
-                                                                if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                                else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                            $tien1 = number_format($tien);
                                                             ?>
-                                                        {{$tien}}
+                                                            {{$tien1}}
                                                     </td>
-                                                        <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
-                                                    </div>
+                                                    <td>
+                                                        <a href="/donHang/{{$bill->id}}">
+                                                            <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                                    Details
+                                                                </button>
+                                                            </p></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#">
+                                                            <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                                <button class="btn btn-xs" data-title="Edit" data-toggle="modal" data-target="#delete{{$bill->id}}" >
+                                                                    Cancel
+                                                                </button>
+                                                            </p></a>
+                                                        <div class="modal fade" id="delete{{$bill->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header alert-danger">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                                        <h4 class="modal-title custom_align " id="Heading">Cancel Order</h4>
+                                                                    </div>
+                                                                    <form action="/huyDonHang/{{ $bill->id }}" method="POST">
+                                                                        @csrf
+                                                                        <div class="modal-body">
+                                                                            Reason:
+                                                                            <input type="text" style="width: 100%; height: 50px" name="reason">
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <div class="col-md-2"></div>
+                                                                            <div class="col-md-4">
+                                                                                <button class="btn btn-default " type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
+                                                                            </div>
+                                                                            <div class="col-md-1">
+                                                                                <button type="button" class="btn  btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </form>
+
+                                                                </div>
+                                                                <!-- /.modal-content -->
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -160,13 +221,12 @@
                                 <div class="table-responsive">
                                     <table id="mytable" class="table table-bordred table-striped">
                                         <thead>
-                                        <th>STT</th>
-                                        <th>Ngày gửi</th>
-                                        <th>Người nhận</th>
-                                        <th>Địa chỉ nhận</th>
-                                        <th>SDT người nhận</th>
-                                        <th>Tổng tiền vận chuyển</th>
-                                        <th>Chi tiết</th>
+                                        <th></th>
+                                        <th>Receiver</th>
+                                        <th>Address of receiver</th>
+                                        <th>phone number of receiver</th>
+                                        <th>Price</th>
+                                        <th></th>
                                         </thead>
                                         <tbody>
                                         <?php $dem=1; ?>
@@ -174,7 +234,6 @@
                                             @if($bill->state=='Chờ giao hàng')
                                                 <tr>
                                                     <td>{{ $dem++}}</td>
-                                                    <td>{{$bill->start_date}}</td>
                                                     <td>{{$bill->name_reciever}}</td>
                                                     <td>
                                                         {{$bill->address_reciever}}
@@ -205,12 +264,20 @@
                                                             ?>
                                                         @endforeach
                                                             <?php
-                                                                if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                                else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                            $tien1 = number_format($tien);
                                                             ?>
-                                                        {{$tien}}
+                                                            {{$tien1}}
                                                     </td>
-                                                    <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+                                                    <td>
+                                                        <a href="/donHang/{{$bill->id}}">
+                                                            <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                                    Details
+                                                                </button>
+                                                            </p></a>
+                                                    </td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -229,13 +296,12 @@
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
-                                    <th>STT</th>
-                                    <th>Ngày gửi</th>
-                                    <th>Người nhận</th>
-                                    <th>Địa chỉ nhận</th>
-                                    <th>SDT người nhận</th>
-                                    <th>Tổng tiền vận chuyển</th>
-                                    <th>Chi tiết</th>
+                                    <th></th>
+                                    <th>Receiver</th>
+                                    <th>Address of receiver</th>
+                                    <th>phone number of receiver</th>
+                                    <th>Price</th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
                                     <?php $dem=1; ?>
@@ -243,7 +309,6 @@
                                         @if($bill->state=='Đang giao hàng')
                                             <tr>
                                                 <td>{{ $dem++}}</td>
-                                                <td>{{$bill->start_date}}</td>
                                                 <td>{{$bill->name_reciever}}</td>
                                                 <td>
                                                     {{$bill->address_reciever}}
@@ -274,12 +339,20 @@
                                                         ?>
                                                     @endforeach
                                                         <?php
-                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                        else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        $tien1 = number_format($tien);
                                                         ?>
-                                                    {{$tien}}
+                                                        {{$tien1}}
                                                 </td>
-                                                <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+                                                <td>
+                                                    <a href="/donHang/{{$bill->id}}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                            <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                                Details
+                                                            </button>
+                                                        </p></a>
+                                                </td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -298,13 +371,12 @@
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
-                                    <th>STT</th>
-                                    <th>Ngày gửi</th>
-                                    <th>Người nhận</th>
-                                    <th>Địa chỉ nhận</th>
-                                    <th>SDT người nhận</th>
-                                    <th>Tổng tiền vận chuyển</th>
-                                    <th>Chi tiết</th>
+                                    <th></th>
+                                    <th>Receiver</th>
+                                    <th>Address of receiver</th>
+                                    <th>phone number of receiver</th>
+                                    <th>Price</th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
                                     <?php $dem=1; ?>
@@ -312,7 +384,6 @@
                                         @if($bill->state=='Hoàn thành giao hàng')
                                             <tr>
                                                 <td>{{ $dem++}}</td>
-                                                <td>{{$bill->start_date}}</td>
                                                 <td>{{$bill->name_reciever}}</td>
                                                 <td>
                                                     {{$bill->address_reciever}}
@@ -343,12 +414,20 @@
                                                         ?>
                                                     @endforeach
                                                         <?php
-                                                            if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                            else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                        else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        $tien1 = number_format($tien);
                                                         ?>
-                                                    {{$tien}}
+                                                        {{$tien1}}
                                                 </td>
-                                                <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+                                                <td>
+                                                    <a href="/donHang/{{$bill->id}}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                            <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                                Details
+                                                            </button>
+                                                        </p></a>
+                                                </td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -367,13 +446,12 @@
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
-                                    <th>STT</th>
-                                    <th>Ngày gửi</th>
-                                    <th>Người nhận</th>
-                                    <th>Địa chỉ nhận</th>
-                                    <th>SDT người nhận</th>
-                                    <th>Tổng tiền vận chuyển</th>
-
+                                    <th></th>
+                                    <th>Receiver</th>
+                                    <th>Address of receiver</th>
+                                    <th>phone number of receiver</th>
+                                    <th>Price</th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
                                     <?php $dem=1; ?>
@@ -381,7 +459,6 @@
                                         @if($bill->state=='Đã hủy')
                                             <tr>
                                                 <td>{{ $dem++}}</td>
-                                                <td>{{$bill->start_date}}</td>
                                                 <td>{{$bill->name_reciever}}</td>
                                                 <td>
                                                     {{$bill->address_reciever}}
@@ -411,14 +488,21 @@
                                                         }
                                                         ?>
                                                     @endforeach
-                                                    <?php
-                                                    if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                    else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
-                                                    ?>
-                                                    {{$tien}}
-
+                                                        <?php
+                                                        if($bill->speed == "Nhanh") $tien= $tien*1.2;
+                                                        else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
+                                                        $tien1 = number_format($tien);
+                                                        ?>
+                                                        {{$tien1}}
                                                 </td>
-                                                <td><a href="/donHang/{{$bill->id}}"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+                                                <td>
+                                                    <a href="/donHang/{{$bill->id}}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                            <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                                Details
+                                                            </button>
+                                                        </p></a>
+                                                </td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -435,10 +519,6 @@
         $(document).ready(function(){
             document.getElementsByClassName("item2")[0].style.border = "2px solid #FE642E";
             document.getElementsByClassName("item2")[0].style.padding = "3px 8px";
-            formatNumber();
         });
-        function formatNumber(num) {
-            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-        }
     </script>
 @endsection
