@@ -31,18 +31,15 @@ class HomeController extends Controller
         switch ($position)
         {
             case 'Quản trị viên' :
-                // return redirect()->to('home\admin');
                 return view('admin.home');
                 break;
             case 'Khách hàng' :                
-                // return redirect()->to('home\customer');
                 $districts = DB::table('districts')->get();
                 return view('customer.home')
                     ->with('districts', $districts);
                 break;
             case 'Nhân viên vận chuyển' :
-                // return redirect()->to('home\shipper');
-                return view('shipper.home');
+                return redirect()->to('/waitingOrders');
                 break;
             default :
                 return redirect()->to('logout');

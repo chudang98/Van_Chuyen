@@ -9,27 +9,14 @@
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
-                                    <th>Ngày gửi</th>
-                                    <th>Mã</th>
-                                    <th>Người gửi</th>
-                                    <th>Người nhận</th>
-                                    <th>Giá tiền</th>
-                                    <th>Chi tiết</th>
-                                    <th>Nhận đơn</th>
+                                    <th>Sender address</th>
+                                    <th>Receiver address</th>
+                                    <th>Price</th>
                                     </thead>
                                     <tbody>
                                     @foreach($bills as $bill)
                                         <tr>
-                                            <td>{{$bill->start_date}}</td>
-                                            <td>{{$bill->id}}</td>
                                             <td>
-                                                @foreach($users as $user)
-                                                    @if($user->id == $bill->users_id_kh)
-                                                        {{$user->name}}
-                                                        @break
-                                                    @endif
-                                                @endforeach
-                                                    <br>
                                                 {{$bill->address_client}}
                                                 -@foreach($communes as $commune)
                                                     @if($commune->id == $bill->communes_id_sender)
@@ -43,8 +30,6 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                {{$bill->name_reciever}}
-                                                <br>
                                                 {{$bill->address_reciever}}
                                                 -@foreach($communes as $commune)
                                                     @if($commune->id == $bill->communes_id_reciever)
@@ -81,7 +66,7 @@
                                                 <a href="/S_detailOrder/{{$bill->id}}">
                                                     <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                                                         <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
-                                                            <span class="glyphicon glyphicon-pencil"></span>
+                                                            Details
                                                         </button>
                                                     </p>
                                                 </a>
@@ -90,7 +75,7 @@
                                                 <a href="/takeOrder/{{$bill->id}}">
                                                     <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                                                         <button id="save{{$bill->id}}" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" >
-                                                            Nhận
+                                                            Take order
                                                         </button>
                                                     </p>
                                                 </a>
@@ -137,8 +122,8 @@
         $(document).ready(
             function css() {
                 document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
-                document.getElementsByClassName("car")[0].style.padding = "13px";
-                document.getElementsByClassName("car")[0].style.color = "#FE642E";
+                document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
+                // document.getElementsByClassName("main")[0].style.left = "13%";
                 // console.log(1)
             }
         );
