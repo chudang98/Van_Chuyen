@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <div class='container'>
-        
+    <div class='container' style="margin-left : 200px">
         <div class="sender">
             <h2>Sender</h2>
         </div>
@@ -49,8 +48,6 @@
     </div>
 
     <script>
-
-
         $(document).ready(function() {
             var price = formatNumber({{ session()->get('data')['price'] }});            
             $('span[id="price"]').text(price);

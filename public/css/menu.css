@@ -116,4 +116,7 @@ header .user i{
 .container{
     width: 100%;
 }
+form{
+    margin-left: 200px;
+}
 /*End Header*/
