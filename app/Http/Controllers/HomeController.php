@@ -35,6 +35,9 @@ class HomeController extends Controller
                 break;
             case 'Khách hàng' :                
                 $districts = DB::table('districts')->get();
+                if(!session()->has('status')){
+                    session()->forget('data');
+                }
                 return view('customer.home')
                     ->with('districts', $districts);
                 break;

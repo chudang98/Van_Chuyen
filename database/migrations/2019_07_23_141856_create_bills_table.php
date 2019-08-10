@@ -30,6 +30,7 @@ class CreateBillsTable extends Migration
             $table->string('communes_id_reciever');
             $table->unsignedBigInteger('users_id_kh');
             $table->unsignedBigInteger('users_id_nvvc')->nullable();
+            $table->bigInteger('total_price')->nullable();
         });
     }
 

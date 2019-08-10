@@ -4,7 +4,6 @@
     <div>
         <form method="post" action="{{ route('order.confirm') }}">
             @csrf
-
             <div class="sender">
                 <h2>Sender</h2>
                 <div class="address_sender">
@@ -22,7 +21,7 @@
                 <input type="text" name="sender-detail-addr" placeholder="Detail Address">
                 <input type="text" name="sender-name" placeholder="Sender name">
                 <input type="phone" name="sender-phone" placeholder="Phone number of sender">
-            </div>        
+            </div> 
             
             <div class="receiver">
                 <h2>Reciever</h2>
@@ -38,14 +37,13 @@
                         <option value="">--Subdistrict--</option>
                     </select>
                 </div>
-                <input type="text" name="receive-detail-addr" placeholder="Detail Address">
+                <input type="text" name="receive-detail-addr" placeholder="Detail Address" value="{{ session()->get('receive-detail-addr') }}">
                 <input type="text" name="reciever-name" placeholder="Reciever name">
                 <input type="phone" name="reciever-phone" placeholder="Phone number of reciever">
             </div>
             
             <div class="order">
                 <h2>Order information</h2>
-                @if(!session()->has('status') || session()->get('status') != 'edit')
                     <div class="item-order" value="item1">
                         <p>Name item : 
                             <input type="text" name="item-name[]" placeholder="Name item"></input>
@@ -62,7 +60,6 @@
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                @endif()
             </div>
 
             <button class="plus-item" type="button">
@@ -103,40 +100,15 @@
     <script>
         var item = 1, count = 1;
         $(document).ready(function(){
-                // Process edit order
-                @if(session()->has('status'))
-                    @if(session()->get('status') == 'edit')
+            // set old value input
 
 
 
-                    @endif
-                @endif
-                // END PROCESS
+
             css();
             $('.plus-item').click(function(){
                 appItem();
             });
-
-            @if(session()->get('status') == 'done')
-                alert('Đã đặt đơn hàng thành công !');
-                $.ajaxSetup({
-                    headers:
-                    { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-                });
-                $.ajax({
-                    method : 'GET',
-                    dataType : 'json',
-                    url : "{{ route('ajax.deleteSession') }}",
-                    data : {
-                        method : 'delete_session',
-                        name : 'status',
-                    },
-                    error : function(){
-                        elements.empty();
-                    }
-                });
-
-            @endif
             
             $('button[name = "done"]').click(function(){
                 if(checkInputEmpty() == true){
@@ -173,11 +145,11 @@
                 }
             });
 
+            // FUNCTION :
             function  css() {
                 document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
                 document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
             }
-            // FUNCTION :
             function appItem(){
                 count++;
                 item++;
@@ -257,8 +229,7 @@
                 return true;
 
             }
-
-            // xử lý không đồng bộ
+            // --------- xử lý không đồng bộ
             function checkInputEmpty(){
                 var kt = 1;
                 $('input').each(function(){
@@ -282,6 +253,7 @@
                 else
                     return false;
             }
+
         });
 
 

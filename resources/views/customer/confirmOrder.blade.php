@@ -52,17 +52,8 @@
             var price = formatNumber({{ session()->get('data')['price'] }});            
             $('span[id="price"]').text(price);
 
- 
-
             $("button[id='back']").on('click', function(){
                 $.session.set('chooseConfirm', 'back');
-            });
-            $("button[id='cancel']").on('click', function(){
-                $.session.set('chooseConfirm', 'cancel');
-            });
-
-            $("#back").on('click', function(){
-                window.history.back();
             });
 
         });
@@ -76,7 +67,10 @@
             window.location.href = '/editOrder';
         }
         function cancel(){
-            window.location.href = '/cancelOrder';
+            var r = confirm("Bạn có chắc muốn hủy đơn hàng này chứ ???");
+            if(r == true){
+                window.location.href = '/home';
+            }
         }
     </script>
 @endsection

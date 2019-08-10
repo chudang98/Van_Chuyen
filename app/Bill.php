@@ -40,17 +40,20 @@ class Bill extends Model
     }
 
     public static function makeOrderBill($arr){
-        $bill = Bill::firstOrCreate([
-            'address_client'           => $arr['sender-detail-addr'],
-            'address_reciever'          => $arr['receive-detail-addr'],
-            'phone_client'             => $arr['sender-phone'],
-            'phone_reciever'           => $arr['reciever-phone'],
-            'payment'                  => $arr['payment'],
-            'speed'                    => $arr['speech'],
-            'communes_id_sender'       => $arr['commune_sender'],
-            'communes_id_reciever'     => $arr['commune_receiver'],
-            'users_id_kh'               => auth()->user()->id,
-        ]);
+        $bill = new Bill;
+        $bill->address_client           = $arr['sender-detail-addr'];
+        $bill->address_reciever         = $arr['receive-detail-addr'];
+        $bill->phone_client             = $arr['sender-phone'];
+        $bill->phone_reciever           = $arr['reciever-phone'];
+        $bill->name_reciever            = $arr['reciever-name'];
+        $bill->payment                  = $arr['payment'];
+        $bill->speed                    = $arr['speech'];
+        $bill->communes_id_sender       = $arr['commune_sender'];
+        $bill->communes_id_reciever     = $arr['commune_receiver'];
+        $bill->users_id_kh              = auth()->user()->id;
+        $bill->total_price              = $arr['price'];
+        $bill->save();
+        
         $count = count($arr['item-width']);
         for($i = 0; $i < $count; $i++){
             $item = new Item;
