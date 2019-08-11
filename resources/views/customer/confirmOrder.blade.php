@@ -51,12 +51,12 @@
         $(document).ready(function() {
             var price = formatNumber({{ session()->get('data')['price'] }});            
             $('span[id="price"]').text(price);
-
             $("button[id='back']").on('click', function(){
                 $.session.set('chooseConfirm', 'back');
             });
 
         });
+
         function formatNumber(num) {
             return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         }

@@ -45,24 +45,22 @@
             
             <div class="order">
                 <h2>Order information</h2>
-                @if(!session()->has('status') || session()->get('status') != 'edit')
-                    <div class="item-order" value="item1">
-                        <p>Name item : 
-                            <input type="text" name="item-name[]" placeholder="Name item"></input>
-                        </p>
-                        <div class="size">
-                            <input type="number" name="item-width[]" placeholder="Width (cm)">
-                            <input type="number" name="item-height[]" placeholder="Height (cm)">
-                            <input type="number" name="item-depth[]" placeholder="Depth (cm)">
-                        </div>
-                        <div class="weight">
-                            <input type="number" name="item-weight[]" placeholder="Weight (kg)">
-                        </div>
-                        <button class="minus-item" type="button" value="item1" onclick="deleteItem('item1')">
-                            <i class="fa fa-minus"></i>
-                        </button>
+                <div class="item-order" value="item1">
+                    <p>Name item : 
+                        <input type="text" name="item-name[]" placeholder="Name item"></input>
+                    </p>
+                    <div class="size">
+                        <input type="number" name="item-width[]" placeholder="Width (cm)">
+                        <input type="number" name="item-height[]" placeholder="Height (cm)">
+                        <input type="number" name="item-depth[]" placeholder="Depth (cm)">
                     </div>
-                @endif()
+                    <div class="weight">
+                        <input type="number" name="item-weight[]" placeholder="Weight (kg)">
+                    </div>
+                    <button class="minus-item" type="button" value="item1" onclick="deleteItem('item1')">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
             </div>
 
             <button class="plus-item" type="button">
@@ -103,40 +101,36 @@
     <script>
         var item = 1, count = 1;
         $(document).ready(function(){
-                // Process edit order
+                // Process status order from user order
                 @if(session()->has('status'))
-                    @if(session()->get('status') == 'edit')
-
-
-
+                    @if(session()->get('status') == 'done')
+                        alert('Đã đặt đơn hàng thành công !');
+                        $.ajaxSetup({
+                            headers:
+                            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+                        });
+                        $.ajax({
+                            method : 'GET',
+                            dataType : 'json',
+                            url : "{{ route('ajax.deleteSession') }}",
+                            data : {
+                                method : 'delete_session',
+                                name : 'status',
+                            },
+                            error : function(){
+                                elements.empty();
+                            }
+                        });
                     @endif
                 @endif
+
                 // END PROCESS
             css();
             $('.plus-item').click(function(){
                 appItem();
             });
 
-            @if(session()->get('status') == 'done')
-                alert('Đã đặt đơn hàng thành công !');
-                $.ajaxSetup({
-                    headers:
-                    { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-                });
-                $.ajax({
-                    method : 'GET',
-                    dataType : 'json',
-                    url : "{{ route('ajax.deleteSession') }}",
-                    data : {
-                        method : 'delete_session',
-                        name : 'status',
-                    },
-                    error : function(){
-                        elements.empty();
-                    }
-                });
-
-            @endif
+ 
             
             $('button[name = "done"]').click(function(){
                 if(checkInputEmpty() == true){
@@ -178,113 +172,109 @@
                 document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
             }
             // FUNCTION :
-            function appItem(){
-                count++;
-                item++;
-                var i = $('<i>', { class : 'fa fa-minus' });
-                var div = $('<div>', {
-                    class : 'item-order',
-                    value : 'item' + count,
-                });
-                var div_size = $('<div>', {
-                    class : 'size'
-                })
-                var input1 = $('<input>', {
-                    type : 'number',
-                    name : 'item-weight[]',
-                    placeholder : 'Weight (kg)',
-                });
-                var input2 = $('<input>', {
-                    type : 'number',
-                    name : 'item-width[]',
-                    placeholder : 'Width (cm)',
-                });
-                var input3 = $('<input>', {
-                    type : 'number',
-                    name : 'item-height[]',
-                    placeholder : 'Height (cm)',
 
-                });
-                var input4 = $('<input>', {
-                    type : 'number',
-                    name : 'item-depth[]',
-                    placeholder : 'Depth (cm)',
-                });
-                div_size.append(input2);
-                div_size.append(input3);
-                div_size.append(input4);
-
-                var button_minus = $('<button>', {
-                    class : 'minus-item',
-                    type : 'button',
-                    value : 'item' + count,
-                    onclick : "deleteItem('item" + count + "')",
-                })
-                var div_weight = $('<div>', {
-                    class : 'weight'
-                })
-                div_weight.append(input1);
-                var p_name = $('<p>',{ text : 'Name item : ' });
-                var input_name = $('<input>',{
-                    type : "text",
-                    name : "item-name[]",
-                    placeholder : "Name item"
-                });
-                p_name.append(input_name);
-                button_minus.append(i);
-                div.append(p_name);
-                div.append(div_size);
-                div.append(div_weight);
-                div.append(button_minus);
-                $('.order').append(div);
-                $('input[name="countItem"').val(item);
-
+        });
+        function deleteItem(itemIndex){
+            var query = "div[value='" + itemIndex + "']";
+            if(item > 1){
+                $(query).remove();
+                item--;
             }
+            $('input[name="countItem"').val(item);
+        }
+        function appItem(){
+            count++;
+            item++;
+            var i = $('<i>', { class : 'fa fa-minus' });
+            var div = $('<div>', {
+                class : 'item-order',
+                value : 'item' + count,
+            });
+            var div_size = $('<div>', {
+                class : 'size'
+            })
+            var input1 = $('<input>', {
+                type : 'number',
+                name : 'item-weight[]',
+                placeholder : 'Weight (kg)',
+            });
+            var input2 = $('<input>', {
+                type : 'number',
+                name : 'item-width[]',
+                placeholder : 'Width (cm)',
+            });
+            var input3 = $('<input>', {
+                type : 'number',
+                name : 'item-height[]',
+                placeholder : 'Height (cm)',
 
-            function deleteItem(itemIndex){
-                var query = "div[value='" + itemIndex + "']";
-                if(item > 1){
-                    $(query).remove();
-                    item--;
-                }
-                $('input[name="countItem"').val(item);
-            }
+            });
+            var input4 = $('<input>', {
+                type : 'number',
+                name : 'item-depth[]',
+                placeholder : 'Depth (cm)',
+            });
+            div_size.append(input2);
+            div_size.append(input3);
+            div_size.append(input4);
 
-            function validateNumber(val){
-                var isNum = $.isNumeric(val);
-                if(isNum == false || val == '')
+            var button_minus = $('<button>', {
+                class : 'minus-item',
+                type : 'button',
+                value : 'item' + count,
+                onclick : "deleteItem('item" + count + "')",
+            })
+            var div_weight = $('<div>', {
+                class : 'weight'
+            })
+            div_weight.append(input1);
+            var p_name = $('<p>',{ text : 'Name item : ' });
+            var input_name = $('<input>',{
+                type : "text",
+                name : "item-name[]",
+                placeholder : "Name item"
+            });
+            p_name.append(input_name);
+            button_minus.append(i);
+            div.append(p_name);
+            div.append(div_size);
+            div.append(div_weight);
+            div.append(button_minus);
+            $('.order').append(div);
+            $('input[name="countItem"').val(item);
+
+        }
+        function validateNumber(val){
+            var isNum = $.isNumeric(val);
+            if(isNum == false || val == '')
+                return false;
+            return true;
+
+        }
+        // xử lý không đồng bộ
+        function checkInputEmpty(){
+            var kt = 1;
+            $('input').each(function(){
+                if($(this).val() == ''){
+                    kt = 0;
+                    alert('Vui lòng điền đầy đủ thông tin !');
                     return false;
-                return true;
-
-            }
-
-            // xử lý không đồng bộ
-            function checkInputEmpty(){
-                var kt = 1;
-                $('input').each(function(){
-                    if($(this).val() == ''){
+                }
+            });
+            if(kt == 1){
+                $('input[type="number"').each(function(){
+                    if(validateNumber($(this).val()) == false){
                         kt = 0;
-                        alert('Vui lòng điền đầy đủ thông tin !');
+                        alert('Vui lòng nhập đúng định dạng số !');
                         return false;
                     }
                 });
-                if(kt == 1){
-                    $('input[type="number"').each(function(){
-                        if(validateNumber($(this).val()) == false){
-                            kt = 0;
-                            alert('Vui lòng nhập đúng định dạng số !');
-                            return false;
-                        }
-                    });
-                }
-                if(kt == 1)
-                    return true;
-                else
-                    return false;
             }
-        });
-
-
+            if(kt == 1)
+                return true;
+            else
+                return false;
+        }
 
     </script>
 

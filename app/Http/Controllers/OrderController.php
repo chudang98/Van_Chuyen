@@ -134,10 +134,15 @@ class OrderController extends Controller
     public function editOrder(){
         $districts = DB::table('districts')->get();
         session()->put('status', 'edit');
-        return view('customer.editOrder')
-                ->with('districts', $districts);
+        $data = session()->get('data');
+
+        return view('customer.editOrder', 
+            [
+                'districts' => $districts,
+                'data' => $data
+            ]);
     }
     public function cancelOrder(){
-
+        
     }
 }

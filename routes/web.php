@@ -26,8 +26,6 @@ Route::get('saveOrder', 'OrderController@saveOrder');
 Route::get('editOrder', 'OrderController@editOrder');
 Route::get('cancelOrder', 'OrderController@cancelOrder');
 
-
-
 // AJAX controller
 Route::get('/register/chooseDistrict', 'AjaxController@chooseDistrict')->name('register.selectDistrict');
 Route::get('/deleteSession', 'AjaxController@deleteSession')->name('ajax.deleteSession');
