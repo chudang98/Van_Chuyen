@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <div class='container'>
-        
+    <div class='container' style="margin-left : 200px">
         <div class="sender">
             <h2>Sender</h2>
         </div>
@@ -49,26 +48,15 @@
     </div>
 
     <script>
-
-
         $(document).ready(function() {
             var price = formatNumber({{ session()->get('data')['price'] }});            
             $('span[id="price"]').text(price);
-
- 
-
             $("button[id='back']").on('click', function(){
                 $.session.set('chooseConfirm', 'back');
             });
-            $("button[id='cancel']").on('click', function(){
-                $.session.set('chooseConfirm', 'cancel');
-            });
-
-            $("#back").on('click', function(){
-                window.history.back();
-            });
 
         });
+
         function formatNumber(num) {
             return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         }
@@ -79,7 +67,10 @@
             window.location.href = '/editOrder';
         }
         function cancel(){
-            window.location.href = '/cancelOrder';
+            var r = confirm("Bạn có chắc muốn hủy đơn hàng này chứ ???");
+            if(r == true){
+                window.location.href = '/home';
+            }
         }
     </script>
 @endsection

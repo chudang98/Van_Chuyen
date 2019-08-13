@@ -1,10 +1,8 @@
 @extends('customer.menu')
-
 @section('content')
     <div>
         <form method="post" action="{{ route('order.confirm') }}">
             @csrf
-
             <div class="sender">
                 <h2>Sender</h2>
                 <div class="address_sender">
@@ -19,10 +17,10 @@
                         <option value="">--Subdistrict--</option>
                     </select>
                 </div>
-                <input type="text" name="sender-detail-addr" placeholder="Detail Address">
-                <input type="text" name="sender-name" placeholder="Sender name">
-                <input type="phone" name="sender-phone" placeholder="Phone number of sender">
-            </div>        
+                <input type="text" name="sender-detail-addr" placeholder="Detail Address" value="{{ $data['sender-detail-addr'] }}">
+                <input type="text" name="sender-name" placeholder="Sender name" value="{{ $data['sender-name'] }}">
+                <input type="phone" name="sender-phone" placeholder="Phone number of sender" value="{{ $data['sender-phone'] }}">
+            </div> 
             
             <div class="receiver">
                 <h2>Reciever</h2>
@@ -38,29 +36,13 @@
                         <option value="">--Subdistrict--</option>
                     </select>
                 </div>
-                <input type="text" name="receive-detail-addr" placeholder="Detail Address">
-                <input type="text" name="reciever-name" placeholder="Reciever name">
-                <input type="phone" name="reciever-phone" placeholder="Phone number of reciever">
+                <input type="text" name="receive-detail-addr" placeholder="Detail Address" value="{{ $data['receive-detail-addr'] }}">
+                <input type="text" name="reciever-name" placeholder="Reciever name" value="{{ $data['reciever-name'] }}">
+                <input type="phone" name="reciever-phone" placeholder="Phone number of reciever" value="{{ $data['reciever-phone'] }}">
             </div>
             
             <div class="order">
                 <h2>Order information</h2>
-                <div class="item-order" value="item1">
-                    <p>Name item : 
-                        <input type="text" name="item-name[]" placeholder="Name item"></input>
-                    </p>
-                    <div class="size">
-                        <input type="number" name="item-width[]" placeholder="Width (cm)">
-                        <input type="number" name="item-height[]" placeholder="Height (cm)">
-                        <input type="number" name="item-depth[]" placeholder="Depth (cm)">
-                    </div>
-                    <div class="weight">
-                        <input type="number" name="item-weight[]" placeholder="Weight (kg)">
-                    </div>
-                    <button class="minus-item" type="button" value="item1" onclick="deleteItem('item1')">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
             </div>
 
             <button class="plus-item" type="button">
@@ -99,38 +81,80 @@
 
 @section('script')
     <script>
-        var item = 1, count = 1;
+        var count =  1,
+        item = JSON.parse('{{ count($data["item-name"]) }}');
         $(document).ready(function(){
-                // Process status order from user order
-                @if(session()->has('status'))
-                    @if(session()->get('status') == 'done')
-                        alert('Đã đặt đơn hàng thành công !');
-                        $.ajaxSetup({
-                            headers:
-                            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-                        });
-                        $.ajax({
-                            method : 'GET',
-                            dataType : 'json',
-                            url : "{{ route('ajax.deleteSession') }}",
-                            data : {
-                                method : 'delete_session',
-                                name : 'status',
-                            },
-                            error : function(){
-                                elements.empty();
-                            }
-                        });
-                    @endif
-                @endif
+            // set old value input
+            @for($i = 0; $i < count($data['item-name']); $i++)
+                var i = $('<i>', { class : 'fa fa-minus' });
+                var div = $('<div>', {
+                    class : 'item-order',
+                    value : 'item' + count,
+                });
+                var div_size = $('<div>', {
+                    class : 'size'
+                })
+                var input1 = $('<input>', {
+                    type : 'number',
+                    name : 'item-weight[]',
+                    placeholder : 'Weight (kg)',
+                    value : "{{ $data['item-weight'][$i] }}",
+                });
+                var input2 = $('<input>', {
+                    type : 'number',
+                    name : 'item-width[]',
+                    placeholder : 'Width (cm)',
+                    value : "{{ $data['item-width'][$i] }}",
+                });
+                var input3 = $('<input>', {
+                    type : 'number',
+                    name : 'item-height[]',
+                    placeholder : 'Height (cm)',
+                    value : "{{ $data['item-height'][$i] }}",
 
-                // END PROCESS
+                });
+                var input4 = $('<input>', {
+                    type : 'number',
+                    name : 'item-depth[]',
+                    placeholder : 'Depth (cm)',
+                    value : "{{ $data['item-depth'][$i] }}",
+                });
+                div_size.append(input2);
+                div_size.append(input3);
+                div_size.append(input4);
+
+                var button_minus = $('<button>', {
+                    class : 'minus-item',
+                    type : 'button',
+                    value : 'item' + count,
+                    onclick : "deleteItem('item" + count + "')",
+                })
+                var div_weight = $('<div>', {
+                    class : 'weight'
+                })
+                div_weight.append(input1);
+                var p_name = $('<p>',{ text : 'Name item : ' });
+                var input_name = $('<input>',{
+                    type : "text",
+                    name : "item-name[]",
+                    placeholder : "Name item",
+                    value : "{{ $data['item-name'][$i] }}",
+                });
+                p_name.append(input_name);
+                button_minus.append(i);
+                div.append(p_name);
+                div.append(div_size);
+                div.append(div_weight);
+                div.append(button_minus);
+                $('.order').append(div);
+                count++;
+            @endfor
+            $('input[name="countItem"').val(item);
+
             css();
             $('.plus-item').click(function(){
                 appItem();
             });
-
- 
             
             $('button[name = "done"]').click(function(){
                 if(checkInputEmpty() == true){
@@ -167,21 +191,71 @@
                 }
             });
 
+            $('select[name="payment"]').val("{{ $data['payment'] }}");
+            $('select[name="speech"]').val("{{ $data['speech'] }}");
+
+            
+            var sender = $('select[name="district_sender"]'),
+                reciever = $('select[name="district_receiver"]')
+                var _token = $("input[name='_token']").val();
+
+            sender.val('{{ $data["district_sender"] }}');
+            var commune_sender =  sender.siblings("select[name^='commune_']");
+
+            $.ajax({
+                method : 'GET',
+                dataType : 'json',
+                url : "{{ route('register.selectDistrict') }}",
+                data : {
+                    district : sender.val(),
+                    _token : _token,
+                },
+                success : function(result){
+                    commune_sender.empty();
+                    $.each(result, function(index){
+                        commune_sender.append($('<option>', {
+                            value: result[index].id,
+                            text: result[index].name,
+                        }));
+                    });
+                    commune_sender.val('{{ $data["commune_sender"] }}');
+                },
+                error : function(){
+                    elements.empty();
+                }
+            });
+
+            reciever.val('{{ $data["district_receiver"] }}');
+            var commune_recie =  reciever.siblings("select[name^='commune_']");
+            $.ajax({
+                method : 'GET',
+                dataType : 'json',
+                url : "{{ route('register.selectDistrict') }}",
+                data : {
+                    district : reciever.val(),
+                    _token : _token,
+                },
+                success : function(result){
+                    commune_recie.empty();
+                    $.each(result, function(index){
+                        commune_recie.append($('<option>', {
+                            value: result[index].id,
+                            text: result[index].name,
+                        }));
+                    });
+                    commune_recie.val('{{ $data["commune_receiver"] }}');
+                },
+                error : function(){
+                    elements.empty();
+                }
+            });
+
+            // FUNCTION :
             function  css() {
                 document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
                 document.getElementsByClassName("item1")[0].style.padding = "3px 8px";
             }
-            // FUNCTION :
-
         });
-        function deleteItem(itemIndex){
-            var query = "div[value='" + itemIndex + "']";
-            if(item > 1){
-                $(query).remove();
-                item--;
-            }
-            $('input[name="countItem"').val(item);
-        }
         function appItem(){
             count++;
             item++;
@@ -244,6 +318,16 @@
             $('input[name="countItem"').val(item);
 
         }
+
+        function deleteItem(itemIndex){
+            var query = "div[value='" + itemIndex + "']";
+            if(item > 1){
+                $(query).remove();
+                item--;
+            }
+            $('input[name="countItem"').val(item);
+        }
+
         function validateNumber(val){
             var isNum = $.isNumeric(val);
             if(isNum == false || val == '')
@@ -251,7 +335,7 @@
             return true;
 
         }
-        // xử lý không đồng bộ
+        // --------- xử lý không đồng bộ
         function checkInputEmpty(){
             var kt = 1;
             $('input').each(function(){
@@ -275,8 +359,6 @@
             else
                 return false;
         }
-
     </script>
-
 
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bill;
+use DB;
 
 class OrderController extends Controller
 {
@@ -120,6 +121,7 @@ class OrderController extends Controller
 
         $data['price'] = $all_price;
         session(['data' => $data]);
+        // dd($data);
         return view('customer.confirmOrder')->with('data', $data);
     }
     public function saveOrder(){
@@ -130,7 +132,15 @@ class OrderController extends Controller
         return redirect('/home');
     }
     public function editOrder(){
-    
+        $districts = DB::table('districts')->get();
+        session()->put('status', 'edit');
+        $data = session()->get('data');
+
+        return view('customer.editOrder', 
+            [
+                'districts' => $districts,
+                'data' => $data
+            ]);
     }
     public function cancelOrder(){
         
