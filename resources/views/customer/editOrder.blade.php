@@ -359,6 +359,9 @@
             else
                 return false;
         }
+        function checkStringInput(){
+            
+        }
     </script>
 
 @endsection
