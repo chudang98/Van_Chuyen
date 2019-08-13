@@ -6,6 +6,12 @@
     </div>
     <div class="panel-body" style="padding-left: 25%" >
         <div id="div_id_username" class="form-group required col-md-12">
+            <label for="id_username" class="control-label col-md-4  requiredField"> Date: </label>
+            <div class="controls col-md-8 ">
+                {{$bills->start_date}}
+            </div>
+        </div>
+        <div id="div_id_username" class="form-group required col-md-12">
             <label for="id_username" class="control-label col-md-4  requiredField"> Receiver name: </label>
             <div class="controls col-md-8 ">
                 {{$bills->name_reciever}}
@@ -76,27 +82,17 @@
         <div id="div_id_username" class="form-group required col-md-12">
             <label for="id_username" class="control-label col-md-4  requiredField"> Price: </label>
             <div class="controls col-md-8 ">
-                <?php $tien=0; ?>
-                @foreach($items as $item)
-                    <?php
-                    if($item->bills_id == $bills->id){
-                        if($item->weight!=0){
-                            $tien+=$item->weight*10000;
-                        }
-                        else{
-                            $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
-                        }
-                    }
-                    ?>
-                @endforeach
-                    <?php
-                    if($bills->speed == "Nhanh") $tien= $tien*1.2;
-                    else if( $bills->speed ==" Siêu tốc") $tien= $tien *1.5;
-                    $tien1 = number_format($tien);
-                    ?>
-                    {{$tien1}}
+                {{number_format($bills->total_price)}}
             </div>
         </div>
+        @if($bills->reason != null)
+            <div id="div_id_username" class="form-group required col-md-12">
+                <label for="id_username" class="control-label col-md-4  requiredField"> Reason: </label>
+                <div class="controls col-md-8 ">
+                    {{$bills->reason}}
+                </div>
+            </div>
+        @endif
         @if($bills->state=='Chờ xác nhận')
             <div class="form-group">
                 <div class="aab controls col-md-2 "></div>

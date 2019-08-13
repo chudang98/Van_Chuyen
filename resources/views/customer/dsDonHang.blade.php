@@ -171,7 +171,8 @@
                                                                 <button class="btn btn-xs" data-title="Edit" data-toggle="modal" data-target="#delete{{$bill->id}}" >
                                                                     Cancel
                                                                 </button>
-                                                            </p></a>
+                                                            </p>
+                                                        </a>
                                                         <div class="modal fade" id="delete{{$bill->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
@@ -475,25 +476,7 @@
                                                 </td>
                                                 <td>{{$bill->phone_reciever}}</td>
                                                 <td class="price">
-                                                    <?php $tien=0; ?>
-                                                    @foreach($items as $item)
-                                                        <?php
-                                                        if($item->bills_id == $bill->id){
-                                                            if($item->weight!=0){
-                                                                $tien+=$item->weight*10000;
-                                                            }
-                                                            else{
-                                                                $tien+=(($item->height*$item->width*$item->depth)/5000)*12000;
-                                                            }
-                                                        }
-                                                        ?>
-                                                    @endforeach
-                                                        <?php
-                                                        if($bill->speed == "Nhanh") $tien= $tien*1.2;
-                                                        else if( $bill->speed ==" Siêu tốc") $tien= $tien *1.5;
-                                                        $tien1 = number_format($tien);
-                                                        ?>
-                                                        {{$tien1}}
+                                                    {{number_format($bill->total_price)}}
                                                 </td>
                                                 <td>
                                                     <a href="/donHang/{{$bill->id}}">

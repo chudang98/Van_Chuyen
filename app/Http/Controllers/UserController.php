@@ -54,6 +54,7 @@ class UserController extends Controller
     }
     
     public function savePassword(){
+        $user= User::where('id', auth()->user()->id)->first();
         if(Hash::check($_POST['password1'],$user->password)) {
             if($_POST['password2'] != $_POST['password3']){
                 return redirect(url('/thayDoiMatKhau/passwordNew'));
