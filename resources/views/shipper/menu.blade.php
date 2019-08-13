@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li class="item2">
-                        <a href="/dsDonHang">
+                        <a href="/deliveryOrders">
                             <i class="fa fa-clock-o clock"></i>
                             <span>Order list</span>
                         </a>
@@ -74,4 +74,5 @@
         </div>
     </div>
 </body>
+@yield('script')
 </html>

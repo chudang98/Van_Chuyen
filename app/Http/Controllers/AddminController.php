@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use App\Commune;
 use App\District;
-use Illuminate\Http\Response;
+use App\Bill;
 use App\User;
-use Illuminate\Support\Facades\Hash;
+use App\Item;
 use View;
 use DB;
 
@@ -90,5 +92,14 @@ class AddminController extends Controller
             );
             return redirect(url('/dsTaiKhoan'));
         }
+    }
+
+    public function orders(){
+        $data['users'] = User::all();
+        $data['bills'] = Bill::all();
+        $data['items'] = Item::all();
+        $data['communes'] = Commune::all();
+        $data['districts'] = District::all();
+        return View::make('admin.orders',$data);
     }
 }

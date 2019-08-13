@@ -51,11 +51,15 @@ Route::get('taiKhoan/{id}','AddminController@taiKhoan');
 Route::get('xoaTaiKhoan/{id}','AddminController@xoaTaiKhoan');
 Route::get('themTaiKhoan','AddminController@themTaiKhoan');
 Route::any('saveAccount','AddminController@saveAccount');
+Route::get('orders','AddminController@orders');
 
 //Shipper
-Route::any('waitingOrders','ShipperController@waitingOrders');
-Route::any('S_detailOrder/{id}','ShipperController@detailOrder');
-Route::any('takeOrder/{id}','ShipperController@takeOrder');
+Route::get('waitingOrders','ShipperController@waitingOrders');
+Route::get('S_detailOrder/{id}','ShipperController@detailOrder');
+Route::get('takeOrder/{id}','ShipperController@takeOrder');
+Route::get('completeOrder/{id}','ShipperController@completeOrder');
+Route::any('failOrder/{id}','ShipperController@failOrder');
+Route::get('deliveryOrders','ShipperController@deliveryOrders');
 
 Route::group(['prefix' => 'home'], function () {
 });

@@ -21,8 +21,8 @@ class ShipperController extends Controller
 
         $u = User::where('id', auth()->user()->id)->first();
         $data['bills'] = Bill::where('state','Chờ giao hàng')
-                        ->where('communes_id_sender', $u->communes_id)
-                        ->get();
+            ->where('communes_id_sender', $u->communes_id)
+            ->get();
         $data['items'] = Item::all();
         $data['communes'] = Commune::all();
         $data['districts'] = District::all();
@@ -42,6 +42,43 @@ class ShipperController extends Controller
         DB::table('bills')
             ->where('id', $id)
             ->update(['state' => 'Đang giao hàng', 'users_id_nvvc'=>auth()->user()->id]);
-        return redirect(url('/waitingOrders'));
+//        return redirect(url('/waitingOrders'));
+        return 'OK';
+    }
+    public function completeOrder($id){
+        DB::table('bills')
+            ->where('id', $id)
+            ->update(['state' => 'Hoàn thành giao hàng']);
+        return 'OK';
+    }
+    public function failOrder($id){
+        if(isset($_POST['others'])){
+            if($_POST['reason'] != 'Others'){
+                DB::table('bills')
+                    ->where('id', $id)
+                    ->update(['state' => 'Đã hủy', 'reason'=> $_POST['reason']]);
+            }
+            else{
+                DB::table('bills')
+                    ->where('id', $id)
+                    ->update(['state' => 'Đã hủy', 'reason'=> $_POST['others']]);
+            }
+            return redirect(url('/S_detailOrder/'.$id));
+        }
+        return 'fail';
+    }
+    public function DBCommunes($id){
+        $communes = Commune::where('districts_id', $id)->get();
+        return response()->json($communes, Response::HTTP_OK);
+    }
+
+    public function deliveryOrders(){
+        $data['users'] = User::all();
+        $data['bills'] = Bill::where('users_id_nvvc', auth()->user()->id)
+            ->get();
+        $data['items'] = Item::all();
+        $data['communes'] = Commune::all();
+        $data['districts'] = District::all();
+        return View::make('shipper.deliveryOrders',$data);
     }
 }
