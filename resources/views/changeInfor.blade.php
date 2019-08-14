@@ -29,18 +29,17 @@
             <div id="div_id_name" class="form-group required">
                 <label for="id_email" class="control-label col-md-1  requiredField">
                     DoB
-{{--                    <span class="asteriskField">*</span>--}}
                 </label>
                 <div class="controls col-md-5 ">
                     <input required class="input-md emailinput form-control" id="id_email" name="birth"
                            placeholder="Your current email address" style="margin-bottom: 10px" type="date"
                            value={{auth()->user()->birth}} />
+
                 </div>
             </div>
             <div id="div_id_location" class="form-group required">
                 <label for="id_location" class="control-label col-md-1  requiredField">
                     Address
-{{--                    <span class="asteriskField">*</span>--}}
                 </label>
                 <div class="controls col-md-5 ">
                     <input required class="input-md textinput textInput form-control" id="id_location" name="address"
@@ -90,6 +89,9 @@
                     <input required class="input-md emailinput form-control" id="id_email" name="email"
                            placeholder="Your current email address" style="margin-bottom: 10px" type="email"
                            value={{auth()->user()->email}} />
+                    @if($alert == 'email')
+                        <p style="color: red">Email trùng với tài khoản khác, vui lòng nhập email khác</p>
+                    @endif
                 </div>
             </div>
             <div class="form-group action">

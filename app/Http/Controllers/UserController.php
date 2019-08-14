@@ -34,7 +34,8 @@ class UserController extends Controller
         return View::make('changePW',$data);
     }
 
-    public function thayDoittTaiKhoan(){
+    public function thayDoittTaiKhoan($alert){
+        $data['alert'] = $alert;
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
         $data['layout'] = UserController::getLayoutUser();
@@ -47,18 +48,24 @@ class UserController extends Controller
     }
 
     public function saveInformation(){
-        $user= User::where('id', auth()->user()->id)->first();
-//        $user = User::get(auth()->user()->id);
-        $user->name = $_POST['name'];
-        $user->email = $_POST['email'];
-        $user->birth = $_POST['birth'];
-        $user->address = $_POST['address'];
-        $user->communes_id = $_POST['commune'];
-        $user->save();
-//        $user = array('name'=>$_POST['name'], 'email'=>$_POST['email'], 'birth'=>$_POST['birth'],
-//            'address'=>$_POST['address'], 'communes_id'=>$_POST['commune']);
-//        DB::table('users')->update($user, auth()->user()->id);
-        return redirect(url('/ttTaiKhoan'));
+        $kt=0;
+        $users= User::all();
+        foreach ($users as $u){
+            if($u->email == $_POST['email']){
+                return redirect(url('/thayDoittTaiKhoan/email'));
+                $kt=1;
+            }
+        }
+        if($kt==0){
+            $user= User::where('id', auth()->user()->id)->first();
+            $user->name = $_POST['name'];
+            $user->email = $_POST['email'];
+            $user->birth = $_POST['birth'];
+            $user->address = $_POST['address'];
+            $user->communes_id = $_POST['commune'];
+            $user->save();
+            return redirect(url('/ttTaiKhoan'));
+        }
     }
     
     public function savePassword(){

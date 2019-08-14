@@ -61,7 +61,7 @@
 
                 </div>
                 <div class="aab controls col-md-2 ">
-                    <a href="/thayDoittTaiKhoan">
+                    <a href="/thayDoittTaiKhoan/{{auth()->user()->name}}">
                         <p data-placement="top" data-toggle="tooltip" title="suatt">
                             <button class="btn btn-info" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                 Reset information

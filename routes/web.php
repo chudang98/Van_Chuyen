@@ -37,7 +37,7 @@ Route::post('huyDonHang/{id}','CustomerController@huyDonHang');
 
 //General
 Route::get('ttTaiKhoan','UserController@ttTaiKhoan');
-Route::get('thayDoittTaiKhoan','UserController@thayDoittTaiKhoan');
+Route::get('thayDoittTaiKhoan/{alert}','UserController@thayDoittTaiKhoan');
 Route::get('thayDoiMatKhau/{alert}','UserController@thayDoiMatKhau');
 Route::get('DBCommunes/{id}','UserController@DBCommunes');
 Route::any('saveInformation','UserController@saveInformation');
