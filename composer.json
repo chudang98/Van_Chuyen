@@ -38,7 +38,10 @@
         "classmap": [
             "database/seeds",
             "database/factories"
-        ]
+        ],
+        "psr-0": {
+            "Acme": "app/"
+        }
     },
     "autoload-dev": {
         "psr-4": {

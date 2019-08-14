@@ -9,14 +9,14 @@ class Commune extends Model
     //
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-
+    protected $communes = [];
     protected $fillable = [
         'id', 'name', 'type', 'districts_id'
     ];
 
-    public function district()
+    public function scopeDistrict($query,$id)
     {
-        return $this->belongsTo('App\Commune');
+        return $query->where('districts_id', $id);
     }
     public function user()
     {
@@ -30,4 +30,5 @@ class Commune extends Model
     {
         return $this->belongsTo('App\Bill', 'communes_id_reciever');
     }
+
 }

@@ -48,4 +48,18 @@ class User extends Authenticatable
         return $this->user_type;
     }
 
+    // return user by id
+    public function scopeGet($query, $id){
+        return $query-> where('id', $id);
+    }
+
+    public function scopeUpdate($user, $id){
+        $u = DB('users')::where('id', $id);
+        $u->name = $user->name;
+        $u->email = $user->email;
+        $u->birth = $user->birth;
+        $u->address = $user->address;
+        $u->communes_id = $user->commune;
+        $u->save();
+    }
 }

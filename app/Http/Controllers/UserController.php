@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use View;
+use DB;
 
 class UserController extends Controller
 {
@@ -38,18 +39,22 @@ class UserController extends Controller
     }
 
     public function DBCommunes($id){
-        $communes = Commune::where('districts_id', $id)->get();
+        $communes = Commune::district($id)->get();
         return response()->json($communes, Response::HTTP_OK);
     }
 
     public function saveInformation(){
         $user= User::where('id', auth()->user()->id)->first();
+//        $user = User::get(auth()->user()->id);
         $user->name = $_POST['name'];
         $user->email = $_POST['email'];
         $user->birth = $_POST['birth'];
         $user->address = $_POST['address'];
         $user->communes_id = $_POST['commune'];
         $user->save();
+//        $user = array('name'=>$_POST['name'], 'email'=>$_POST['email'], 'birth'=>$_POST['birth'],
+//            'address'=>$_POST['address'], 'communes_id'=>$_POST['commune']);
+//        DB::table('users')->update($user, auth()->user()->id);
         return redirect(url('/ttTaiKhoan'));
     }
     
