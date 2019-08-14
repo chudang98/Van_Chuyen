@@ -26,8 +26,8 @@ class CreateBillsTable extends Migration
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->text('reason')->nullable();
-            $table->string('communes_id_sender');
-            $table->string('communes_id_reciever');
+            $table->string('communes_id_sender')->nullable();
+            $table->string('communes_id_reciever')->nullable();
             $table->unsignedBigInteger('users_id_kh');
             $table->unsignedBigInteger('users_id_nvvc')->nullable();
             $table->bigInteger('total_price')->nullable();

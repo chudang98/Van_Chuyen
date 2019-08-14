@@ -9,7 +9,6 @@ class Item extends Model
     //
     protected $fillable = [
         'id',
-        'name',	
         'weight',	
         'height',	
         'width',	

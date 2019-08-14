@@ -23,23 +23,29 @@ class Bill extends Model
     public $timestamps = false;
 
     //ORM
-    public function item(){
-        $this->hasMany('App\Item');
+    public function item()
+    {
+        return $this->hasMany('App\Item', 'bills_id');
     }
-    public function communes_id_sender(){
-        $this->hasOne('App\Communes');
+    public function communes_id_sender()
+    {
+        return $this->hasOne('App\Commune', 'communes_id_sender');
     }
-    public function communes_id_reciever(){
-        $this->hasOne('App\Communes');
+    public function communes_id_reciever()
+    {
+        return $this->hasOne('App\Commune', 'communes_id_reciever');
     }
-    public function user_id_kh(){
-        $this->belongsTo('App\Customer');
+    public function user_id_kh()
+    {
+        return $this->belongsTo('App\User', 'users_id_kh');
     }
-    public function user_id_nvvc(){
-        $this->belongsTo('App\Shipper');
+    public function user_id_nvvc()
+    {
+        return $this->belongsTo('App\User', 'users_id_nvvc');
     }
 
-    public static function makeOrderBill($arr){
+    public static function makeOrderBill($arr)
+    {
         $bill = new Bill;
         $bill->address_client           = $arr['sender-detail-addr'];
         $bill->address_reciever         = $arr['receive-detail-addr'];
@@ -57,7 +63,6 @@ class Bill extends Model
         $count = count($arr['item-width']);
         for($i = 0; $i < $count; $i++){
             $item = new Item;
-            $item->name      = $arr['item-name'][$i] ;	
             $item->weight    = $arr['item-weight'][$i] ;	
             $item->height    = $arr['item-height'][$i] ;	
             $item->width     = $arr['item-width'][$i] ;	
@@ -67,7 +72,4 @@ class Bill extends Model
         }
     } 
 
-    public function calcBill(){
-        
-    }
 }

@@ -33,9 +33,6 @@
             <a href="#" class="help">
                 <span><i class="fa fa-question-circle-o"></i></span>
             </a>
-
-
-
         </div>
     </header>
     

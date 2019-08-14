@@ -23,17 +23,20 @@ class UserController extends Controller
     public function ttTaiKhoan(){
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
+        $data['layout'] = UserController::getLayoutUser();
         return View::make('accountInfor',$data);
     }
 
     public function thayDoiMatKhau($alert){
         $data['alert']=$alert;
+        $data['layout'] = UserController::getLayoutUser();
         return View::make('changePW',$data);
     }
 
     public function thayDoittTaiKhoan(){
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
+        $data['layout'] = UserController::getLayoutUser();
         return View::make('changeInfor',$data);
     }
 
@@ -75,9 +78,30 @@ class UserController extends Controller
         }
     }
 
+    public static function getLayoutUser()
+    {
+        $type = auth()->user()->user_type;
+        switch($type)
+        {
+            case 'Quản trị viên':
+                return 'admin.layout';
+                break;
 
+            case 'Khách hàng':
+                return 'customer.menu';
+                break;
+                
+            case 'Nhân viên vận chuyển':
+                return 'shipper.menu';
+                break;
+                            
+        }
+
+        
+    }
     
-    public function back(){
+    public function back()
+    {
         return back()->withInput();
     }
 }

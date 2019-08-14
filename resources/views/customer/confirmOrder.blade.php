@@ -14,7 +14,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Item name</th>
+                        <th>Index</th>
                         <th>Width</th>
                         <th>Height</th>
                         <th>Depth</th>
@@ -22,13 +22,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for($i = 0 ; $i < count($data['item-width']); $i++)
+                    @for($i = 1 ; $i <= count($data['item-width']); $i++)
                         <tr>
-                            <th>{{ $data['item-name'][$i] }}</th>
-                            <th>{{ $data['item-width'][$i] }}</th>
-                            <th>{{ $data['item-height'][$i] }}</th>
-                            <th>{{ $data['item-depth'][$i] }}</th>
-                            <th>{{ $data['item-weight'][$i] }}</th>
+                            <th>{{ $i }}</th>
+                            <th>{{ $data['item-width'][$i - 1] }}</th>
+                            <th>{{ $data['item-height'][$i - 1] }}</th>
+                            <th>{{ $data['item-depth'][$i - 1] }}</th>
+                            <th>{{ $data['item-weight'][$i - 1] }}</th>
                         </tr>
                     @endfor
                 </tbody>

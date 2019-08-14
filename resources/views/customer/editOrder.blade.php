@@ -134,13 +134,6 @@
                 })
                 div_weight.append(input1);
                 var p_name = $('<p>',{ text : 'Name item : ' });
-                var input_name = $('<input>',{
-                    type : "text",
-                    name : "item-name[]",
-                    placeholder : "Name item",
-                    value : "{{ $data['item-name'][$i] }}",
-                });
-                p_name.append(input_name);
                 button_minus.append(i);
                 div.append(p_name);
                 div.append(div_size);

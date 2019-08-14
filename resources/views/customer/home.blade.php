@@ -46,9 +46,7 @@
             <div class="order">
                 <h2>Order information</h2>
                 <div class="item-order" value="item1">
-                    <p>Name item : 
-                        <input type="text" name="item-name[]" placeholder="Name item"></input>
-                    </p>
+                    <p>Item 1</p>
                     <div class="size">
                         <input type="number" name="item-width[]" placeholder="Width (cm)">
                         <input type="number" name="item-height[]" placeholder="Height (cm)">
@@ -138,34 +136,7 @@
                 }
             });
 
-            $('.dynamic').change(function(){
-                var element =  $(this).siblings("select[name^='commune_']");
-                if($(this).val != ''){
-                    var value = $(this).val();
-                    var _token = $("input[name='_token']").val();
-                    $.ajax({
-                        method : 'GET',
-                        dataType : 'json',
-                        url : "{{ route('register.selectDistrict') }}",
-                        data : {
-                            district : value,
-                            _token : _token,
-                        },
-                        success : function(result){
-                            element.empty();
-                            $.each(result, function(index){
-                                element.append($('<option>', {
-                                    value: result[index].id,
-                                    text: result[index].name,
-                                }));
-                            });
-                        },
-                        error : function(){
-                            elements.empty();
-                        }
-                    });
-                }
-            });
+ 
 
             function  css() {
                 document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";
@@ -179,6 +150,11 @@
             if(item > 1){
                 $(query).remove();
                 item--;
+                var i = 1;
+                $('.item-order p').each(function(){
+                    $(this).text('Item ' + i);
+                    i++;
+                });
             }
             $('input[name="countItem"').val(item);
         }
@@ -228,13 +204,7 @@
                 class : 'weight'
             })
             div_weight.append(input1);
-            var p_name = $('<p>',{ text : 'Name item : ' });
-            var input_name = $('<input>',{
-                type : "text",
-                name : "item-name[]",
-                placeholder : "Name item"
-            });
-            p_name.append(input_name);
+            var p_name = $('<p>',{ text : 'Item ' + item });
             button_minus.append(i);
             div.append(p_name);
             div.append(div_size);
@@ -280,3 +250,4 @@
 
 
 @endsection
+

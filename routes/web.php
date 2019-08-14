@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use Illuminate\Routing\Route as IlluminateRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::get('xoaTaiKhoan/{id}','AddminController@xoaTaiKhoan');
 Route::get('themTaiKhoan','AddminController@themTaiKhoan');
 Route::any('saveAccount','AddminController@saveAccount');
 Route::get('orders','AddminController@orders');
+Route::get('orderDetail/{id}', 'OrderController@show');
 
 //Shipper
 Route::get('waitingOrders','ShipperController@waitingOrders');

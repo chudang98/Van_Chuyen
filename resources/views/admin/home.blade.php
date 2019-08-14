@@ -1,5 +1,5 @@
-@extends('layouts.app')
+@extends('admin.layout')
 
 @section('content')
-    {{ '3' }}
+    
 @endsection

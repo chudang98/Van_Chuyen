@@ -1,7 +1,9 @@
-@extends('customer/menu')
+@extends($layout)
+
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/accountInfor.css')}}">
 @endsection
+
 @section('content')
 <div class="container">
         <div class="panel-heading col-md-12" style="text-align: center">
@@ -14,17 +16,6 @@
             <br>
         </div>
         <div class="panel-body">
-{{--            <div id="div_id_username" class="form-group required">--}}
-{{--                <label for="id_username" class="control-label col-md-4  requiredField">--}}
-{{--                    Name--}}
-{{--                    <span class="asteriskField">*</span>--}}
-{{--                </label>--}}
-{{--                <div class="controls col-md-4 ">--}}
-{{--                    <input required class="input-md  textinput textInput form-control" id="id_username" maxlength="30"--}}
-{{--                           name="name" placeholder="Choose your name" style="margin-bottom: 10px" type="text"--}}
-{{--                           value={{auth()->user()->name}} />--}}
-{{--                </div>--}}
-{{--            </div>--}}
             <div id="div_id_username" class="form-group required col-md-12">
                 <label for="id_username" class="control-label col-md-2  requiredField"> Name: </label>
                 <div class="controls col-md-8 ">
@@ -88,7 +79,7 @@
                     </a>
                 </div>
                 <div class="controls col-md-2 " style="margin-left: 25px;">
-                    <a href="#">
+                    <a href="/home">
                         <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                             <button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >
                                 Back

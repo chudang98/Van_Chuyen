@@ -42,10 +42,16 @@ class User extends Authenticatable
     public function commune(){
         $this->hasOne('App\Communes');
     }
-    
 
     public function getPosition(){
         return $this->user_type;
     }
 
+    public static function countMember($type = ''){
+        if($type == ''){
+            return User::count();
+        }else{
+            return User::where($type , '=', $type)->count();
+        }
+    }
 }
