@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bill;
+use App\District;
 use DB;
 
 class OrderController extends Controller
@@ -16,6 +17,8 @@ class OrderController extends Controller
     public function index()
     {
         //
+
+        return view('admin.Orders');
     }
 
     /**
@@ -58,6 +61,18 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+        $districts = District::all();
+        $order = Bill::where('id', $id)->first();
+        $user = Bill::where('id', $id)->first()->user_id_kh;
+        $items = Bill::where('id', $id)->first()->item;
+        // dd($order);
+        return view('admin.detailOrder',
+            [
+                'order' => $order, 
+                'districts' => $districts,
+                'user' => $user,
+                'items' => $items,
+            ]);
     }
 
     /**
@@ -68,6 +83,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
+        
         //
     }
 

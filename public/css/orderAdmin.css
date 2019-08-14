@@ -1,0 +1,8 @@
+select{
+    display: inline-block;
+    width: 200px;
+}
+.icon-header{
+    color: orange;
+    margin-right: 10px;
+}

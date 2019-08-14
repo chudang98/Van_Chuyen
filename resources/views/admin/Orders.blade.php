@@ -1,4 +1,4 @@
-@extends('shipper/menu')
+@extends('admin.layout')
 @section('content')
     <div class="container" onload="css()">
         <br>
@@ -66,7 +66,7 @@
                                                     {{number_format($bill->total_price)}}
                                                 </td>
                                                 <td>
-                                                    <a href="#">
+                                                    <a href="/orderDetail/{{ $bill->id }}">
                                                         <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                                                 Confirm

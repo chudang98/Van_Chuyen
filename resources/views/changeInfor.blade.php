@@ -1,7 +1,9 @@
-@extends('customer/menu')
+@extends($layout)
+
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/changeInfor.css')}}">
 @endsection
+
 @section('content')
 <div class="container">
     <div class="panel-heading" style="text-align: center">
