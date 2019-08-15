@@ -1,5 +1,4 @@
 @extends($layout)
-{{--@extends('shipper.menu')--}}
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/accountInfor.css')}}">
 @endsection
