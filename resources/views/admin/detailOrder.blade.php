@@ -176,37 +176,6 @@
                     </div>
                 </div>          
             </div>
-            {{--  <div class="row">
-                <h2>
-                    <i class="fas fa-info-circle icon-header"></i>
-                    Order information
-                </h2>
-                <div class="order class-infor">
-                    <div class="form-group col-md-3">
-                        <label for="orderPayment">Payment</label>
-                        <select class="form-control" id="orderPayment"  name="payment">
-                            <option value="COD">COD</option>
-                            <option value="Gateway">Gateway</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="orderPayment">Speed</label>
-                        <select class="form-control" id="orderPayment"  name="speech">
-                            <option value="Bình thường">Bình thường</option>
-                            <option value="Nhanh">Nhanh</option>
-                            <option value="Siêu tốc">Siêu tốc</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="orderPrice">Price</label>
-                        <div>
-                            <span class='price' id='price'></span>
-                            <span class='price'> VNĐ</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>  --}}
 
             <div class="row">
                 <button type="button" class="btn btn-primary" onclick="back()">Back</button>
@@ -217,7 +186,7 @@
 
         <form action="/cancelOrder/{{ $order->id }}" hidden name="OrderHidden" method="POST">
             @csrf
-            <input type="text" placeholder="Type the reason ?" class="name form-control" name="reasonCancel"/>
+            <input type="text" placeholder="Type the reason ?" class="name form-control" name="reasonCancel" value="none"/>
         </form>
     </div>
 
@@ -368,7 +337,7 @@
                 $('select').each(function(){
                     if($(this).val() == ''){
                         kt = 0;
-                        alert('Vui lòng chọn thông tin địa chỉ hóa đơn !')
+                        alert('Vui lòng chọn thông tin địa chỉ hóa đơn !');
                         return false;
                     }
                 });
@@ -384,9 +353,6 @@
                 return false;
             return true;
         }
-
-
-
 
     </script>
 @endsection

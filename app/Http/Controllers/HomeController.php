@@ -37,7 +37,11 @@ class HomeController extends Controller
         switch ($position)
         {
             case 'Quản trị viên' :
-                return view('admin.home');
+                $data['customer'] = \App\User::where('user_type', 'Khách hàng')->count();
+                $data['partner'] = \App\User::where('user_type', 'Nhân viên vận chuyển')->count();
+                $data['order'] = \App\Bill::where('state', 'Hoàn thành giao hàng')->count();
+                return view('admin.home')
+                    ->with('data', $data);
                 break;
             case 'Khách hàng' :
                 $districts = DB::table('districts')->get();

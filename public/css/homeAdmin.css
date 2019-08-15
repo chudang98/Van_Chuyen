@@ -1,0 +1,34 @@
+.content-main{
+    margin-top: 30px;
+}
+
+.customer{
+    background: rgb(253, 253, 140);
+    height: 100px;
+}
+
+.partner{
+    background: rgb(164, 255, 61);
+    height: 100px;
+}
+.completed{
+    background: rgb(120, 255, 237);
+    height: 100px;
+}
+
+.logo-infor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-logo{
+    font-size: 72px;
+    margin-top: 10px;
+    justify-items: center;
+    display: block;
+}
+
+.content-main .col-md-2{
+    margin-left: 20px;
+}
