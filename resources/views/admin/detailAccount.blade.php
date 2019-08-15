@@ -2,17 +2,21 @@
 {{--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>--}}
 
 @extends('admin.layout')
-
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/accountInfor.css')}}">
+@endsection
 @section('content')
-    <div class="container">
-        <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title"><h3>Detail Account</h3></div>
+                <div class="panel-heading" style="text-align: center">
+                    <div class="panel-title col-md-12">
+                        <h3 class="col-md-11"><i class="fa fa-user-circle avatar"></i> </h3>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <br>
                 </div>
                 <div class="panel-body" >
                     <div id="div_id_username" class="form-group required col-md-12">
-                        <label for="id_username" class="control-label col-md-4  requiredField"> State: </label>
+                        <label for="id_username" class="control-label col-md-2  requiredField"> State: </label>
                         <div class="controls col-md-8 ">
                             @if($user->is_lock == 'No') <p>Hoạt động</p>
                             @else <p>Đóng băng</p>
@@ -20,31 +24,31 @@
                         </div>
                     </div>
                     <div id="div_id_username" class="form-group required col-md-12">
-                        <label for="id_username" class="control-label col-md-4  requiredField"> Name: </label>
+                        <label for="id_username" class="control-label col-md-2  requiredField"> Name: </label>
                         <div class="controls col-md-8 ">
                             {{$user->name}}
                         </div>
                     </div>
                     <div id="div_id_username" class="form-group required col-md-12">
-                        <label for="id_username" class="control-label col-md-4  requiredField"> E-mail: </label>
+                        <label for="id_username" class="control-label col-md-2  requiredField"> E-mail: </label>
                         <div class="controls col-md-8 ">
                             {{$user->email}}
                         </div>
                     </div>
                     <div id="div_id_username" class="form-group required col-md-12">
-                        <label for="id_username" class="control-label col-md-4  requiredField"> Phone: </label>
+                        <label for="id_username" class="control-label col-md-2  requiredField"> Phone: </label>
                         <div class="controls col-md-8 ">
                             {{$user->phone}}
                         </div>
                     </div>
                     <div id="div_id_username" class="form-group required col-md-12">
-                        <label for="id_username" class="control-label col-md-4  requiredField"> Birth: </label>
+                        <label for="id_username" class="control-label col-md-2  requiredField"> Birth: </label>
                         <div class="controls col-md-8 ">
                             {{$user->birth}}
                         </div>
                     </div>
                     <div id="div_id_username" class="form-group required col-md-12">
-                        <label for="id_username" class="control-label col-md-4  requiredField"> Address: </label>
+                        <label for="id_username" class="control-label col-md-2  requiredField"> Address: </label>
                         <div class="controls col-md-8 ">
                             {{$user->address}}
                             -@foreach($communes as $commune)
@@ -60,17 +64,22 @@
                         </div>
                     </div>
                     <div id="div_id_username" class="form-group required col-md-12">
-                        <label for="id_username" class="control-label col-md-4  requiredField"> Role: </label>
+                        <label for="id_username" class="control-label col-md-2  requiredField"> Role: </label>
                         <div class="controls col-md-8 ">
                             {{$user->user_type}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="controls col-md-5 " >
-                            <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-default" data-title="Delete" data-toggle="modal" data-target="#delete" >Delete Account</button></p>
+                        <div class="controls col-md-2 " ></div>
+                        <div class="controls col-md-3 " >
+                            <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                <button class="btn btn-default" data-title="Delete" data-toggle="modal" data-target="#delete" >
+                                    Delete Account
+                                </button>
+                            </p>
                         </div>
-                        <div class="controls col-md-5 ">
-                            <form action="/changeState/{{$user->id}}" method="POST">
+                        <div class="controls col-md-3 ">
+                            <form action="/changeState/{{$user->id}}" method="POST" style="margin-left: 0px">
                                 @csrf
                                 @if($user->is_lock == 'No')
                                     <input type="hidden" name="state" value="Đóng băng">
@@ -82,8 +91,13 @@
     
                             </form>
                         </div>
-                        <div class="controls col-md-1 " style="padding-left: 5px;">
-                            <a href="/dsTaiKhoan"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >Back</button></p></a>
+                        <div class="controls col-md-2 " style="padding-left: 5px;">
+                            <a href="/dsTaiKhoan"><p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                    <button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                        Back
+                                    </button>
+                                </p>
+                            </a>
                         </div>
     
     
@@ -124,10 +138,6 @@
                     </div>
     
                 </div>
-                <!-- /.modal-content -->
-            </div>
-        </div>
-    </div> 
 @endsection
 
 

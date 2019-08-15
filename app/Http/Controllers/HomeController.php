@@ -33,7 +33,7 @@ class HomeController extends Controller
             case 'Quản trị viên' :
                 return view('admin.home');
                 break;
-            case 'Khách hàng' :                
+            case 'Khách hàng' :
                 $districts = DB::table('districts')->get();
                 session()->forget('data');
                 return view('customer.home')
@@ -44,7 +44,7 @@ class HomeController extends Controller
                 break;
             default :
                 return redirect()->to('logout');
-        }     
+        }
 
     }
 }
