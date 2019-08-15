@@ -2,49 +2,89 @@
 
 @section('content')
     <div>
+        <h1>ĐẶT ĐƠN VẬN CHUYỂN</h1>
         <form method="post" action="{{ route('order.confirm') }}">
             @csrf
 
             <div class="sender">
-                <h2>Sender</h2>
-                <div class="address_sender">
-                    <h3> Choose address </h3>
-                    <select name="district_sender" id="district_sender" class='dynamic'>
-                        <option value="">--District--</option>
-                        @foreach ($districts as $element)
-                            <option value="{{ $element->id }}"> {{ $element->name }}</option>
-                        @endforeach
-                    </select>
-                    <select name="commune_sender" id="commune_sender" style='width: 173px'>
-                        <option value="">--Subdistrict--</option>
-                    </select>
+                <h2>
+                    <i class="fas fa-map-marker-alt icon-header"></i>                            
+                    Sender
+                </h2>
+                <div class="sender">
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label for="sender_name">Sender name</label>
+                            <div class="input-group">
+                                <input class="form-control" id="sender_name" name="sender-name" type="text" value="{{ auth()->user()->name }}"/>
+                                <div class="input-group-addon">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="sender_addr">Detail address</label>
+                            <div class="input-group">
+                                <input class="form-control" id="sender_addr" name="sender-detail-addr" type="text" value="{{ auth()->user()->address }}"/>
+                                <div class="input-group-addon">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="sender_phone">Phone</label>
+                            <div class="input-group">
+                                <input class="form-control" id="sender_phone" name="sender-phone" type="text" value="{{ auth()->user()->phone }}"/>
+                                <div class="input-group-addon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                        </div>          
+                    </div>
                 </div>
-                <input type="text" name="sender-detail-addr" placeholder="Detail Address">
-                <input type="text" name="sender-name" placeholder="Sender name">
-                <input type="phone" name="sender-phone" placeholder="Phone number of sender">
             </div>        
             
             <div class="receiver">
-                <h2>Reciever</h2>
-                <div class="address_receiver">
-                    <h3> Choose address </h3>
-                    <select name="district_receiver" id="district_receiver" class='dynamic'>
-                        <option value="">--District--</option>
-                        @foreach ($districts as $element)
-                            <option value="{{ $element->id }}"> {{ $element->name }}</option>
-                        @endforeach
-                    </select>
-                    <select name="commune_receiver" id="commune_receiver" style='width: 173px'>
-                        <option value="">--Subdistrict--</option>
-                    </select>
+                <h2>
+                    <i class="fas fa-car icon-header"></i>
+                    Reciever
+                </h2>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label for="sender_name">Reciever name</label>
+                        <div class="input-group">
+                            <input class="form-control" id="sender_name" name="reciever-name" type="text" value=""/>
+                            <div class="input-group-addon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="sender_addr">Detail address</label>
+                        <div class="input-group">
+                            <input class="form-control" id="sender_addr" name="receive-detail-addr" type="text" value=""/>
+                            <div class="input-group-addon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="sender_phone">Phone</label>
+                        <div class="input-group">
+                            <input class="form-control" id="sender_phone" name="reciever-phone" type="text" value=""/>
+                            <div class="input-group-addon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                    </div>          
                 </div>
-                <input type="text" name="receive-detail-addr" placeholder="Detail Address">
-                <input type="text" name="reciever-name" placeholder="Reciever name">
-                <input type="phone" name="reciever-phone" placeholder="Phone number of reciever">
             </div>
             
             <div class="order">
-                <h2>Order information</h2>
+                <h2>
+                    <i class="fas fa-box-open"></i>
+                    Order information
+                </h2>
                 <div class="item-order" value="item1">
                     <p>Item 1</p>
                     <div class="size">
@@ -60,32 +100,32 @@
                     </button>
                 </div>
             </div>
-
-            <button class="plus-item" type="button">
-                <i class="fa fa-plus"></i>
-            </button>
-
-            <div class="option speech">
-                <h2>Chọn tốc độ vận chuyển</h2>
-                <select class="speech" name="speech" id="">
-                    <option value="Bình thường">Bình thường</option>
-                    <option value="Nhanh">Nhanh</option>
-                    <option value="Siêu tốc">Siêu tốc</option>
-                </select>
-            </div>
-
-            <div class="option payment">
-                <h2>Chọn phương thức thanh toán</h2>
-                <select class="payment" name="payment" id="">
-                    <option value="COD">COD</option>
-                    <option value="Gateway">Gateway</option>
-                </select>
-            </div>
-
-            <div class="thongke">
-                <div class="soluong">
-                    <span>Số lượng item</span>
-                    <input type="number" value="1" readonly name="countItem">
+            
+            <h4>
+                Add item
+                <button class="plus-item" type="button">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </h4>
+            <div class="row">
+                <div class="col-md-3 form-group option speech">
+                    <label for="speech">Chọn tốc độ vận chuyển</label>
+                    <select class="speech form-control" name="speech" id="speech">
+                        <option value="Bình thường">Bình thường</option>
+                        <option value="Nhanh">Nhanh</option>
+                        <option value="Siêu tốc">Siêu tốc</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group option payment">
+                    <label for="payment">Chọn phương thức thanh toán</label>
+                    <select class="speech form-control" name="payment" id="payment">
+                        <option value="COD">COD</option>
+                        <option value="Gateway">Gateway</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group option speech">
+                    <label for="countItem">Số lượng item</label>
+                    <input class="form-control" id="countItem" type="number" value="1" readonly name="countItem">
                 </div>
             </div>
 

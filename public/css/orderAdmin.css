@@ -1,3 +1,6 @@
+.main-content{
+    margin: 70px;
+}
 select{
     display: inline-block;
     width: 200px;
@@ -5,4 +8,10 @@ select{
 .icon-header{
     color: orange;
     margin-right: 10px;
+}
+.price{
+    font-size: 200%;
+}
+.class-infor{
+    margin-left: 30px;
 }

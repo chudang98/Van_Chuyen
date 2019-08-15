@@ -1,7 +1,7 @@
 @extends('customer.menu')
 
 @section('content')
-
+    <h1>Kiểm tra lại thông tin hóa đơn</h1>
     <div class='container' style="margin-left : 200px">
         <div class="sender">
             <h2>Sender</h2>
@@ -14,11 +14,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Index</th>
-                        <th>Width</th>
-                        <th>Height</th>
-                        <th>Depth</th>
-                        <th>Weight</th>
+                        <th>ID</th>
+                        <th>Width (cm)</th>
+                        <th>Height (cm)</th>
+                        <th>Depth(cm)</th>
+                        <th>Weight (kg)</th>
                     </tr>
                 </thead>
                 <tbody>

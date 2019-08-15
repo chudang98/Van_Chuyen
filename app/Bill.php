@@ -54,8 +54,8 @@ class Bill extends Model
         $bill->name_reciever            = $arr['reciever-name'];
         $bill->payment                  = $arr['payment'];
         $bill->speed                    = $arr['speech'];
-        $bill->communes_id_sender       = $arr['commune_sender'];
-        $bill->communes_id_reciever     = $arr['commune_receiver'];
+        // $bill->communes_id_sender       = $arr['commune_sender'];
+        // $bill->communes_id_reciever     = $arr['commune_receiver'];
         $bill->users_id_kh              = auth()->user()->id;
         $bill->total_price              = $arr['price'];
         $bill->save();
