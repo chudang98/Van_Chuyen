@@ -14,7 +14,7 @@
                                     <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Telephone number') }}</label>
         
                                     <div class="col-md-6">
-                                        <input id="phone" type="number" class="form-control @error('email') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                        <input id="phone" type="text" class="form-control @error('email') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
                                         @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -143,7 +143,7 @@
                             {{-- Button Đăng ký --}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button id="submit" type="submit" class="btn btn-primary">
                                         {{ __('Sign up') }}
                                     </button>
                                 </div>
@@ -185,6 +185,12 @@
                             
                         }
                     });
+                }
+            });
+
+            $('button[type="submit"').click(function(){
+                if($('select[name="commune"').val() == ''){
+                    alert('Vui lòng chọn địa chỉ xã !!');   
                 }
             });
 

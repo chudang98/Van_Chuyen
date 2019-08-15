@@ -60,6 +60,17 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        
+        // check type user in route
+        'admin_route' => \App\Http\Middleware\AdminRoute::class,
+        'customer_route' => \App\Http\Middleware\CustomerRoute::class,
+        'shipper_route' => \App\Http\Middleware\ShipperRoute::class,
+        'users' => \App\Http\Middleware\CheckLogin::class,
+
+        // method request
+        'ajax_request' => \App\Http\Middleware\AJAXrequest::class,
+
+
     ];
 
     /**

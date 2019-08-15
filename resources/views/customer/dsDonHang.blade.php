@@ -277,7 +277,8 @@
                                                                 <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                                                     Details
                                                                 </button>
-                                                            </p></a>
+                                                            </p>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endif
@@ -498,6 +499,7 @@
             </div>
         </div>
     </div>
+
     <script>
         $(document).ready(function(){
             document.getElementsByClassName("item2")[0].style.border = "2px solid #FE642E";

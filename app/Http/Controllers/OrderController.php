@@ -97,6 +97,10 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->all();
+        \App\Bill::adminConfirm($data, $id);
+        return redirect('/orders')
+            ->with('status', 'confirmed');
     }
 
     /**
@@ -105,9 +109,13 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        \App\Bill::adminCancel($id, $data['reasonCancel']);
+        return redirect('/orders')
+            ->with('status', 'cancelOrder');
+
     }
 
     public function confirm_order(Request $request){
@@ -158,7 +166,7 @@ class OrderController extends Controller
                 'data' => $data
             ]);
     }
-    public function cancelOrder(){
-        
+    public function orderInfor($id){
+        echo $id;
     }
 }

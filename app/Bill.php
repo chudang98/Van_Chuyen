@@ -70,6 +70,33 @@ class Bill extends Model
             $item->bills_id  = $bill->id;
             $item->save();
         }
-    } 
+    }
+
+    public static function adminConfirm($data, $id)
+    {
+        Bill::where('id', $id)->update(
+            [
+                'address_client'       => $data['sender-detail-addr'],
+                'communes_id_sender'   => $data['commune_sender'],
+                'phone_client'         => $data['sender_telephone'],
+                'name_reciever'        => $data['reciever_name'],
+                'communes_id_reciever' => $data['commune_reciever'],
+                'address_reciever'     => $data['reciever-detail-addr'],
+                'phone_reciever'       => $data['reciever_telephone'],
+                'state'                => 'Chờ giao hàng',
+                'start_date'           => \Carbon::now(),
+            ]);
+        
+    }
+
+    public static function adminCancel($id, $reason)
+    {
+        Bill::where('id', $id)->update(
+        [
+            'state' => 'Đã hủy',
+            'reason' => $reason,
+        ]);
+
+    }
 
 }

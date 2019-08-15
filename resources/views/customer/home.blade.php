@@ -51,27 +51,27 @@
                 </h2>
                 <div class="row">
                     <div class="col-md-3 form-group">
-                        <label for="sender_name">Reciever name</label>
+                        <label for="reciever_name">Reciever name</label>
                         <div class="input-group">
-                            <input class="form-control" id="sender_name" name="reciever-name" type="text" value=""/>
+                            <input class="form-control" id="reciever_name" name="reciever-name" type="text" value=""/>
                             <div class="input-group-addon">
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 form-group">
-                        <label for="sender_addr">Detail address</label>
+                        <label for="reciever_addr">Detail address</label>
                         <div class="input-group">
-                            <input class="form-control" id="sender_addr" name="receive-detail-addr" type="text" value=""/>
+                            <input class="form-control" id="reciever_addr" name="receive-detail-addr" type="text" value=""/>
                             <div class="input-group-addon">
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 form-group">
-                        <label for="sender_phone">Phone</label>
+                        <label for="reciever_phone">Phone</label>
                         <div class="input-group">
-                            <input class="form-control" id="sender_phone" name="reciever-phone" type="text" value=""/>
+                            <input class="form-control" id="reciever_phone" name="reciever-phone" type="text" value=""/>
                             <div class="input-group-addon">
                                 <i class="fas fa-phone"></i>
                             </div>
@@ -129,7 +129,9 @@
                 </div>
             </div>
 
-            <button type="button" name="done">Thanh toán</button>
+            <button type="button" name="done" class="btn btn-primary">
+                Thanh toán
+            </button>
         </form>
     </div>
 @endsection
@@ -259,7 +261,6 @@
             if(isNum == false || val == '')
                 return false;
             return true;
-
         }
         // xử lý không đồng bộ
         function checkInputEmpty(){

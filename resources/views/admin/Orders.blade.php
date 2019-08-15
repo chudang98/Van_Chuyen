@@ -140,8 +140,8 @@
                                                     {{number_format($bill->total_price)}}
                                                 </td>
                                                 <td>
-                                                    <a href="#">
-                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                    <a href="orderInfor/{{$bill->id}}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Chi tiết">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                                                 Detail
                                                             </button>
@@ -214,8 +214,8 @@
                                                     {{number_format($bill->total_price)}}
                                                 </td>
                                                 <td>
-                                                    <a href="#">
-                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                    <a href="orderInfor/{{$bill->id}}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Chi tiết">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                                                 Detail
                                                             </button>
@@ -288,8 +288,8 @@
                                                     {{number_format($bill->total_price)}}
                                                 </td>
                                                 <td>
-                                                    <a href="#">
-                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                    <a href="orderInfor/{{$bill->id}}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Chi tiết">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                                                 Detail
                                                             </button>
@@ -361,7 +361,7 @@
                                                     {{number_format($bill->total_price)}}
                                                 </td>
                                                 <td>
-                                                    <a href="#">
+                                                    <a href="orderInfor/{{$bill->id}}">
                                                         <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                                                 Confirm
@@ -434,7 +434,7 @@
                                                     {{number_format($bill->total_price)}}
                                                 </td>
                                                 <td>
-                                                    <a href="#">
+                                                    <a href="orderInfor/{{$bill->id}}">
                                                         <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
                                                                 Confirm
@@ -454,4 +454,15 @@
             </div>
         </div>
     </div>
+    
+
+    <script>
+        @if(session()->has('status'))
+            @if(session()->get('status') == 'confirmed')
+                alert('Đã xác nhận hóa đơn. Hóa đơn đã được phân phối cho shipper và đang chờ nhận !');
+                @elseif(session()->get('status') == 'cancelOrder')
+                    alert('Đã hủy hóa đơn !');
+            @endif
+        @endif
+    </script>
 @endsection
