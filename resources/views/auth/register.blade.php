@@ -14,12 +14,11 @@
                                     <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Telephone number') }}</label>
         
                                     <div class="col-md-6">
-                                        <input id="phone" type="text" class="form-control @error('email') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
-                                        @error('phone')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                        @if ($errors->has('phone'))
+                                            <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
+                                        @endif
+                                        
                                     </div>
                                 </div>
                             {{-- Nhập password --}}
@@ -28,12 +27,9 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if ($errors->has('password'))
+                                        <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -51,11 +47,10 @@
                                 <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
                                 <div class="col-md-6">
                                     <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus placeholder="Last name">
-                                    @error('lastname')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if ($errors->has('lastname'))
+                                        <div class="alert alert-danger">{{ $errors->first('lastname') }}</div>
+                                    @endif
+
                                 </div>
                             </div>
     
@@ -66,11 +61,9 @@
                                 <div class="col-md-6">
                                     <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus placeholder="First">
     
-                                    @error('firstname')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if ($errors->has('firstname'))
+                                        <div class="alert alert-danger">{{ $errors->first('firstname') }}</div>
+                                     @endif
                                 </div>
                             </div>
     
@@ -84,11 +77,9 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
     
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if ($errors->has('email'))
+                                        <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+                                    @endif
                                 </div>
                             </div>
     
@@ -101,38 +92,42 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="Address">
     
-                                    @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if ($errors->has('address'))
+                                        <div class="alert alert-danger">{{ $errors->first('address') }}</div>
+                                    @endif
                                 </div>
                             </div>
     
-                            <select name="district" id="district" class='dynamic'>
-                                <option value="">--District--</option>
-                                @foreach ($districts as $element)
-                                    <option value="{{ $element->id }}"> {{ $element->name }}</option>
-                                @endforeach
-                            </select>
-                            <select name="commune" id="commune" style='width: 173px'>
-                                <option value="">--Commune--</option>
-                                {{-- @foreach ($communes as $element)
-                                    <option value="{{ $element->id }}"> {{ $element->name }}</option>
-                                @endforeach --}}
-                            </select>
+                            <div class="form-group row">
+                                <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Choose detail address') }}</label>
+                                <div class="col-md-4">
+                                    <select name="district" id="district" class='dynamic form-control'>
+                                        <option value="">--District--</option>
+                                        @foreach ($districts as $element)
+                                            <option value="{{ $element->id }}"> {{ $element->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select  class="form-control" name="commune" id="commune" style='width: 173px' required>
+                                        <option value="">--Commune--</option>
+                                    </select>
+                                    @if ($errors->has('commune'))
+                                        <div class="alert alert-danger">{{ $errors->first('commune') }}</div>
+                                    @endif
+                                </div>
+
+                            </div>
+
                             
                             {{-- Nhập ngày tháng năm sinh --}}
                             <div class="form-group row">
                                 <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date of birth') }}</label>    
-                                {{--  <p>Date: <input type="text" id="datepicker"></p>                                  --}}
                                 <div class="col-md-6">
                                     <input type="date" name="date" value="{{ old('date', date('Y-m-d')) }}">
-                                    @error('date')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if ($errors->has('date'))
+                                        <div class="alert alert-danger">{{ $errors->first('date') }}</div>
+                                    @endif
                                 </div>
                             </div>
                         
@@ -187,13 +182,9 @@
                     });
                 }
             });
-
-            $('button[type="submit"').click(function(){
-                if($('select[name="commune"').val() == ''){
-                    alert('Vui lòng chọn địa chỉ xã !!');   
-                }
-            });
-
+            $('input').keypress(function(){
+                $(this).siblings('.alert-danger').hide();
+            })
         });
     </script>    
 @endsection
