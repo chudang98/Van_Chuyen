@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use View;
+use DB;
 
 class UserController extends Controller
 {
@@ -33,7 +34,8 @@ class UserController extends Controller
         return View::make('changePW',$data);
     }
 
-    public function thayDoittTaiKhoan(){
+    public function thayDoittTaiKhoan($alert){
+        $data['alert'] = $alert;
         $data['districts'] = District::all();
         $data['communes'] = Commune::all();
         $data['layout'] = UserController::getLayoutUser();
@@ -41,19 +43,29 @@ class UserController extends Controller
     }
 
     public function DBCommunes($id){
-        $communes = Commune::where('districts_id', $id)->get();
+        $communes = Commune::district($id)->get();
         return response()->json($communes, Response::HTTP_OK);
     }
 
     public function saveInformation(){
-        $user= User::where('id', auth()->user()->id)->first();
-        $user->name = $_POST['name'];
-        $user->email = $_POST['email'];
-        $user->birth = $_POST['birth'];
-        $user->address = $_POST['address'];
-        $user->communes_id = $_POST['commune'];
-        $user->save();
-        return redirect(url('/ttTaiKhoan'));
+        $kt=0;
+        $users= User::all();
+        foreach ($users as $u){
+            if($u->email == $_POST['email']){
+                return redirect(url('/thayDoittTaiKhoan/email'));
+                $kt=1;
+            }
+        }
+        if($kt==0){
+            $user= User::where('id', auth()->user()->id)->first();
+            $user->name = $_POST['name'];
+            $user->email = $_POST['email'];
+            $user->birth = $_POST['birth'];
+            $user->address = $_POST['address'];
+            $user->communes_id = $_POST['commune'];
+            $user->save();
+            return redirect(url('/ttTaiKhoan'));
+        }
     }
     
     public function savePassword(){
