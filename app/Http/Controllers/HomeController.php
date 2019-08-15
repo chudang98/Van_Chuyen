@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Bill;
+use App\Commune;
+use App\District;
+use App\Item;
+use App\User;
 use Illuminate\Http\Request;
 use DB;
+use View;
 
 class HomeController extends Controller
 {
@@ -40,7 +46,17 @@ class HomeController extends Controller
                     ->with('districts', $districts);
                 break;
             case 'Nhân viên vận chuyển' :
-                return redirect()->to('/waitingOrders');
+//                return redirect(url('/waitingOrders'));
+                $data['users'] = User::all();
+
+                $u = User::where('id', auth()->user()->id)->first();
+                $data['bills'] = Bill::where('state','Chờ giao hàng')
+                    ->where('communes_id_sender', $u->communes_id)
+                    ->get();
+                $data['items'] = Item::all();
+                $data['communes'] = Commune::all();
+                $data['districts'] = District::all();
+                return View::make('shipper.waitingOrders',$data);
                 break;
             default :
                 return redirect()->to('logout');

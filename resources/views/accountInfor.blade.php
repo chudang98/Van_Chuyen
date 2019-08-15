@@ -1,5 +1,5 @@
 @extends($layout)
-
+{{--@extends('shipper.menu')--}}
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/accountInfor.css')}}">
 @endsection
@@ -8,8 +8,7 @@
 <div class="container">
         <div class="panel-heading col-md-12" style="text-align: center">
             <div class="panel-title col-md-12">
-                <h3 class="col-md-11"><i class="fa fa-user-circle avatar"></i> </h3>
-
+                <h3 class="col-md-11"><i class="fa fa-user-circle avatar" style="font-size: 68px"></i> </h3>
             </div>
         </div>
         <div class="col-md-12">

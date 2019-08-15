@@ -1,4 +1,4 @@
-@extends('shipper/menu')
+@extends('shipper.menu')
 @section('content')
     <div class="container" onload="css()">
         <div id="home" class="tab-pane fade in active">
