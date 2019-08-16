@@ -69,7 +69,7 @@ Route::group(['middleware' => 'admin_route'], function() {
 
 
 //Shipper
-Route::group(['middleware' => 'admin_route'], function() {
+Route::group(['middleware' => 'shipper_route'], function() {
     Route::get('waitingOrders','ShipperController@waitingOrders');
     Route::get('S_detailOrder/{id}','ShipperController@detailOrder');
     Route::get('takeOrder/{id}','ShipperController@takeOrder');

@@ -167,6 +167,12 @@ class OrderController extends Controller
             ]);
     }
     public function orderInfor($id){
-        echo $id;
+        $order = Bill::where('id',$id)->first();
+        $user  = \App\User::where('id', $order['users_id_kh'])->first();
+        return view('admin.inforOrder',
+            [
+                'data' => $order,
+                'user' => $user
+            ]);
     }
 }

@@ -167,7 +167,6 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-{{--                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>--}}
                             <h3 class="modal-title custom_align" id="Heading" style="text-align: center">Congratulation</h3>
                         </div>
                         <div class="modal-body">

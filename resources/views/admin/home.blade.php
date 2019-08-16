@@ -1,5 +1,6 @@
 @extends('admin.layout')
 
+
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/homeAdmin.css')}}">
 @endsection
@@ -14,7 +15,7 @@
                     </div>
                     <div class="col-md-7">
                         <h3>Customer</h3>
-                        <p>31232</p>
+                        <p>{{ $data['customer'] }}</p>
                     </div>
                 </div>
             </div>
@@ -26,7 +27,7 @@
                     </div>
                     <div class="col-md-7">
                         <h3>Partner</h3>
-                        <p>31232</p>
+                        <p> {{ $data['partner'] }} </p>
                     </div>
                 </div>
             </div>
@@ -38,7 +39,7 @@
                     </div>
                     <div class="col-md-7">
                         <h3>Completed</h3>
-                        <p>31232</p>
+                        <p>{{ $data['order'] }}</p>
                     </div>
                 </div>
             </div>
