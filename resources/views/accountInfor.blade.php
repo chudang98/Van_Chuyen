@@ -62,7 +62,7 @@
                     <a href="/thayDoittTaiKhoan/{{auth()->user()->name}}">
                         <p data-placement="top" data-toggle="tooltip" title="suatt">
                             <button class="btn btn-info" data-title="Edit" data-toggle="modal" data-target="#edit" >
-                                Reset information
+                                Update profile
                             </button></p>
                     </a>
 
@@ -71,7 +71,7 @@
                     <a href="/thayDoiMatKhau/{{auth()->user()->name}}">
                         <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                             <button class="btn btn-info " data-title="Edit" data-toggle="modal" data-target="#edit" >
-                                Reset Password
+                                Change Password
                             </button>
                         </p>
                     </a>

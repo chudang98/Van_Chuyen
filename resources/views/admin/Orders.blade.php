@@ -22,10 +22,11 @@
                                     <th>Sender </th>
                                     <th>Receiver </th>
                                     <th>Price</th>
+                                    <th>Speed</th>
                                     </thead>
                                     <tbody>
                                     @foreach($bills as $bill)
-                                        @if($bill->state == "Chờ xác nhận")
+                                        @if($bill->state == "Chờ xác nhận" && $bill->speed == 'Siêu tốc')
                                             <tr>
                                                 <td>
                                                     @foreach($users as $user)
@@ -64,6 +65,122 @@
                                                 </td>
                                                 <td>
                                                     {{number_format($bill->total_price)}}
+                                                </td>
+                                                <td>
+                                                    <p style="color: red">Siêu tốc</p>
+                                                </td>
+                                                <td>
+                                                    <a href="/orderDetail/{{ $bill->id }}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                            <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                                Confirm
+                                                            </button>
+                                                        </p>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    @foreach($bills as $bill)
+                                        @if($bill->state == "Chờ xác nhận" && $bill->speed == 'Nhanh')
+                                            <tr>
+                                                <td>
+                                                    @foreach($users as $user)
+                                                        @if($user->id == $bill->users_id_kh)
+                                                            {{$user->name}}
+                                                            @break
+                                                        @endif
+                                                    @endforeach
+                                                    <br> {{$bill->phone_client}} <br>
+                                                    {{$bill->address_client}}
+                                                    -@foreach($communes as $commune)
+                                                        @if($commune->id == $bill->communes_id_sender)
+                                                            {{$commune->name}}
+                                                            -@foreach($districts as $district)
+                                                                @if($district->id == $commune->districts_id)
+                                                                    {{$district->name}}
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{$bill->name_reciever}} <br>
+                                                    {{$bill->phone_reciever}} <br>
+                                                    {{$bill->address_reciever}}
+                                                    -@foreach($communes as $commune)
+                                                        @if($commune->id == $bill->communes_id_reciever)
+                                                            {{$commune->name}}
+                                                            -@foreach($districts as $district)
+                                                                @if($district->id == $commune->districts_id)
+                                                                    {{$district->name}}
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{number_format($bill->total_price)}}
+                                                </td>
+                                                <td>
+                                                    <p style="color: orange">Nhanh</p>
+
+                                                </td>
+                                                <td>
+                                                    <a href="/orderDetail/{{ $bill->id }}">
+                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                                                            <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                                                Confirm
+                                                            </button>
+                                                        </p>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    @foreach($bills as $bill)
+                                        @if($bill->state == "Chờ xác nhận" && $bill->speed == 'Bình thường')
+                                            <tr>
+                                                <td>
+                                                    @foreach($users as $user)
+                                                        @if($user->id == $bill->users_id_kh)
+                                                            {{$user->name}}
+                                                            @break
+                                                        @endif
+                                                    @endforeach
+                                                    <br> {{$bill->phone_client}} <br>
+                                                    {{$bill->address_client}}
+                                                    -@foreach($communes as $commune)
+                                                        @if($commune->id == $bill->communes_id_sender)
+                                                            {{$commune->name}}
+                                                            -@foreach($districts as $district)
+                                                                @if($district->id == $commune->districts_id)
+                                                                    {{$district->name}}
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{$bill->name_reciever}} <br>
+                                                    {{$bill->phone_reciever}} <br>
+                                                    {{$bill->address_reciever}}
+                                                    -@foreach($communes as $commune)
+                                                        @if($commune->id == $bill->communes_id_reciever)
+                                                            {{$commune->name}}
+                                                            -@foreach($districts as $district)
+                                                                @if($district->id == $commune->districts_id)
+                                                                    {{$district->name}}
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{number_format($bill->total_price)}}
+                                                </td>
+                                                <td>
+                                                    <p style="color: yellow">Bình thường</p>
                                                 </td>
                                                 <td>
                                                     <a href="/orderDetail/{{ $bill->id }}">
@@ -320,7 +437,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($bills as $bill)
-                                        @if($bill->state == "Đã hủy" && $bill->total_price == null)
+                                        @if($bill->state == "Đã hủy" && $bill->users_id_nvvc == null)
                                             <tr>
                                                 <td>
                                                     @foreach($users as $user)
@@ -364,7 +481,7 @@
                                                     <a href="orderInfor/{{$bill->id}}">
                                                         <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
-                                                                Confirm
+                                                                Detail
                                                             </button>
                                                         </p>
                                                     </a>
@@ -393,7 +510,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($bills as $bill)
-                                        @if($bill->state == "Đã hủy" && $bill->total_price != null)
+                                        @if($bill->state == "Đã hủy" && $bill->users_id_nvvc != null)
                                             <tr>
                                                 <td>
                                                     @foreach($users as $user)
@@ -437,7 +554,7 @@
                                                     <a href="orderInfor/{{$bill->id}}">
                                                         <p data-placement="top" data-toggle="tooltip" title="chiTiet">
                                                             <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
-                                                                Confirm
+                                                                Detail
                                                             </button>
                                                         </p>
                                                     </a>

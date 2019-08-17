@@ -72,95 +72,6 @@
                                                     </p>
                                                 </a>
                                             </td>
-                                            <td>
-                                                @if($bill->state == "Đang giao hàng")
-                                                    <a href="#"  class="actionTake">
-                                                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
-                                                            <button id="save{{$bill->id}}" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#complete{{$bill->id}}" >
-                                                                Complete
-                                                            </button>
-                                                        </p>
-                                                    </a>
-                                                @endif
-                                                <div class="modal fade" id="take{{$bill->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <form action="/takeOrder/{{$bill->id}}">
-                                                                    <button type="submit" class="close" >
-                                                                        <span class="glyphicon glyphicon-remove" aria-hidden="true">
-                                                                        </span>
-                                                                    </button>
-                                                                </form>
-                                                                <h3 class="modal-title custom_align" id="Heading" style="text-align: center">Congratulation</h3>
-                                                            </div>
-                                                            <div class="modal-body">
-
-                                                                <div class="alert alert-info">
-                                                                    <p>You has just successfully received the request {{$bill->id}}.</p>
-                                                                    <p>Please take the package and update the status for this request in real time.</p>
-                                                                    <!--                                                                    --><?php
-                                                                    //                                                                        header("Refresh:3; url=/takeOrder/$bill->id");
-                                                                    //                                                                    ?>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal fade" id="complete{{$bill->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                                                <h3 class="modal-title custom_align" id="Heading" style="text-align: center">Complete the order</h3>
-                                                            </div>
-                                                            <div class="modal-body">
-
-                                                                <div class="alert alert-info">
-                                                                    <p>Press OK if you meet these two oriterio before you complete the order.</p>
-                                                                    <p>- Payment</p>
-                                                                    <p>- Receiver's signature in the invoice.</p>
-                                                                </div>
-                                                                <div class="modal-footer " style="text-align: center">
-                                                                    <div class="col-md-2"></div>
-                                                                    <div class="col-md-4">
-                                                                        <button type="button" class="btn btn" aria-hidden="true" data-dismiss="modal" >Cancel</button>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <button class="btn btn-success " data-title="Delete" data-toggle="modal" data-dismiss="modal" data-target="#notice{{$bill->id}}"
-                                                                                onclick="saveComplete({{$bill->id}})">
-                                                                            OK
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal fade" id="notice{{$bill->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                                                    <h3 class="modal-title custom_align" id="Heading" style="text-align: center">You have just completed delivering
-                                                                        the order {{$bill->id}}</h3>
-                                                                </div>
-                                                                <div class="modal-body">
-
-                                                                    <div class="alert alert-danger">
-                                                                        <p>Please submit the payment and the invoice back to the nearest company's office in at least
-                                                                            3 days after completing the order</p>
-                                                                    </div>
-                                                                    <div class="modal-footer " style="text-align: center">
-                                                                        <form action="/deliveryOrders">
-                                                                            <button type="submit" class="btn btn-success" >Yes</button>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -225,6 +136,7 @@
                                                         </p>
                                                     </a>
                                                 </td>
+                                                <td>
                                                 <td>
                                                     @if($bill->state == "Đang giao hàng")
                                                         <a href="#"  class="actionTake">
@@ -305,7 +217,7 @@
                                                                             3 days after completing the order</p>
                                                                     </div>
                                                                     <div class="modal-footer " style="text-align: center">
-                                                                        <form action="/deliveryOrders">
+                                                                        <form action="/deliveryOrders" class="cancel-order">
                                                                             <button type="submit" class="btn btn-success" >Yes</button>
                                                                         </form>
                                                                     </div>

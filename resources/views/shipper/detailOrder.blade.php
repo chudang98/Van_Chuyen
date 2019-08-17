@@ -122,7 +122,7 @@
                             <div class="controls col-md-3 ">
                                 <a href="#">
                                     <p data-placement="top" data-toggle="tooltip" title="chiTiet">
-                                        <button class="btn " data-title="Edit" data-toggle="modal" data-target="#fail{{$bill->id}}" >
+                                        <button class="btn " data-title="Edit" data-toggle="modal" data-target="#confirm{{$bill->id}}" >
                                             Fail
                                         </button>
                                     </p>
@@ -131,7 +131,7 @@
                             <div class="controls col-md-3 ">
                                 <a href="#">
                                     <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                        <button class="btn btn-primary " data-title="Delete" data-toggle="modal" data-target="#complete{{$bill->id}}">
+                                        <button class="btn btn-primary " data-title="Delete" data-toggle="modal"  data-target="#complete{{$bill->id}}">
                                             Complete
                                         </button>
                                     </p>
@@ -186,6 +186,32 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="confirm{{$bill->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header alert-danger">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            <h4 class="modal-title custom_align " id="Heading">Cancel Order</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="danger">Bạn có chắc muốn hủy đơn hàng này?</p>
+                        </div>
+                        <div class="modal-footer " style="text-align: center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-success" aria-hidden="true" data-dismiss="modal" >No</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn " data-title="Delete" data-toggle="modal" data-dismiss="modal" data-target="#fail{{$bill->id}}">
+                                    Yes
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
             <div class="modal fade" id="fail{{$bill->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -195,7 +221,7 @@
                         <div class="modal-body">
 
                             <div class="alert alert-info">
-                                <form action="/failOrder/{{ $bill->id }}" method="post">
+                                <form action="/failOrder/{{ $bill->id }}" method="post" class="cancel-order">
                                     @csrf
                                     <input type="radio" name="reason"
                                            value="I cannot take the package from the sender" checked> I cannot take the package from the sender<br>
@@ -270,7 +296,7 @@
                                 3 days after completing the order</p>
                             </div>
                             <div class="modal-footer " style="text-align: center">
-                                <form action="/S_detailOrder/{{$bill->id}}">
+                                <form action="/S_detailOrder/{{$bill->id}}" class="cancel-order">
                                     <button type="submit" class="btn btn-success" >Yes</button>
                                 </form>
                             </div>

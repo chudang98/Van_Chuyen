@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="form-group action">
-                <div class="aab controls col-md-4 "></div>
+                <div class="aab controls col-md-3 "></div>
                 <div class="controls col-md-2 ">
                     <input onclick="window.location.href='/ttTaiKhoan'" type="button" name="Signup" value="Cancel"
                            class="btn btn btn-info" id="button-id-signup" />

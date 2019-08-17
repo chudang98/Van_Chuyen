@@ -24,7 +24,7 @@
                 </label>
                 <div class="controls col-md-4 ">
                     <input required class="input-md textinput textInput form-control" id="id_password1" name="password1"
-                           placeholder="password" style="margin-bottom: 10px" type="password" />
+                           placeholder="Password" style="margin-bottom: 10px" type="password" />
                     @if($alert == 'passwordOld')
                         <div class="alert alert-danger" role="alert">
                             Wrong password. Please enter your password again!
@@ -59,8 +59,8 @@
                 </div>
             </div>
             <div class="form-group action">
-                <div class="aab controls col-md-4 "></div>
-                <div class="controls col-md-2 ">
+                <div class="aab controls col-md-2 "></div>
+                <div class="controls col-md-3 ">
                     <input onclick="window.location.href='/ttTaiKhoan'" type="button" name="Signup" value="Cancel"
                            class="btn btn btn-info" id="button-id-signup" />
                 </div>

@@ -120,4 +120,7 @@ header .user i{
 form{
     margin-left: 200px;
 }
+.cancel-order{
+    margin-left: 0px;
+}
 /*End Header*/
