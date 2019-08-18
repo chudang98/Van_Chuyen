@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'email' => ['bail','required', 'string', 'email', 'max:191', 'unique:users'],
             'password' => ['bail','required', 'string', 'confirmed'],
             'phone' => ['bail','required', 'max:12', 'unique:users,phone'],
-            'date' => ['bail','required'],
+            'date' => ['bail','required', 'date_format:Y-m-d', 'before:today'],
             'commune' =>['bail','required'],
         ]);
     }

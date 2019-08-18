@@ -16,7 +16,7 @@
                         <div class="col-md-3 form-group">
                             <label for="sender_name">Sender name</label>
                             <div class="input-group">
-                                <input class="form-control" id="sender_name" name="sender-name" type="text" value="{{ auth()->user()->name }}"/>
+                                <input maxlength="100" class="form-control" id="sender_name" name="sender-name" type="text" value="{{ auth()->user()->name }}"/>
                                 <div class="input-group-addon">
                                     <i class="fas fa-pencil-alt"></i>
                                 </div>
@@ -25,7 +25,7 @@
                         <div class="col-md-3 form-group">
                             <label for="sender_addr">Detail address</label>
                             <div class="input-group">
-                                <input class="form-control" id="sender_addr" name="sender-detail-addr" type="text" value="{{ auth()->user()->address }}"/>
+                                <input maxlength="191" class="form-control" id="sender_addr" name="sender-detail-addr" type="text" value="{{ auth()->user()->address }}"/>
                                 <div class="input-group-addon">
                                     <i class="fas fa-map-marked-alt"></i>
                                 </div>
@@ -34,7 +34,7 @@
                         <div class="col-md-3 form-group">
                             <label for="sender_phone">Phone</label>
                             <div class="input-group">
-                                <input class="form-control" id="sender_phone" name="sender-phone" type="text" value="{{ auth()->user()->phone }}"/>
+                                <input maxlength="191" class="form-control" id="sender_phone" name="sender-phone" type="text" value="{{ auth()->user()->phone }}"/>
                                 <div class="input-group-addon">
                                     <i class="fas fa-phone"></i>
                                 </div>
@@ -54,7 +54,7 @@
                         <label for="reciever_name">Reciever name</label>
                         <div class="input-group">
                             <input class="form-control" id="reciever_name" name="reciever-name" type="text" value=""/>
-                            <div class="input-group-addon">
+                            <div maxlength="200" class="input-group-addon">
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                     <div class="col-md-3 form-group">
                         <label for="reciever_addr">Detail address</label>
                         <div class="input-group">
-                            <input class="form-control" id="reciever_addr" name="receive-detail-addr" type="text" value=""/>
+                            <input maxlength="191" class="form-control" id="reciever_addr" name="receive-detail-addr" type="text" value=""/>
                             <div class="input-group-addon">
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
@@ -71,7 +71,7 @@
                     <div class="col-md-3 form-group">
                         <label for="reciever_phone">Phone</label>
                         <div class="input-group">
-                            <input class="form-control" id="reciever_phone" name="reciever-phone" type="text" value=""/>
+                            <input maxlength="191" class="form-control" id="reciever_phone" name="reciever-phone" type="text" value=""/>
                             <div class="input-group-addon">
                                 <i class="fas fa-phone"></i>
                             </div>
@@ -88,12 +88,12 @@
                 <div class="item-order" value="item1">
                     <p>Item 1</p>
                     <div class="size">
-                        <input type="number" name="item-width[]" placeholder="Width (cm)">
-                        <input type="number" name="item-height[]" placeholder="Height (cm)">
-                        <input type="number" name="item-depth[]" placeholder="Depth (cm)">
+                        <input maxlength="10" type="number" name="item-width[]" placeholder="Width (cm)">
+                        <input maxlength="10" type="number" name="item-height[]" placeholder="Height (cm)">
+                        <input maxlength="10" type="number" name="item-depth[]" placeholder="Depth (cm)">
                     </div>
                     <div class="weight">
-                        <input type="number" name="item-weight[]" placeholder="Weight (kg)">
+                        <input maxlength="10" type="number" name="item-weight[]" placeholder="Weight (kg)">
                     </div>
                     <button class="minus-item" type="button" value="item1" onclick="deleteItem('item1')">
                         <i class="fa fa-minus"></i>
@@ -169,16 +169,12 @@
             $('.plus-item').click(function(){
                 appItem();
             });
-
- 
-            
+   
             $('button[name = "done"]').click(function(){
                 if(checkInputEmpty() == true){
                     $('form').submit();
                 }
             });
-
- 
 
             function  css() {
                 document.getElementsByClassName("item1")[0].style.border = "2px solid #FE642E";

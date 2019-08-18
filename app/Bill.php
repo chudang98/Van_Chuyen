@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Bill extends Model
 {
@@ -84,7 +85,7 @@ class Bill extends Model
                 'address_reciever'     => $data['reciever-detail-addr'],
                 'phone_reciever'       => $data['reciever_telephone'],
                 'state'                => 'Chờ giao hàng',
-                'start_date'           => \Carbon::now(),
+                'start_date'           => Carbon::now(),
             ]);
         
     }

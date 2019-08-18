@@ -10,7 +10,7 @@
             <i class="fab fa-slack-hash icon-header"></i>
             Mã hóa đơn : HD{{ $order->id }}
         </h1>
-        <form action="/orderConfirm/{{ $order->id }}" method="GET">
+        <form action="/orderConfirm/{{ $order->id }}" method="GET" id="confirmOrder">
             @csrf
             <div class="row">
                 <h2>
@@ -243,7 +243,7 @@
 
         function confirmOrder(){
             if(checkInputEmpty() == true){
-                $('form').submit();
+                $('form[id="confirmOrder"]').submit();
             }
         }
         function cancelOrder(){
