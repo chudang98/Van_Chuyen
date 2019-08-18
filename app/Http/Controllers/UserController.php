@@ -51,7 +51,7 @@ class UserController extends Controller
         $kt=0;
         $users= User::all();
         foreach ($users as $u){
-            if($u->email == $_POST['email']){
+            if($u->email == $_POST['email'] && $u->id != auth()->user()->id){
                 return redirect(url('/thayDoittTaiKhoan/email'));
                 $kt=1;
             }

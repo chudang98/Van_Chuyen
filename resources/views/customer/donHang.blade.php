@@ -97,10 +97,15 @@
             <div class="form-group">
                 <div class="aab controls col-md-2 "></div>
                 <div class="controls col-md-3 ">
-                    <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn " data-title="Delete" data-toggle="modal" data-target="#delete" >Cancel</button></p>
+                    <a href="#">
+                        <p data-placement="top" data-toggle="tooltip" title="chiTiet">
+                            <button class="btn" data-title="Edit" data-toggle="modal" data-target="#confirm{{$bills->id}}" >
+                                Cancel
+                            </button>
+                        </p>
+                    </a>
                 </div>
                 <div class="controls col-md-5 ">
-{{--                        <input type="button" onclick="/dsDonHang" value="Quay lại" class="btn btn btn-primary">--}}
                     <a href="/dsDonHang"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >Back</button></p></a>
                 </div>
 
@@ -111,7 +116,6 @@
             <div class="form-group">
                 <div class="aab controls col-md-3 "></div>
                 <div class="controls col-md-5 ">
-                    {{--                        <input type="button" onclick="/dsDonHang" value="Quay lại" class="btn btn btn-primary">--}}
                     <a href="/dsDonHang"><p data-placement="top" data-toggle="tooltip" title="chiTiet"><button class="btn btn-primary " data-title="Edit" data-toggle="modal" data-target="#edit" >Back</button></p></a>
                 </div>
 
@@ -119,26 +123,52 @@
 
         @endif
     </div>
-    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal fade" id="confirm{{$bills->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header alert-danger">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     <h4 class="modal-title custom_align " id="Heading">Cancel Order</h4>
                 </div>
-                <form action="/huyDonHang/{{ $bills->id }}" method="POST">
+                <div class="modal-body">
+                    <p class="danger">Bạn có chắc muốn hủy đơn hàng này?</p>
+                </div>
+                <div class="modal-footer " style="text-align: center">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success" aria-hidden="true" data-dismiss="modal" >No</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn " data-title="Delete" data-toggle="modal" data-dismiss="modal" data-target="#delete{{$bills->id}}">
+                            Yes
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <div class="modal fade" id="delete{{$bills->id}}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert-danger">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align " id="Heading">Cancel Order</h4>
+                </div>
+                <form action="/huyDonHang/{{ $bills->id }}" method="POST" class="cancel-order">
                     @csrf
                     <div class="modal-body">
                         Reason:
-                        <input required type="text" style="width: 100%; height: 50px" name="reason">
+                        <input type="text" style="width: 100%; height: 50px" name="reason">
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-2"></div>
                         <div class="col-md-4">
-                            <button class="btn btn-default " type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
+                            <button class="btn btn-default " type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Submit</button>
                         </div>
                         <div class="col-md-1">
-                            <button type="button" class="btn  btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                            <button type="button" class="btn  btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Back</button>
                         </div>
 
                     </div>

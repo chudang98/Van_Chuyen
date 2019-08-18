@@ -82,7 +82,7 @@
                                                                     <p>Please take the package and update the status for this request in real time.</p>
                                                                 </div>
                                                                 <div class="modal-footer " style="text-align: center">
-                                                                    <form action="/waitingOrders">
+                                                                    <form action="/waitingOrders" class="cancel-order">
                                                                         <button type="submit" class="btn btn-success" >OK</button>
                                                                     </form>
                                                                 </div>
