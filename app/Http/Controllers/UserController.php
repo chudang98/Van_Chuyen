@@ -16,8 +16,16 @@ class UserController extends Controller
 {
     public function checkPW($str){
         if(strlen($str)>=8)
-            for($i=0; $i<strlen($str); $i++)
-                if($str[$i] >= '0' && $str[$i] <='9') return 0;
+            for($i=0; $i<strlen($str); $i++){
+                if($str[$i] >= '0' && $str[$i] <='9'){
+                    for($j=$i+1; $j<strlen($str); $j++)
+                        if($str[$j] >= 'A' && $str[$j]<='z') return 0;
+                }
+                else if($str[$i] >= 'A' && $str[$i] <='z'){
+                    for($j=$i+1; $j<strlen($str); $j++)
+                        if($str[$i] >= '0' && $str[$i] <='9') return 0;
+                }
+            }
         return 1;
     }
 
@@ -75,7 +83,7 @@ class UserController extends Controller
                 return redirect(url('/thayDoiMatKhau/passwordNew'));
             }
             else{
-                if($this->checkPW($_POST['password2'])== 0){
+                if($this->checkPW($_POST['password2'])== 0 && $_POST['password2']!= $_POST['password1']){
                     $user->password = bcrypt($_POST['password2']);
                     $user->save();
                     return redirect(url('/ttTaiKhoan'));

@@ -186,10 +186,10 @@
                                                                     <div class="modal-footer " style="text-align: center">
                                                                         <div class="col-md-2"></div>
                                                                         <div class="col-md-4">
-                                                                            <button type="button" class="btn btn-success" aria-hidden="true" data-dismiss="modal" >No</button>
+                                                                            <button type="button" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" >No</button>
                                                                         </div>
                                                                         <div class="col-md-3">
-                                                                            <button class="btn btn " data-title="Delete" data-toggle="modal" data-dismiss="modal" data-target="#delete{{$bill->id}}">
+                                                                            <button class="btn btn btn-danger" data-title="Delete" data-toggle="modal" data-dismiss="modal" data-target="#delete{{$bill->id}}">
                                                                                 Yes
                                                                             </button>
                                                                         </div>
@@ -203,26 +203,35 @@
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header alert-danger">
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                                                         <h4 class="modal-title custom_align " id="Heading">Cancel Order</h4>
                                                                     </div>
                                                                     <form action="/huyDonHang/{{ $bill->id }}" method="POST" class="cancel-order">
                                                                         @csrf
                                                                         <div class="modal-body">
-                                                                            Reason:
-                                                                            <input type="text" style="width: 100%; height: 50px" name="reason">
+                                                                            <input type="radio" name="reason"
+                                                                                   value="I cannot contact to the receiver"> Waiting for the confirmation take too long<br>
+                                                                            <input type="radio" name="reason"
+                                                                                   value="The receiver refused to receive the package"> The order is no longer necessary <br>
+                                                                            <input type="radio" name="reason"
+                                                                                   value="I broke/lost the pagkage"> The price is unreasonable<br>
+                                                                            <input type="radio" name="reason"
+                                                                                   value="Others"> Others<br>
+                                                                            <input type="text" name="others">
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <div class="col-md-2"></div>
                                                                             <div class="col-md-4">
-                                                                                <button class="btn btn-default " type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Submit</button>
+                                                                                <button class="btn btn-danger " type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Submit</button>
                                                                             </div>
                                                                             <div class="col-md-1">
-                                                                                <button type="button" class="btn  btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Back</button>
+                                                                                <button type="button" class="btn  btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Back</button>
                                                                             </div>
 
                                                                         </div>
                                                                     </form>
+
 
                                                                 </div>
                                                                 <!-- /.modal-content -->

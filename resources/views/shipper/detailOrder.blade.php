@@ -199,10 +199,10 @@
                         <div class="modal-footer " style="text-align: center">
                             <div class="col-md-2"></div>
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-success" aria-hidden="true" data-dismiss="modal" >No</button>
+                                <button type="button" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" >No</button>
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn " data-title="Delete" data-toggle="modal" data-dismiss="modal" data-target="#fail{{$bill->id}}">
+                                <button class="btn btn-danger " data-title="Delete" data-toggle="modal" data-dismiss="modal" data-target="#fail{{$bill->id}}">
                                     Yes
                                 </button>
                             </div>
@@ -224,7 +224,7 @@
                                 <form action="/failOrder/{{ $bill->id }}" method="post" class="cancel-order">
                                     @csrf
                                     <input type="radio" name="reason"
-                                           value="I cannot take the package from the sender" checked> I cannot take the package from the sender<br>
+                                           value="I cannot take the package from the sender"> I cannot take the package from the sender<br>
                                     <input type="radio" name="reason"
                                            value="I cannot contact to the receiver"> I cannot contact to the receiver<br>
                                     <input type="radio" name="reason"
@@ -237,10 +237,10 @@
                                     <div class="modal-footer " style="text-align: center">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-4">
-                                            <button type="button" class="btn btn-success" aria-hidden="true" data-dismiss="modal" >Cancel</button>
+                                            <button type="button" class="btn btn-primary" aria-hidden="true" data-dismiss="modal" >Back</button>
                                         </div>
                                         <div class="col-md-3">
-                                                <button type="submit" class="btn " >OK</button>
+                                                <button type="submit" class="btn btn-danger" >Submit</button>
                                         </div>
 
                                     </div>

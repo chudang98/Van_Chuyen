@@ -52,20 +52,18 @@ class ShipperController extends Controller
         return 'OK';
     }
     public function failOrder($id){
-        if(isset($_POST['others'])){
-            if($_POST['reason'] != 'Others'){
-                DB::table('bills')
-                    ->where('id', $id)
-                    ->update(['state' => 'Đã hủy', 'reason'=> $_POST['reason']]);
-            }
-            else{
-                DB::table('bills')
-                    ->where('id', $id)
-                    ->update(['state' => 'Đã hủy', 'reason'=> $_POST['others']]);
-            }
-            return redirect(url('/S_detailOrder/'.$id));
+        if($_POST['reason'] != 'Others'){
+            DB::table('bills')
+                ->where('id', $id)
+                ->update(['state' => 'Đã hủy', 'reason'=> $_POST['reason']]);
         }
-        return 'fail';
+        else{
+            DB::table('bills')
+                ->where('id', $id)
+                ->update(['state' => 'Đã hủy', 'reason'=> $_POST['others']]);
+        }
+        return redirect(url('/S_detailOrder/'.$id));
+
     }
     public function DBCommunes($id){
         $communes = Commune::where('districts_id', $id)->get();

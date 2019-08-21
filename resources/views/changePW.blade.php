@@ -53,7 +53,7 @@
                            placeholder="Confirm new password" style="margin-bottom: 10px" type="password" />
                     @if($alert == 'passwordNew')
                         <div class="alert alert-danger" role="alert">
-                            The password needs at least 8 characters and 1 number.
+                            The password needs at least 8 characters and 1 number, 1 letter.
                         </div>
                     @endif
                 </div>

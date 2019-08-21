@@ -30,9 +30,16 @@ class CustomerController extends Controller
         return View::make('customer.donHang',$data);
     }
     public function huyDonHang($id){
-        DB::table('bills')
-            ->where('id', $id)
-            ->update(['state' => 'Đã hủy', 'reason'=> $_POST['reason']]);
+        if($_POST['reason'] != 'Others'){
+            DB::table('bills')
+                ->where('id', $id)
+                ->update(['state' => 'Đã hủy', 'reason'=> $_POST['reason']]);
+        }
+        else{
+            DB::table('bills')
+                ->where('id', $id)
+                ->update(['state' => 'Đã hủy', 'reason'=> $_POST['others']]);
+        }
         return redirect(url('/dsDonHang'));
     }
 }
